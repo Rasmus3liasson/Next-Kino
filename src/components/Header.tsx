@@ -1,15 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
 
 export default function Header() {
   const router = useRouter();
 
   const toggleNav = () => {
     const nav = document.querySelector("#navbarSupportedContent");
+    const menuIcon = document.querySelector("#menu-icon");
     nav?.classList.toggle("sidebar");
     nav?.classList.toggle("animation-nav");
+    menuIcon?.classList.toggle("cross-icon");
+    menuIcon?.classList.toggle("navbar-toggler-icon");
   };
 
   const toggleAccountNav = () => {
@@ -42,9 +44,11 @@ export default function Header() {
               aria-controls="navbarSupportedContent"
               aria-expanded="false"
               aria-label="Toggle navigation"
-              className="navbar-toggler-icon navbar-toggler hamburger-icon"
+              className="navbar-toggler-icon navbar-toggler hamburger-icon border-0 text-white"
+              id="menu-icon"
             ></span>
           </div>
+
           {/* Dropdown for account */}
           <div className="dropdown-account">
             <a className="dropdown-item" href="#">
