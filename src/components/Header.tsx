@@ -51,18 +51,24 @@ export default function Header() {
 
           {/* Dropdown for account */}
           <div className="dropdown-account">
-            <a className="dropdown-item" href="#">
-              Logga in
-            </a>
-            <a className="dropdown-item" href="#">
-              Skapa Konto
-            </a>
+            <ul className="navbar-nav mr-auto d-flex">
+              <li className="nav-item">
+                <Link className="nav-link" href={"#"}>
+                  Logga in
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" href={"#"}>
+                  Skapa Konto
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 
         <div className="navbar-collapse sidebar" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item ">
+            <li className="nav-item">
               <Link className={`nav-link ${currentPage("/")}`} href={"/"}>
                 Home
               </Link>
