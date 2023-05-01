@@ -1,6 +1,17 @@
 import Head from "next/head";
+import Screening from '../components/screening'
+
+const movieData = {
+  id: 15515,
+  date: 'thursday may 4th',
+  title: "Bananarama",
+  location: 'salong 4',
+  spokenLang: 'ENG',
+  subLang: 'SWE',
+};
 
 export default function Home() {
+  console.log(movieData);
   return (
     <>
       <Head>
@@ -10,7 +21,7 @@ export default function Home() {
       </Head>
       <main>
         <div>
-          <h1 className="mark text-center">Lets Go!</h1>
+          <Screening movieData={movieData} />
         </div>
       </main>
     </>
