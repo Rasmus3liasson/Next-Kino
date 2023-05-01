@@ -49,19 +49,29 @@ export default function Header() {
             ></span>
           </div>
 
-          {/* Dropdown for account */}
+          {/* Dropdown for account with condition based on route */}
           <div className="dropdown-account">
             <ul className="navbar-nav mr-auto d-flex">
-              <li className="nav-item">
-                <Link className="nav-link" href={"#"}>
-                  Logga in
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" href={"#"}>
-                  Skapa Konto
-                </Link>
-              </li>
+              {router.asPath !== "/login" ? (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" href={"#"}>
+                      Logga in
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" href={"#"}>
+                      Skapa Konto
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <li className="nav-item">
+                  <Link className="nav-link" href={"/"}>
+                    Logga ut
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>
@@ -84,10 +94,18 @@ export default function Header() {
 
             <li className="nav-item">
               <Link
-                className={`nav-link ${currentPage("/otherRoute")}`}
-                href={"/otherRoute"}
+                className={`nav-link ${currentPage("/contact")}`}
+                href={"/contact"}
               >
-                Another Route
+                Contact
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                className={`nav-link ${currentPage("/openinghours")}`}
+                href={"/openinghours"}
+              >
+                Opening Hours
               </Link>
             </li>
           </ul>
