@@ -4,7 +4,7 @@ header {
   background-color: $header-bg;
 
   .account-icon {
-    margin-right: 1.5rem;
+    margin-right: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -62,8 +62,8 @@ header {
       @media screen and (min-width: $large-screen) {
         margin-right: -0.4rem;
         margin-top: -0.9rem;
-        padding-left: 2rem !important;
-        padding-right: 2rem !important;
+        padding-left: 3rem !important;
+        padding-right: 3rem !important;
       }
     }
     .hide-name {
@@ -78,6 +78,7 @@ header {
     position: absolute;
     right: 1.7rem;
     top: 2.5rem;
+    z-index: 2;
   }
   .hamburger-icon-hide {
     display: none;

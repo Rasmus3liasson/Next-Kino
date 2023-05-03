@@ -163,7 +163,8 @@ export default function Header() {
             width={50}
           />
 
-          {router.asPath.includes(path) && <p>Name</p>}
+          {/* implement name from database */}
+          {router.asPath.includes(path) && <p>FirstName</p>}
         </div>
       </nav>
     </header>
