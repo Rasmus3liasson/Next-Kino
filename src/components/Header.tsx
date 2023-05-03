@@ -34,7 +34,7 @@ export default function Header() {
   return (
     <header className="fixed-top">
       <nav className="navbar navbar-expand-lg sticky-top">
-        <Link href={"/"}>
+        <Link href={router.asPath.includes(path) ? path + "/" : "/"}>
           <Image
             src={"/logo-cinema.png"}
             alt="logotype of our cinema"
