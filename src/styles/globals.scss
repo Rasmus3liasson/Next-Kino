@@ -11,12 +11,8 @@
   padding: 0;
   margin: 0;
 }
-html {
-  position: relative;
-  min-height: 100%;
-}
+
 main {
+  min-height: 70vh; //added min height so footer isn't right next to header
   background-color: $main-bg;
-  color: $text-light;
-  height: 100vh;
 }

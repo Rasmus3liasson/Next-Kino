@@ -32,7 +32,7 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed-top">
+    <header className="sticky-top">
       <nav className="navbar navbar-expand-lg sticky-top">
         <Link href={router.asPath.includes(path) ? path + "/" : "/"}>
           <Image
