@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Header() {
   return (
     <footer className="darkblue-color">
-      <div className="container py-3 justify-content-evenly align-items-center mobile-content">
+      <div className="container py-3 justify-content-evenly align-items-center">
         <div className="row ">
           <div className="col-md-6">
             <h5>Lule Northern Lights Cinema</h5>
@@ -56,7 +56,7 @@ export default function Header() {
               </li>
             </ul>
             <div>
-              <h6>Telefon</h6>
+              <h5>Telefon</h5>
               <Link href={"tel:555 555 555"}>555 555 555</Link>
             </div>
           </div>
