@@ -90,7 +90,7 @@ export default function Header() {
                 className={`nav-link ${currentPage(["/", path])}`}
                 href={router.asPath.includes(path) ? path + "/" : "/"}
               >
-                Home
+                Startsida
               </Link>
             </li>
             <li className="nav-item">
@@ -101,7 +101,7 @@ export default function Header() {
                 ])}`}
                 href={router.asPath.includes(path) ? path + "/about" : "/about"}
               >
-                About
+                Om oss
               </Link>
             </li>
 
@@ -115,7 +115,7 @@ export default function Header() {
                   router.asPath.includes(path) ? path + "/contact" : "/contact"
                 }
               >
-                Contact
+                Kontakt
               </Link>
             </li>
             <li className="nav-item">
@@ -130,7 +130,7 @@ export default function Header() {
                     : "/openinghours"
                 }
               >
-                Opening Hours
+                Öppetider
               </Link>
             </li>
           </ul>
