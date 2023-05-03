@@ -1,9 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function Header() {
   const router = useRouter();
+
+  //Just an example path
+  const [path, setPath] = useState<string>("/login");
 
   const toggleNav = () => {
     const nav = document.querySelector("#navbarSupportedContent");
@@ -23,13 +27,13 @@ export default function Header() {
   };
 
   //sets underline to link based on current route
-  const currentPage = (path: string) => {
-    return router.asPath === path ? "current-page" : "";
+  const currentPage = (path: string[]) => {
+    return path.includes(router.asPath) ? "current-page" : "";
   };
 
   return (
     <header className="fixed-top">
-      <nav className="navbar navbar-expand-lg darkblue-color sticky-top">
+      <nav className="navbar navbar-expand-lg sticky-top">
         <Link href={"/"}>
           <Image
             src={"/logo-cinema.png"}
@@ -55,7 +59,7 @@ export default function Header() {
           {/* Dropdown for account with condition based on route */}
           <div className="dropdown-account">
             <ul className="navbar-nav mr-auto d-flex flex-row gap-2">
-              {router.asPath !== "/login" ? (
+              {!router.asPath.includes(path) ? (
                 <>
                   <li className="nav-item">
                     <Link className="nav-link" href={"#"}>
@@ -82,14 +86,20 @@ export default function Header() {
         <div className="navbar-collapse sidebar" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <Link className={`nav-link ${currentPage("/")}`} href={"/"}>
+              <Link
+                className={`nav-link ${currentPage(["/", path])}`}
+                href={router.asPath.includes(path) ? path + "/" : "/"}
+              >
                 Home
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                className={`nav-link ${currentPage("/about")}`}
-                href={"/about"}
+                className={`nav-link ${currentPage([
+                  "/about",
+                  path + "/about",
+                ])}`}
+                href={router.asPath.includes(path) ? path + "/about" : "/about"}
               >
                 About
               </Link>
@@ -97,16 +107,28 @@ export default function Header() {
 
             <li className="nav-item">
               <Link
-                className={`nav-link ${currentPage("/contact")}`}
-                href={"/contact"}
+                className={`nav-link ${currentPage([
+                  "/contact",
+                  path + "/contact",
+                ])}`}
+                href={
+                  router.asPath.includes(path) ? path + "/contact" : "/contact"
+                }
               >
                 Contact
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                className={`nav-link ${currentPage("/openinghours")}`}
-                href={"/openinghours"}
+                className={`nav-link ${currentPage([
+                  "/openinghours",
+                  path + "/openinghours",
+                ])}`}
+                href={
+                  router.asPath.includes(path)
+                    ? path + "/openinghours"
+                    : "/openinghours"
+                }
               >
                 Opening Hours
               </Link>
@@ -141,7 +163,7 @@ export default function Header() {
             width={50}
           />
 
-          {router.asPath === "/login" && <p className="">Mohammed</p>}
+          {router.asPath.includes(path) && <p>Name</p>}
         </div>
       </nav>
     </header>

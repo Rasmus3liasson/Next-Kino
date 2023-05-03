@@ -4,7 +4,8 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  color: $white-color;
+  color: $text-light;
+  background-color: $header-bg;
 
   .row {
     @media screen and (max-width: $large-screen) {
