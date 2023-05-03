@@ -25,3 +25,25 @@ $button-payment-confirm: #e42155;
 $button-payment-confirm-shade: #a40030;
 
 $order-confirmed: #3ab54a;
+
+:export {
+  textLight: $text-light;
+  textDark: $text-dark;
+  iconColor: $icon-color;
+  headerBg: $header-bg;
+  mainBg: $main-bg;
+
+  buttonPrimary: $button-primary;
+  buttonPrimaryShade: $button-primary-shade;
+  buttonSecondary: $button-secondary;
+  buttonSecondaryShade: $button-secondary-shade;
+
+  seatAvailable: $seat-available;
+  seatUnavailable: $seat-unavailable;
+  seatSelected: $seat-selected;
+
+  paymentBanner: $payment-banner;
+  buttonPaymentConfirm: $button-payment-confirm;
+  buttonPaymentConfirmShade: $button-payment-confirm-shade;
+  orderConfirmed: $order-confirmed;
+}
