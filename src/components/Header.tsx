@@ -16,7 +16,10 @@ export default function Header() {
 
   const toggleAccountNav = () => {
     const accountIcon = document.querySelector(".dropdown-account");
+    const nameText = document.querySelector(".name-text");
+
     accountIcon?.classList.toggle("dropdown-account-show");
+    nameText?.classList.toggle("hide-name");
   };
 
   //sets underline to link based on current route
@@ -25,7 +28,7 @@ export default function Header() {
   };
 
   return (
-    <header>
+    <header className="fixed-top">
       <nav className="navbar navbar-expand-lg darkblue-color sticky-top">
         <Link href={"/"}>
           <Image
@@ -51,7 +54,7 @@ export default function Header() {
 
           {/* Dropdown for account with condition based on route */}
           <div className="dropdown-account">
-            <ul className="navbar-nav mr-auto d-flex">
+            <ul className="navbar-nav mr-auto d-flex flex-row gap-2">
               {router.asPath !== "/login" ? (
                 <>
                   <li className="nav-item">
@@ -67,7 +70,7 @@ export default function Header() {
                 </>
               ) : (
                 <li className="nav-item">
-                  <Link className="nav-link" href={"/"}>
+                  <Link className="nav-link sign-out-text" href={"/"}>
                     Logga ut
                   </Link>
                 </li>
@@ -128,15 +131,17 @@ export default function Header() {
             </form>
           </div>
         </div>
-        <div>
+        <div className="account-icon">
           <Image
+            className="logo-image"
             onClick={toggleAccountNav}
-            className="account-icon"
             src={"/account-icon.png"}
             alt="accout logo"
             height={50}
             width={50}
           />
+
+          {router.asPath === "/login" && <p className="">Mohammed</p>}
         </div>
       </nav>
     </header>
