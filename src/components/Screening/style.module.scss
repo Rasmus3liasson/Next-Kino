@@ -1,3 +1,38 @@
-.bold {
-    font-size: 20px;
+@import '../../styles/variables.scss';
+.card {
+    padding: 10px 20px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+}
+.cardItem{
+    text-decoration: none;
+    color: $text-light;
+    margin: 0px 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+}
+.img {
+    width: 100%;
+    height: auto;
+    grid-row: 1 / span 6;
+    grid-column: 1 / span 3;
+}
+.title {
+
+    grid-row: 1 / span 1;
+    grid-column: 4 / span 9;
+    font-size: 24px;
+    margin-top: 0;
+}
+.date {
+    grid-row: 3 / span 1;
+    grid-column: 4 / span 6;
+    font-size: 18px;
+}
+.location {
+    grid-row: 4 / span 1;
+    grid-column: 4 / span 5;
+    font-size: 12px;
+    margin-top: 0;
 }
