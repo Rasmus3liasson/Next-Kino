@@ -2,8 +2,8 @@ import style from './style.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 
-type ScreeningType = {
-  id: number;
+export type ScreeningType = {
+  id: string;
   date: string;
   title: string;
   location: string;

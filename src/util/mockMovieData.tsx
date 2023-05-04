@@ -1,4 +1,6 @@
-const movieData = {
+import { ScreeningType } from '../components/Screening/index';
+
+const movieData: ScreeningType = {
     id: '1235',
     date: '21:00 2023-02-27',
     title: "The Shawshank Redemption",
