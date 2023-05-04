@@ -1,5 +1,4 @@
 import React, { FC, useState } from "react";
-import "../styles/globals.scss";
 
 const LoginForm = () => {
   const [userName, setUserName] = useState("");
@@ -7,7 +6,7 @@ const LoginForm = () => {
 
   return (
     <form
-      className="mt-6 max-w-md mx-4 self-center px-5 rounded-2xl shadow-lg flex flex-col flex-grow justify-center bg-cblue"
+      className="my-5 max-w-md mx-auto self-center px-5 rounded-2xl shadow-lg flex flex-col flex-grow justify-center bg-cblue"
       onSubmit={(ev) => {
         ev.preventDefault();
         fetch("/api/login", {
