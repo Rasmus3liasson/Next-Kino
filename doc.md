@@ -54,3 +54,33 @@ Allows a user to log in to the application.
 `POST /api/createUser`
 
 Allows a user to create an account for the application.
+
+\
+Routes
+===============
+
+`GET /`
+
+Homepage that shows movies available
+
+`GET /movies/:id`
+
+Information about movie that match id
+
+`GET /movies/:id/booking`
+
+Book movie that match id
+
+## Static
+
+`GET /about`
+
+Static page about our cinema
+
+`GET /contact`
+
+Static page with contact information
+
+`GET /openinghours`
+
+Static page with opening hours
