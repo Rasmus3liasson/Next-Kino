@@ -1,4 +1,4 @@
-import { ScreeningType } from '../components/Screening/index';
+import { ScreeningType } from "./types";
 
 const movieData: ScreeningType = {
     id: '1235',

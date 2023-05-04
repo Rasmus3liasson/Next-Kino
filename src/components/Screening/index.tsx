@@ -1,16 +1,7 @@
 import style from './style.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
-
-export type ScreeningType = {
-  id: string;
-  date: string;
-  title: string;
-  location: string;
-  spokenLang: string;
-  subLang: string;
-  poster: string;
-};
+import { ScreeningType } from '@/util/types';
 
 export default function Screening({movieData}: { movieData: ScreeningType }) {
     return (
