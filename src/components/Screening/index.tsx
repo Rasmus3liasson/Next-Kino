@@ -1,4 +1,4 @@
-import style from './Screening.module.css';
+import style from './style.module.css';
 
 export type ScreeningType = {
   id: number;
@@ -13,7 +13,7 @@ export default function Screening({movieData}: { movieData: ScreeningType }) {
     console.log(movieData);
     return (
     <>
-      <h3 style={style.bold}>{movieData.title}</h3>
+      <h3>{movieData.title}</h3>
       <span>{movieData.date}</span>
       <span>{movieData.location}</span>
     </>

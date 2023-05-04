@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Screening from '../components/Screening/Screening'
+import Screening from '../components/Screening'
 
 const movieData = {
   id: 15515,
