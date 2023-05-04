@@ -5,6 +5,7 @@
 @import "./sections/header.scss";
 @import "./sections/footer.scss";
 @import "./variables.scss";
+@import "bootstrap/dist/css/bootstrap.min.css";
 
 * {
   box-sizing: border-box;
@@ -13,6 +14,9 @@
 }
 
 main {
-  min-height: 70vh; //added min height so footer isn't right next to header
+  min-height: 70vh;
+}
+
+body {
   background-color: $main-bg;
 }
