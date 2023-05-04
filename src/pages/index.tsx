@@ -1,6 +1,7 @@
 import Head from "next/head";
-import Screening from '../components/Screening'
-import movieData from "@/util/mockMovieData";
+import ScreeningsHome from '../components/ScreeningsHome'
+import { movieData } from "@/util/mockMovieData";
+import { movieDataArray } from "@/util/mockMovieData";
 
 export default function Home() {
   return (
@@ -10,7 +11,7 @@ export default function Home() {
         <meta name="description" content="Kino project in next.js" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Screening movieData={movieData} />
+      <ScreeningsHome screenings={movieDataArray} />
     </>
   );
 }
