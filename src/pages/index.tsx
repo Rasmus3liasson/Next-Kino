@@ -1,17 +1,8 @@
 import Head from "next/head";
 import Screening from '../components/Screening'
-
-const movieData = {
-  id: 15515,
-  date: 'thursday may 4th',
-  title: "Bananarama",
-  location: 'salong 4',
-  spokenLang: 'ENG',
-  subLang: 'SWE',
-};
+import movieData from "@/util/mockMovieData";
 
 export default function Home() {
-  console.log(movieData);
   return (
     <>
       <Head>
@@ -19,6 +10,7 @@ export default function Home() {
         <meta name="description" content="Kino project in next.js" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+      <Screening movieData={movieData} />
     </>
   );
 }
