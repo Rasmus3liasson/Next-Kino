@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 
 const LoginForm = () => {
   const [userName, setUserName] = useState("");
