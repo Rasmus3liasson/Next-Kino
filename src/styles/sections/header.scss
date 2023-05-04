@@ -1,7 +1,7 @@
 @import "../variables.scss";
 
 header {
-  background-color: $header-bg;
+  background-color: $site-bg;
 
   .account-icon {
     margin-right: 2rem;
@@ -54,7 +54,7 @@ header {
       position: relative;
       margin-top: -0.6rem;
       margin-right: 2.3rem;
-      background-color: $header-bg;
+      background-color: $site-bg;
       z-index: 1;
       padding-left: 2rem;
       padding-right: 2rem;
