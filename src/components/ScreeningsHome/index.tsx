@@ -13,17 +13,27 @@ export default function ScreeningsHome({
   screenings: ScreeningType[];
 }) {
   const [list, setList] = useState<ScreeningType[]>([]);
-  
+
   //Sets the initial amount of screenings on render
-  //TODO connect to api
   useEffect(() => {
-    setList([...screenings.slice(0,3)]);
+    setList([...screenings.slice(0, howManyScreeningsToShowAtStart)]);
     console.log(list);
   }, []);
+  // Handler for updating list with more screenings
+  function handleClick() {
+    setList(() => {
+      if (list.length === screenings.length) {
+        return [...list];
+      } else {
+        return [...list, ...screenings.slice(3)];
+      }
+    });
+    console.log(list);
+  }
 
-  // When the component loads the first time, 3 screenings should show
+  // [x] When the component loads the first time, 3 screenings should show
   // useEffect to set screenings state to contain the three first indexes from data
-  // when button is clicked, add the rest. 
+  // when button is clicked, add the rest.
 
   return (
     <section className={style.container}>
@@ -31,7 +41,9 @@ export default function ScreeningsHome({
       {list.map((screening: ScreeningType) => (
         <Screening movieData={screening} />
       ))}
-      <button className={style.button}>Se alla visningar</button>
+      <button onClick={handleClick} className={style.button}>
+        Se alla visningar
+      </button>
     </section>
   );
 }
