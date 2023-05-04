@@ -15,15 +15,10 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>Lule Northern Light Cinema</title>
         <meta name="description" content="Kino project in next.js" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <main>
-        <div>
-          <Screening movieData={movieData} />
-        </div>
-      </main>
     </>
   );
 }

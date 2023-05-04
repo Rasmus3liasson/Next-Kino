@@ -1,0 +1,49 @@
+//screen size
+$large-screen: 993px;
+$medium-screen: 768px;
+
+// These colours are taken from the design spec on figma
+
+$text-light: #ffffff;
+$text-dark: #000000;
+
+$icon-color: #dbe2ef;
+$header-bg: #112d4e;
+$main-bg: #04162b;
+
+$button-primary: #8fc3ff;
+$button-primary-shade: #85afdf;
+$button-secondary-shade: #a40030;
+$button-secondary: #ff0000;
+
+$seat-available: #787878;
+$seat-unavailable: #f30a0a;
+$seat-selected: #5cb85c;
+
+$payment-banner: #d9d9d9;
+$button-payment-confirm: #e42155;
+$button-payment-confirm-shade: #a40030;
+
+$order-confirmed: #3ab54a;
+
+:export {
+  textLight: $text-light;
+  textDark: $text-dark;
+  iconColor: $icon-color;
+  headerBg: $header-bg;
+  mainBg: $main-bg;
+
+  buttonPrimary: $button-primary;
+  buttonPrimaryShade: $button-primary-shade;
+  buttonSecondary: $button-secondary;
+  buttonSecondaryShade: $button-secondary-shade;
+
+  seatAvailable: $seat-available;
+  seatUnavailable: $seat-unavailable;
+  seatSelected: $seat-selected;
+
+  paymentBanner: $payment-banner;
+  buttonPaymentConfirm: $button-payment-confirm;
+  buttonPaymentConfirmShade: $button-payment-confirm-shade;
+  orderConfirmed: $order-confirmed;
+}
