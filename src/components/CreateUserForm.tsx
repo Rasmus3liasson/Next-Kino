@@ -127,26 +127,12 @@ const CreateUserForm = () => {
         {password.length > 0 && (
           <div
             className={` ${strengthMeter[pwStrength as keyof StrengthMeterStyles].style
-              } px-2 text-center rounded-full `}
+              } transition-all transition-duration: 250ms my-2 px-2 text-center rounded-full `}
           >
             {strengthMeter[pwStrength as keyof StrengthMeterStyles].text}
           </div>
         )}
         <div id="error" className="text-white text-lg"></div>
-        {/*         <section className="flex  space-x-2 my-3">
-          <label htmlFor="strNeter" className="w-1/2 text-white">
-            Lösenordsstyrka
-          </label>
-          <meter
-            id="strMeter"
-            className="w-1/2"
-            low={0}
-            high={2}
-            value=""
-            max="4"
-          ></meter>
-        </section> */}
-        {/* <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700"></div> */}
         <button
           className="my-4 w-1/2 self-center bg-clightblue font-semibold  border-2 border-transparent hover:border-white"
           id="submitBtn"
