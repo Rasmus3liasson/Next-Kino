@@ -32,8 +32,8 @@ export default function ScreeningsHome({
   }
 
   // [x] When the component loads the first time, 3 screenings should show
-  // useEffect to set screenings state to contain the three first indexes from data
-  // when button is clicked, add the rest.
+  // [x]useEffect to set screenings state to contain the three first indexes from data
+  // [x]when button is clicked, add the rest.
 
   return (
     <section className={style.container}>
