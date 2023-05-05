@@ -3,6 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { ScreeningType } from "@/util/types";
 
+//  TODO: Add querystring to Link href property.  
+//  Something like this -> `/movie/${movieData.title}/booking?screening=${movieData.screeningId}`
+
 export default function Screening({ movieData }: { movieData: ScreeningType }) {
   return (
     <Link style={{ textDecoration: "none" }} href="/" className={style.card}>
