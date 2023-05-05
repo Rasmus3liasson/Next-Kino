@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FormEvent } from "react";
 import strongPasswordCheck from "@/utils/strongPasswordCheck";
 
 const CreateUserForm = () => {
@@ -9,10 +9,9 @@ const CreateUserForm = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [pwStrength, setPwStrength] = useState(25);
+  const [errors, setErrors] = useState<string[]>([])
 
   useEffect(() => {
-    console.log(pwStrength);
-    console.log(strengthMeter[25].style);
     setPwStrength(strongPasswordCheck(password));
   }, [password]);
 
@@ -23,6 +22,19 @@ const CreateUserForm = () => {
     100: {style: string, text: string};
   };
 
+  type SubmitedUserResponse = {
+    userCreated: boolean;
+    errors: string[];
+  }
+
+  type NewUser = {
+    userName: string;
+    firstName: string;
+    lastName: string;
+    eMail: string;
+    password: string;
+  }
+
   const strengthMeter: StrengthMeterStyles = {
     25: {style: "w-[25%] bg-red-500 ", text: "Very bad"},
     50: {style: "w-[50%] bg-orange-500 ", text: "Weak"},
@@ -30,9 +42,35 @@ const CreateUserForm = () => {
     100: {style: "w-[100%] bg-green-500 ", text: "Strong password!"},
   };
 
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const newUser: NewUser = {
+      userName: userName,
+      firstName: firstName,
+      lastName: lastName,
+      eMail: eMail,
+      password: password,
+    }
+
+    const resp = await fetch("/api/CreateNewUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    })
+    const data: SubmitedUserResponse = await resp.json();
+    data.errors.length > 0 && setErrors(data.errors)
+
+  }
+
   return (
     <form
       className="max-w-md mx-auto self-center px-5 my-5 rounded-2xl shadow-lg flex flex-col flex-grow justify-center bg-cblue"
+      onSubmit={(e) => {
+        handleSubmit(e)
+      }}
       id="createUserForm"
     >
       <h1 className="p-5 mx-auto text-4xl text-white font-bold">Skapa konto</h1>
@@ -99,7 +137,7 @@ const CreateUserForm = () => {
               Skapa lösenord:
             </label>
             <input
-              className="w-full mb-2 focus:outline-none focus:ring-0 border-4 border-transparent focus:border-clightblue"
+              className="w-full mb-2 focus:outline-none focus:ring-0 border-4 border-transparent focus:border-clightblue }"
               onChange={(ev) => {
                 setPassword(ev.target.value);
               }}
@@ -114,7 +152,7 @@ const CreateUserForm = () => {
               Bekräfta lösenord:
             </label>
             <input
-              className="w-full mb-2 focus:outline-none focus:ring-0 border-4 border-transparent focus:border-clightblue blur:border-cligt"
+              className="w-full mb-2 focus:outline-none focus:ring-0 border-4 border-transparent focus:border-clightblue"
               onChange={(ev) => setConfirmPassword(ev.target.value)}
               id="confPassword"
               required
@@ -132,7 +170,14 @@ const CreateUserForm = () => {
             {strengthMeter[pwStrength as keyof StrengthMeterStyles].text}
           </div>
         )}
-        <div id="error" className="text-white text-lg"></div>
+
+        <ul className="!p-0 mt-2 flex flex-col">
+          {errors.map((message) => {
+            return <li className="text-black rounded-md my-1 pl-2 border-2 border-red-500 bg-white text-lg">{message}</li>
+          })}
+        </ul>
+
+
         <button
           className="my-4 w-1/2 self-center bg-clightblue font-semibold  border-2 border-transparent hover:border-white"
           id="submitBtn"
