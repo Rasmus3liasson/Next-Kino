@@ -9,23 +9,23 @@ const CreateUserForm = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [pwStrength, setPwStrength] = useState(25);
-  const [errors, setErrors] = useState<string[]>([])
+  const [errors, setErrors] = useState<string[]>([]);
 
   useEffect(() => {
     setPwStrength(strongPasswordCheck(password));
   }, [password]);
 
   type StrengthMeterStyles = {
-    25: {style: string, text: string};
-    50: {style: string, text: string};
-    75: {style: string, text: string};
-    100: {style: string, text: string};
+    25: { style: string; text: string };
+    50: { style: string; text: string };
+    75: { style: string; text: string };
+    100: { style: string; text: string };
   };
 
   type SubmitedUserResponse = {
     userCreated: boolean;
     errors: string[];
-  }
+  };
 
   type NewUser = {
     userName: string;
@@ -33,17 +33,18 @@ const CreateUserForm = () => {
     lastName: string;
     eMail: string;
     password: string;
-  }
+  };
 
   const strengthMeter: StrengthMeterStyles = {
-    25: {style: "w-[25%] bg-red-500 ", text: "Very bad"},
-    50: {style: "w-[50%] bg-orange-500 ", text: "Weak"},
-    75: {style: "w-[75%] bg-yellow-500 ", text: "Mediumstrong"},
-    100: {style: "w-[100%] bg-green-500 ", text: "Strong password!"},
+    25: { style: "w-[25%] bg-red-500 ", text: "Too weak" },
+    50: { style: "w-[50%] bg-orange-500 ", text: "Weak" },
+    75: { style: "w-[75%] bg-yellow-500 ", text: "Mediumstrong" },
+    100: { style: "w-[100%] bg-green-500 ", text: "Strong password!" },
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setErrors([]);
 
     const newUser: NewUser = {
       userName: userName,
@@ -51,7 +52,7 @@ const CreateUserForm = () => {
       lastName: lastName,
       eMail: eMail,
       password: password,
-    }
+    };
 
     const resp = await fetch("/api/CreateNewUser", {
       method: "POST",
@@ -59,21 +60,19 @@ const CreateUserForm = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newUser),
-    })
+    });
     const data: SubmitedUserResponse = await resp.json();
-    data.errors.length > 0 && setErrors(data.errors)
-
-  }
+    data.errors.length >= 0 && setErrors(data.errors);
+  };
 
   return (
     <form
       className="max-w-md mx-auto self-center px-5 my-5 rounded-2xl shadow-lg flex flex-col flex-grow justify-center bg-cblue"
-      onSubmit={(e) => {
-        handleSubmit(e)
-      }}
-      id="createUserForm"
+      onSubmit={(e) => handleSubmit(e)}
     >
-      <h1 className="p-5 mx-auto text-4xl text-white font-bold">Skapa konto</h1>
+      <h1 className="py-2 mx-auto text-4xl text-white font-bold">
+        Skapa konto
+      </h1>
 
       <div className="w-[95%] mx-auto flex flex-col">
         <section className="flex space-x-2 mb-2">
@@ -111,6 +110,7 @@ const CreateUserForm = () => {
             </label>
             <input
               className="w-full mb-2 focus:outline-none focus:ring-0 border-4 border-transparent focus:border-clightblue"
+              onChange={(ev) => setUserName(ev.target.value)}
               id="uName"
               required
               type="text"
@@ -134,13 +134,15 @@ const CreateUserForm = () => {
         <section className="flex space-x-2">
           <div>
             <label htmlFor="passwordInput" className="block mb-1 text-white">
-              Skapa lösenord:
+              Lösenord:
             </label>
             <input
-              className="w-full mb-2 focus:outline-none focus:ring-0 border-4 border-transparent focus:border-clightblue }"
-              onChange={(ev) => {
-                setPassword(ev.target.value);
-              }}
+              className={`${
+                password === confirmPassword && password.length > 4
+                  ? "border-2 border-green-500"
+                  : "border-transparent focus:border-clightblue"
+              } w-full mb-2 focus:outline-none focus:ring-0 border-4  `}
+              onChange={(ev) => setPassword(ev.target.value)}
               id="passwordInput"
               required
               type="password"
@@ -149,10 +151,14 @@ const CreateUserForm = () => {
           </div>
           <div>
             <label htmlFor="confPassword" className="block mb-1 text-white">
-              Bekräfta lösenord:
+              Bekräfta:
             </label>
             <input
-              className="w-full mb-2 focus:outline-none focus:ring-0 border-4 border-transparent focus:border-clightblue"
+              className={`${
+                password === confirmPassword && password.length > 4
+                  ? "border-2 border-green-500"
+                  : "border-transparent focus:border-clightblue blur:border-red-500"
+              } w-full mb-2 focus:outline-none focus:ring-0 border-4 `}
               onChange={(ev) => setConfirmPassword(ev.target.value)}
               id="confPassword"
               required
@@ -164,25 +170,29 @@ const CreateUserForm = () => {
 
         {password.length > 0 && (
           <div
-            className={` ${strengthMeter[pwStrength as keyof StrengthMeterStyles].style
-              } transition-all transition-duration: 250ms my-2 px-2 text-center rounded-full `}
+            className={` ${
+              strengthMeter[pwStrength as keyof StrengthMeterStyles].style
+            } transition-all transition-duration: 250ms my-2 px-2 text-center rounded-full `}
           >
             {strengthMeter[pwStrength as keyof StrengthMeterStyles].text}
           </div>
         )}
 
         <ul className="!p-0 mt-2 flex flex-col">
-          {errors.map((message) => {
-            return <li className="text-black rounded-md my-1 pl-2 border-2 border-red-500 bg-white text-lg">{message}</li>
+          {errors.map((errorMessage) => {
+            return (
+              <li className="text-black rounded-md my-1 pl-2 border-2 border-red-500 bg-white text-lg">
+                {errorMessage}
+              </li>
+            );
           })}
         </ul>
-
 
         <button
           className="my-4 w-1/2 self-center bg-clightblue font-semibold  border-2 border-transparent hover:border-white"
           id="submitBtn"
         >
-          bekräfta
+          Bekräfta
         </button>
       </div>
     </form>
