@@ -7,7 +7,7 @@ export default function (password: string) {
   const specialChar = password.match(
     /[\!\@\#\$\%\^\&\*\)\(\+\=\.\<\>\{\}\[\]\:\;\'\"\|\~\`\_\-]/g);
 
-
+  //Returnvalue acts as percentage 
   if (password.length > 4) {
     if (lowercase && uppercase && number && specialChar) {
       return 100;
