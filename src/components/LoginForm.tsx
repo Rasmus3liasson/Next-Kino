@@ -18,7 +18,7 @@ const LoginForm = () => {
         });
       }}
     >
-      <h1 className="p-5 mx-auto text-4xl text-white font-bold">Logga in</h1>
+      <h1 className="py-2 mx-auto text-4xl text-white font-bold">Logga in</h1>
 
       <div className="w-[70%] mx-auto">
         <label htmlFor="Username" className="block mb-1 text-white">
