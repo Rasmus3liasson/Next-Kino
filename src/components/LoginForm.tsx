@@ -25,7 +25,7 @@ const LoginForm = () => {
           Användarnamn:
         </label>
         <input
-          className="w-full mb-2 focus:outline-none focus:ring-0 border-4 border-transparent focus:border-clightblue"
+          className="rounded-md w-full mb-2 focus:outline-none focus:ring-0 border-4 border-transparent focus:border-clightblue"
           placeholder="Användarnamn"
           id="Username"
           type="text"
@@ -37,7 +37,7 @@ const LoginForm = () => {
           Lösenord:
         </label>
         <input
-          className="w-full mb-2 focus:outline-none focus:ring-0 border-4 border-transparent focus:border-clightblue"
+          className="rounded-md w-full mb-2 focus:outline-none focus:ring-0 border-4 border-transparent focus:border-clightblue"
           placeholder="Lösenord"
           id="Password"
           type="password"
@@ -47,7 +47,7 @@ const LoginForm = () => {
       </div>
 
       <button
-        className="w-1/2 self-center my-4 bg-clightblue font-semibold  border-2 border-transparent hover:border-white"
+        className="rounded-md w-1/2 self-center my-4 bg-clightblue font-semibold  border-2 border-transparent hover:border-white"
         type="submit"
       >
         Logga in

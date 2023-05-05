@@ -81,7 +81,7 @@ const CreateUserForm = () => {
               Förnamn:
             </label>
             <input
-              className="w-full mb-2 focus:outline-none focus:ring-0 border-4 border-transparent focus:border-clightblue"
+              className="rounded-md w-full mb-2 focus:outline-none focus:ring-0 border-4 border-transparent focus:border-clightblue"
               onChange={(ev) => setFirstName(ev.target.value)}
               id="fName"
               required
@@ -94,7 +94,7 @@ const CreateUserForm = () => {
               Efternamn:
             </label>
             <input
-              className="w-full mb-2 focus:outline-none focus:ring-0 border-4 border-transparent focus:border-clightblue"
+              className="rounded-md w-full mb-2 focus:outline-none focus:ring-0 border-4 border-transparent focus:border-clightblue"
               onChange={(ev) => setLastName(ev.target.value)}
               id="lName"
               required
@@ -109,7 +109,7 @@ const CreateUserForm = () => {
               Användarnamn:
             </label>
             <input
-              className="w-full mb-2 focus:outline-none focus:ring-0 border-4 border-transparent focus:border-clightblue"
+              className="rounded-md w-full mb-2 focus:outline-none focus:ring-0 border-4 border-transparent focus:border-clightblue"
               onChange={(ev) => setUserName(ev.target.value)}
               id="uName"
               required
@@ -122,7 +122,7 @@ const CreateUserForm = () => {
               E-mail:
             </label>
             <input
-              className="w-full mb-2 focus:outline-none focus:ring-0 border-4 border-transparent focus:border-clightblue"
+              className="rounded-md w-full mb-2 focus:outline-none focus:ring-0 border-4 border-transparent focus:border-clightblue"
               onChange={(ev) => setEmail(ev.target.value)}
               id="eMail"
               required
@@ -141,7 +141,7 @@ const CreateUserForm = () => {
                 password === confirmPassword && password.length > 4
                   ? "border-2 border-green-500"
                   : "border-transparent focus:border-clightblue"
-              } w-full mb-2 focus:outline-none focus:ring-0 border-4  `}
+              } rounded-md w-full mb-2 focus:outline-none focus:ring-0 border-4  `}
               onChange={(ev) => setPassword(ev.target.value)}
               id="passwordInput"
               required
@@ -158,7 +158,7 @@ const CreateUserForm = () => {
                 password === confirmPassword && password.length > 4
                   ? "border-2 border-green-500"
                   : "border-transparent focus:border-clightblue blur:border-red-500"
-              } w-full mb-2 focus:outline-none focus:ring-0 border-4 `}
+              } rounded-md w-full mb-2 focus:outline-none focus:ring-0 border-4 `}
               onChange={(ev) => setConfirmPassword(ev.target.value)}
               id="confPassword"
               required
@@ -189,7 +189,7 @@ const CreateUserForm = () => {
         </ul>
 
         <button
-          className="my-4 w-1/2 self-center bg-clightblue font-semibold  border-2 border-transparent hover:border-white"
+          className="rounded-md my-4 w-1/2 self-center bg-clightblue font-semibold  border-2 border-transparent hover:border-white"
           id="submitBtn"
         >
           Bekräfta
