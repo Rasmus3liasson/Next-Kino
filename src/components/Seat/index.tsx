@@ -2,6 +2,6 @@ import style from "./style.module.scss";
 
 export default function Seat() {
     return (
-        <div></div>
+        <div className={style.seat}>10</div>
     );
   }
