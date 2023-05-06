@@ -1,2 +1,24 @@
 
 @import '../../styles/variables.scss';
+
+.Seat{
+width: 20px;
+height: 20px;
+border-radius: 5px;
+
+    .Available{
+        background-color: green;
+    }
+    
+    .Selected{
+        background-color: yellow;
+    }
+    
+    .Unavailable{
+        background-color: red;
+    }
+    :hover{
+        background-color: royalblue;
+    }
+}
+
