@@ -7,6 +7,7 @@ export const movieData: ScreeningType = {
     location: 'Stora salongen',
     spokenLang: 'ENG',
     subLang: 'SWE',
+    screeningId: '34213',
     poster: 'https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1000_.jpg'
   };
 
@@ -19,6 +20,7 @@ export const movieData: ScreeningType = {
       location: 'Stora salongen',
       spokenLang: 'ENG',
       subLang: 'SWE',
+      screeningId: '12255',
       poster: 'https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1000_.jpg'
     },
     {
@@ -28,6 +30,7 @@ export const movieData: ScreeningType = {
       location: 'Matsalen',
       spokenLang: 'ENG',
       subLang: 'SWE',
+      screeningId: '98467',
       poster: 'https://m.media-amazon.com/images/M/MV5BYTViNjMyNmUtNDFkNC00ZDRlLThmMDUtZDU2YWE4NGI2ZjVmXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_FMjpg_UX1000_.jpg'
     },
     {
@@ -37,6 +40,7 @@ export const movieData: ScreeningType = {
       location: 'Lilla Salongen',
       spokenLang: 'ENG',
       subLang: 'SWE',
+      screeningId: '98235',
       poster: 'https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1000_.jpg'
     },
     {
@@ -46,6 +50,7 @@ export const movieData: ScreeningType = {
       location: 'Stora salongen',
       spokenLang: 'ENG',
       subLang: 'SWE',
+      screeningId: '73245',
       poster: 'https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1000_.jpg'
     },
     {
@@ -55,6 +60,7 @@ export const movieData: ScreeningType = {
       location: 'Anexxet',
       spokenLang: 'ENG',
       subLang: 'SWE',
+      screeningId: '19573',
       poster: 'https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1000_.jpg'
     }
   ];

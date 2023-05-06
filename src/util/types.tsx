@@ -6,5 +6,5 @@ export type ScreeningType = {
     spokenLang: string;
     subLang: string;
     poster: string;
-    screeningId: number;
+    screeningId: string;
   };
