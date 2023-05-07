@@ -1,0 +1,29 @@
+@import '../../styles/variables.scss';
+
+.legend{
+    width: 60%;
+    display: flex;  
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: rotateY(0deg) rotate(90deg);
+}
+
+.legendText{
+    position: absolute;
+    transform: rotateY(0deg) rotate(-90deg);
+    color: white;
+}
+
+.free{
+    margin: 50px;
+}
+
+.screen{
+    width: 300px;
+    display: flex;  
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: blueviolet;
+}
