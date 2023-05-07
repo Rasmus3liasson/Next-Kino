@@ -4,8 +4,9 @@
 .seat{
 width: 20px;
 height: 20px;
-border-radius: 0 0 5px 5px;
+border-radius: 0 5px 5px 0px;
 background-color: gray;
+margin: 5px 15px;
     
     .selected{
         background-color: green;
@@ -16,6 +17,11 @@ background-color: gray;
     }
     :hover{
         background-color: royalblue;
+    }
+
+    .noRotation{
+        position: absolute;
+        transform: rotateY(0deg) rotate(-90deg);
     }
 }
 
