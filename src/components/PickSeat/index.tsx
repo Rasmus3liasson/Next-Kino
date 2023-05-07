@@ -3,13 +3,13 @@ import Seat from "../Seat";
 
 export default function PickSeat() {
     return (
-        <div>
-            <p><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat></p>
-            <p><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat></p>
-            <p><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat></p>
-            <p><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat></p>
-            <p><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat></p>
-        </div>
+        <section className={style.container}>
+            <div><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat></v>
+            <div><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat></div>
+            <div><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat></div>
+            <div><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat></div>
+            <div><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat><Seat></Seat></div>
+        </section>
 
         
 
