@@ -20,10 +20,6 @@ export default function ScreeningsHome({
     expanded ? setExpanded(false) : setExpanded(true);
   }
 
-  // [x] When the component loads the first time, 3 screenings should show
-  // [x]useEffect to set screenings state to contain the three first indexes from data
-  // [x]when button is clicked, add the rest.
-
   return (
     <section className={style.container}>
       <h1 className={style.title}>Kommande visningar</h1>

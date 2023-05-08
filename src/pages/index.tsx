@@ -1,9 +1,7 @@
 import Head from "next/head";
 import ScreeningsHome from "../components/ScreeningsHome";
 import { ScreeningType } from "@/util/types";
-import { GetServerSideProps } from "next";
 import { getData } from "./api/screenings";
-import { FC } from "react";
 
 // This gets called on every request
 export async function getServerSideProps() {
