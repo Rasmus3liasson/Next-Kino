@@ -1,20 +1,21 @@
 import Head from "next/head";
 import AllMovies from "@/components/AllMovies";
 import ScreeningsHome from "../components/ScreeningsHome";
-import { ScreeningType } from "@/util/types";
+import { ScreeningType, MovieType } from "@/util/types";
 import { getData } from "./api/screenings";
+import { getMovies } from "./api/movies";
 
 // This gets called on every request
 export async function getServerSideProps() {
-  const data = await getData();
   return {
     props: {
-      screenings: data,
+      screenings: await getData(),
+      movies: await getMovies(),
     },
   };
 }
 
-export default function Home({ screenings }: { screenings: ScreeningType[] }) {
+export default function Home({ screenings, movies }: { screenings: ScreeningType[], movies: MovieType[] }) {
   return (
     <>
       <Head>
@@ -22,7 +23,7 @@ export default function Home({ screenings }: { screenings: ScreeningType[] }) {
         <meta name="description" content="Kino project in next.js" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <AllMovies />
+      <AllMovies movieData={movies}/>
       <ScreeningsHome screenings={screenings} />
     </>
   );
