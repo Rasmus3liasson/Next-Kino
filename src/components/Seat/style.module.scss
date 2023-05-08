@@ -26,3 +26,31 @@ cursor: pointer;
     }
 }
 
+.seat_legend_free{
+    width: 20px;
+    height: 20px;
+    border-radius: 0 5px 5px 0px;
+    background-color: gray;
+    margin: 5px 30px;
+    position: absolute;
+    transform: rotateY(0deg) rotate(-90deg);
+}
+.seat_legend_selected{
+    width: 20px;
+    height: 20px;
+    border-radius: 0 5px 5px 0px;
+    background-color: green;
+    margin: 5px 30px;
+    position: absolute;
+    transform: rotateY(0deg) rotate(-90deg);
+}
+.seat_legend_unavailable{
+    width: 20px;
+    height: 20px;
+    border-radius: 0 5px 5px 0px;
+    background-color: red;
+    margin: 5px 30px;
+    position: absolute;
+    transform: rotateY(0deg) rotate(-90deg);
+}
+
