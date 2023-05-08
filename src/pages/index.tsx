@@ -1,6 +1,20 @@
 import Head from "next/head";
 import AllMovies from "@/components/AllMovies";
-export default function Home() {
+import ScreeningsHome from "../components/ScreeningsHome";
+import { ScreeningType } from "@/util/types";
+import { getData } from "./api/screenings";
+
+// This gets called on every request
+export async function getServerSideProps() {
+  const data = await getData();
+  return {
+    props: {
+      screenings: data,
+    },
+  };
+}
+
+export default function Home({ screenings }: { screenings: ScreeningType[] }) {
   return (
     <>
       <Head>
@@ -9,6 +23,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <AllMovies />
+      <ScreeningsHome screenings={screenings} />
     </>
   );
 }
