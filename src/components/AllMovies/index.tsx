@@ -11,7 +11,7 @@ import { MovieType } from "@/util/types";
     Each item in the list should be a movieposter and be clickable X
         use Link to make each component of movie. X
     the bottom button should expand the list with all the said movies. X
-        use a boolean state to expand the list with the props given to the server. X
+        use a boolean state to expand the list with the props recieved from the server. X
 
 */
 
@@ -27,15 +27,15 @@ export default function AllMovies({ movieData }: { movieData: MovieType[] }) {
   }
   return (
     <>
+      <h1 className={style.title}>På Bio just nu</h1>
       <section className={style.container}>
-        <h1 className={style.title}>På Bio just nu</h1>
         {list.map((movie: MovieType) => (
           <Movie key={movie.id} movieData={movie} />
         ))}
-        <button onClick={handleClick} className={style.button}>
-          {expanded ? "Dölj filmer" : "Se fler filmer"}
-        </button>
       </section>
+      <button onClick={handleClick} className={style.button}>
+        {expanded ? "Dölj filmer" : "Se fler filmer"}
+      </button>
     </>
   );
 }

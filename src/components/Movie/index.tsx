@@ -3,8 +3,10 @@ import Image from "next/image";
 import style from './style.module.scss';
 import { MovieType } from "@/util/types";
 
-export default function Movie(movieData: MovieType) {
-    const link = `/movie/${movieData.id}`
+//TODO: Change src on line :21 to correct property for images.
+
+export default function Movie({movieData}: {movieData: MovieType}) {
+    const link = `/movies/${movieData.id}`
   return (
     <>
       <Link
@@ -16,7 +18,7 @@ export default function Movie(movieData: MovieType) {
           className={style.img}
           height={120}
           width={90}
-          src={movieData.poster || "/dummy.jpg"}
+          src={"/dummy.jpg"}
           alt={`The poster for ${movieData.title}`}
         />
       </Link>
