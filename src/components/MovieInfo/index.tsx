@@ -27,6 +27,9 @@ export default function MovieInfoPage({ screenings }) {
       screeningObj.id === id
   );
 
+  //variable for date in database, might need to change slice with the correct database
+  const dateFromDatabase = screeningData?.date.slice(11).replace("-", "/");
+
   //adds stars to array depending on rating
   const stars = [];
   for (let i = 0; i < screeningData.rating; i++) {
@@ -37,7 +40,11 @@ export default function MovieInfoPage({ screenings }) {
 
   //display "Idag" or "Imorgon" if screening date is the same
   //options to show 2 digit
-  const options = { month: "2-digit", day: "2-digit" };
+  type typeOptions = {
+    month: "2-digit";
+    day: "2-digit";
+  };
+  const options: typeOptions = { month: "2-digit", day: "2-digit" };
 
   //convert todays date to match mock and design
   const date = new Date();
@@ -92,19 +99,18 @@ export default function MovieInfoPage({ screenings }) {
             <div>
               <div className={style.upcoming}>
                 <p>
-                  {screeningData.date.slice(11).replace("-", "/") === orderDate
+                  {dateFromDatabase === orderDate
                     ? "Idag"
-                    : screeningData.date.slice(11).replace("-", "/") ===
-                      orderTomorrowDate
+                    : dateFromDatabase === orderTomorrowDate
                     ? "Imorgon"
-                    : screeningData.date.slice(11).replace("-", "/")}
+                    : dateFromDatabase}
                 </p>
                 <p>{screeningData.location}</p>
               </div>
               <div className={style.time}>
                 <p>{screeningData.date.slice(0, 5)}</p>
                 <p>
-                  Tal:{" "}
+                  Tal:
                   {
                     <Image
                       src={subLangFlag}
@@ -115,8 +121,7 @@ export default function MovieInfoPage({ screenings }) {
                   }
                 </p>
                 <p>
-                  {" "}
-                  Text:{" "}
+                  Text:
                   {
                     <Image
                       src={spokenLangFlag}
