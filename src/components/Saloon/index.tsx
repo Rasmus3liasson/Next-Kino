@@ -5,12 +5,12 @@ import Seat from "../Seat";
 export default function Saloon() {
     return (
         <section className={style.saloon}>
-            <div className={style.screen}></div>
+            <div className={style.screen}>Bioduk</div>
             <PickSeat></PickSeat>
             <div className={style.legend}>
-                <div className={style.seat_legend_free}><span className={style.legendText}>Tillgänglig</span><Seat></Seat></div>
-                <div className={style.seat_legend_unavailable}><span className={style.legendText}>Ej tillgänglig</span><Seat></Seat></div>
-                <div className={style.seat_legend_selected}><span className={style.legendText}>Vald</span><Seat></Seat></div>
+                <div className={style.seat_legend_free}><Seat></Seat></div>
+                <p className={style.legendText_free}>Tillgänglig</p>
+               
             </div>
         </section>
     );

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import style from "./style.module.scss";
 import Seat from "../Seat";
 

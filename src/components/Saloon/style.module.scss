@@ -1,30 +1,59 @@
 @import '../../styles/variables.scss';
 
 .legend{
-    width: 60%;
+    position: absolute;
+    width: 100%;
     display: flex;  
     flex-direction: column;
-    align-items: center;
+    align-items: right;
     justify-content: center;
     transform: rotateY(0deg) rotate(90deg);
-}
-
-.legendText{
-    position: absolute;
-    transform: rotateY(0deg) rotate(-90deg);
-    color: white;
-}
-
-.free{
-    margin: 50px;
+    left: -3em;
+    margin-top: 5em;
+    gap: 55px;
 }
 
 .screen{
-    width: 300px;
-    height: 20px;
-    display: flex;  
-    flex-direction: column;
+    width: 150px;
+    height: 30px;
+    margin-left: 8em;
+    margin-top: 5em;
     align-items: center;
     justify-content: center;
-    background-color: blueviolet;
+    background-color: gray;
+    text-align: center;
+    font-weight: $font-weight-medium;
+}
+
+.seat_legend_selected{
+    width: 20px;
+    height: 20px;
+    border-radius: 0 5px 5px 0px;
+    background-color: green;
+    margin: 5px 30px;
+    position: absolute;
+    transform: rotateY(0deg) rotate(-90deg);
+}
+.seat_legend_unavailable{
+    width: 20px;
+    height: 20px;
+    border-radius: 0 5px 5px 0px;
+    background-color: red;
+    margin: 5px 30px;
+    position: absolute;
+    transform: rotateY(0deg) rotate(-90deg);
+}
+.seat_legend_free{
+    width: 20px;
+    height: 20px;
+    border-radius: 0 5px 5px 0px;
+    margin-left: 1em;
+    margin-top: 8em;
+}
+.legendText_free{
+    position: absolute;
+    transform: rotateY(0deg) rotate(-90deg);
+    color: $text-light;
+    margin-left: 2em;
+    margin-top: 10em;
 }
