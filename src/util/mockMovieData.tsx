@@ -4,6 +4,8 @@ export const movieData: ScreeningType = {
   id: "1235",
   date: "21:00 2023-02-27",
   title: "The Shawshank Redemption",
+  description:
+    " Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis reprehenderit quo nemo pariatur facilis animi suscipit quibusdam magnam, enim saepe neque quasi sapiente, expedita ea! Accusamus quisquam odio recusandae",
   location: "Stora salongen",
   spokenLang: "ENG",
   subLang: "SWE",
@@ -16,8 +18,10 @@ export const movieData: ScreeningType = {
 export const movieDataArray: ScreeningType[] = [
   {
     id: "1235",
-    date: "18:00 2023-02-27",
+    date: "21:00 2023-05-09",
     title: "The Shawshank Redemption",
+    description:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis reprehenderit quo nemo pariatur facilis animi suscipit quibusdam magnam, enim saepe neque quasi sapiente, expedita ea! Accusamus quisquam odio recusandae",
     location: "Stora salongen",
     spokenLang: "ENG",
     subLang: "SWE",
@@ -30,6 +34,8 @@ export const movieDataArray: ScreeningType[] = [
     id: "6589",
     date: "19:00 2023-02-27",
     title: "The Usual Suspects",
+    description:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis reprehenderit quo nemo pariatur facilis animi suscipit quibusdam magnam, enim saepe neque quasi sapiente, expedita ea! Accusamus quisquam odio recusandae",
     location: "Matsalen",
     spokenLang: "SWE",
     subLang: "SWE",
@@ -40,10 +46,12 @@ export const movieDataArray: ScreeningType[] = [
   },
   {
     id: "3754",
-    date: "21:00 2023-02-27",
+    date: "21:00 2023-05-09",
     title: "Avengers: Endgame",
+    description:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis reprehenderit quo nemo pariatur facilis animi suscipit quibusdam magnam, enim saepe neque quasi sapiente, expedita ea! Accusamus quisquam odio recusandae",
     location: "Lilla Salongen",
-    spokenLang: "ENG",
+    spokenLang: "SWE",
     subLang: "SWE",
     screeningId: "98235",
     rating: 1,
@@ -54,6 +62,8 @@ export const movieDataArray: ScreeningType[] = [
     id: "9876",
     date: "19:00 2023-02-28",
     title: "Min Granne Totoro",
+    description:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis reprehenderit quo nemo pariatur facilis animi suscipit quibusdam magnam, enim saepe neque quasi sapiente, expedita ea! Accusamus quisquam odio recusandae",
     location: "Stora salongen",
     spokenLang: "ENG",
     subLang: "SWE",
@@ -66,6 +76,8 @@ export const movieDataArray: ScreeningType[] = [
     id: "2322",
     date: "21:00 2023-02-27",
     title: "The Shawshank Redemption",
+    description:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis reprehenderit quo nemo pariatur facilis animi suscipit quibusdam magnam, enim saepe neque quasi sapiente, expedita ea! Accusamus quisquam odio recusandae",
     location: "Anexxet",
     spokenLang: "ENG",
     subLang: "SWE",
