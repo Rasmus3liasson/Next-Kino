@@ -10,7 +10,11 @@
     transform: rotateY(0deg) rotate(90deg);
     left: -3em;
     margin-top: 5em;
-    gap: 55px;
+    gap: 5em;
+    @media screen and (min-width: $medium-screen) {
+        margin-top: 17em;
+    }
+    
 }
 
 .screen{
@@ -23,37 +27,51 @@
     background-color: gray;
     text-align: center;
     font-weight: $font-weight-medium;
+    @media screen and (min-width: $medium-screen) {
+        margin-left: 20em;
+    }
+    
 }
 
-.seat_legend_selected{
-    width: 20px;
-    height: 20px;
-    border-radius: 0 5px 5px 0px;
-    background-color: green;
-    margin: 5px 30px;
-    position: absolute;
-    transform: rotateY(0deg) rotate(-90deg);
-}
 .seat_legend_unavailable{
     width: 20px;
     height: 20px;
     border-radius: 0 5px 5px 0px;
-    background-color: red;
-    margin: 5px 30px;
-    position: absolute;
-    transform: rotateY(0deg) rotate(-90deg);
+    margin-left: 1em;
+    margin-top: 0em;
 }
 .seat_legend_free{
     width: 20px;
     height: 20px;
     border-radius: 0 5px 5px 0px;
     margin-left: 1em;
-    margin-top: 8em;
+    margin-top: -1.5em;
+}
+.seat_legend_selected{
+    width: 20px;
+    height: 20px;
+    border-radius: 0 5px 5px 0px;
+    margin-left: 1em;
+    margin-top: -2em;
 }
 .legendText_free{
     position: absolute;
     transform: rotateY(0deg) rotate(-90deg);
     color: $text-light;
     margin-left: 2em;
-    margin-top: 10em;
+    margin-top: 12em;
+}
+.legendText_unavailable{
+    position: absolute;
+    transform: rotateY(0deg) rotate(-90deg);
+    color: $text-light;
+    margin-left: 1.7em;
+    margin-top: 1em;
+}
+.legendText_selected{
+    position: absolute;
+    transform: rotateY(0deg) rotate(-90deg);
+    color: $text-light;
+    margin-left: 3.5em;
+    margin-top: -10.5em;
 }
