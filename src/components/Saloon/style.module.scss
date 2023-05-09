@@ -17,8 +17,8 @@
     @media screen and (min-width: $large-screen) {
         margin-top: 32em;
     }
-    @media screen and (min-width: 1350px) {
-        margin-top: 45em;
+    @media screen and (min-width: $xl-screen) {
+        margin-top: 46em;
     }
     
 }
@@ -39,7 +39,7 @@
     @media screen and (min-width: $large-screen) {
         margin-left: 29em;
     }
-    @media screen and (min-width: 1350px) {
+    @media screen and (min-width: $xl-screen) {
         margin-left: 50em;
     }
     
