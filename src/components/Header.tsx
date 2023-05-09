@@ -1,10 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
+
+//temporary data should include movie title from database
+const data: string[] = [
+  "End Game",
+  "Mario",
+  "Mario",
+  "Mario",
+  "Mario",
+  "Mario",
+  "Mario",
+  "Mario",
+  "Fight Club",
+];
 
 export default function Header() {
   const router = useRouter();
+
+  const [searchInput, setSearchInput] = useState("");
+  const [searchResult, setSearchResult] = useState<string[]>([]);
 
   //Just an example path
   const [path, setPath] = useState<string>("/login");
@@ -29,6 +45,20 @@ export default function Header() {
   //sets underline to link based on current route
   const currentPage = (path: string[]) => {
     return path.includes(router.asPath) ? "current-page" : "";
+  };
+
+  //filter and show result that match value
+  const manageInput = (event: { target: { value: string } }) => {
+    const inputValue = event.target.value;
+    setSearchInput(inputValue);
+    if (inputValue.length >= 2) {
+      const filteredResults = data.filter((item) =>
+        item.toLowerCase().includes(inputValue.toLowerCase())
+      );
+      setSearchResult(filteredResults);
+    } else {
+      setSearchResult([]);
+    }
   };
 
   return (
@@ -142,8 +172,24 @@ export default function Header() {
                 type="search"
                 placeholder="Sök"
                 aria-label="Search"
+                value={searchInput}
+                onChange={manageInput}
               />
-
+              {/* condition so not show dropdown */}
+              {searchResult.length > 0 && (
+                <div className="dropdown-menu show">
+                  {searchResult.map((movieTitle) => (
+                    <Link
+                      key={movieTitle}
+                      className="dropdown-item"
+                      href="#"
+                      onClick={() => setSearchInput(movieTitle)}
+                    >
+                      {movieTitle}
+                    </Link>
+                  ))}
+                </div>
+              )}
               <button
                 className="btn btn-outline-primary my-2 my-sm-0"
                 type="submit"
