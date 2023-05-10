@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 
-//temporary data should include movie title from database
+//temporary data should include movie title and image from database
 const data: string[] = [
   "End Game",
   "Mario",
-  "asario",
+  "Maria",
   "maridsdteo",
   "Maereo",
   "Maio",
@@ -54,8 +54,8 @@ export default function Header() {
     const inputValue = event.target.value;
     setSearchInput(inputValue);
     if (inputValue.length >= 2) {
-      const filteredResults = data.filter((item) =>
-        item.toLowerCase().includes(inputValue.toLowerCase())
+      const filteredResults = data.filter((input) =>
+        input.toLowerCase().includes(inputValue.toLowerCase())
       );
       setSearchResult(filteredResults);
     } else {
@@ -181,24 +181,25 @@ export default function Header() {
               {searchResult.length > 0 && (
                 <div className="dropdown-menu show">
                   <ul>
-                    {searchResult.map((movieTitle) => (
+                    {searchResult.map((movieDetails) => (
                       // eslint-disable-next-line react/jsx-key
                       <li>
                         <Link
-                          key={movieTitle}
+                          key={movieDetails}
                           className="dropdown-item"
-                          href="#"
-                          onClick={() => setSearchInput(movieTitle)}
+                          /* need to add correct id from database */
+                          href="/movies/id"
+                          onClick={() => setSearchInput(movieDetails)}
                         >
-                          {movieTitle}
+                          <p>{movieDetails}</p>
+                          {/* temporarly image waiting on poster from database */}
                           <Image
                             src={"/logo-cinema.png"}
                             alt="poster of movie"
-                            width={100}
+                            width={150}
                             height={100}
                           ></Image>
                         </Link>
-                        {/* temporarly image waiting on poster from database */}
                       </li>
                     ))}
                   </ul>
