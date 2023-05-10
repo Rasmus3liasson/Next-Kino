@@ -199,6 +199,7 @@ header {
       flex-direction: column;
       list-style: none;
       padding: 0;
+      margin-bottom: 0;
       font-size: large;
       @media screen and (min-width: $medium-screen) {
         flex-direction: row;
