@@ -90,7 +90,12 @@ export default function MovieInfoPage({ screenings }) {
               {stars.length !== 0 &&
                 stars.map((star, index) => <span key={index}>{star}</span>)}
             </p>
-            <p>Se resensioner</p>
+            <Link
+              className={style.linkReviews}
+              href={`/movie/${screeningData.id}/reviews`}
+            >
+              <p>Se resensioner</p>
+            </Link>
           </div>
         </div>
         <div>
