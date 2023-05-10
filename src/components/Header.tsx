@@ -203,10 +203,8 @@ export default function Header() {
                 <div className="dropdown-menu show">
                   <ul>
                     {searchResult.map((movieDetails) => (
-                      // eslint-disable-next-line react/jsx-key
-                      <li>
+                      <li key={movieDetails}>
                         <Link
-                          key={movieDetails}
                           className="dropdown-item"
                           /* need to add correct id from database movieTitle variable */
                           href="/movies/id"
