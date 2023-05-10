@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-//temporary data should include movie title and image from database
+//temporary data should include movie title and image from database that will be retrieved from the comment code
 const data: string[] = [
   "End Game",
   "Mario",
@@ -18,14 +18,35 @@ const data: string[] = [
   "Fight Club",
 ];
 
+/* async function retriveMovieData() {
+  const res = await fetch("/api/screenings");
+  const data = await res.json();
+
+  return data;
+} */
+
 export default function Header() {
   const router = useRouter();
+
+  //Just an example path
+  const [path, setPath] = useState<string>("/login");
 
   const [searchInput, setSearchInput] = useState("");
   const [searchResult, setSearchResult] = useState<string[]>([]);
 
-  //Just an example path
-  const [path, setPath] = useState<string>("/login");
+  /*   const [movieTitle, setMovieTitle] = useState<string[]>([]);
+  const [movieImage, setMovieImage] = useState<string[]>([]);
+
+  async function setMovieContent() {
+    const data = await retriveMovieData();
+
+    setMovieTitle(data);
+    setMovieImage(data);
+  }
+
+  useEffect(() => {
+    setMovieContent();
+  }, [searchResult]); */
 
   const toggleNav = () => {
     const nav = document.querySelector("#navbarSupportedContent");
@@ -187,14 +208,14 @@ export default function Header() {
                         <Link
                           key={movieDetails}
                           className="dropdown-item"
-                          /* need to add correct id from database */
+                          /* need to add correct id from database movieTitle variable */
                           href="/movies/id"
                           onClick={() => setSearchInput(movieDetails)}
                         >
                           <p>{movieDetails}</p>
                           {/* temporarly image waiting on poster from database */}
                           <Image
-                            src={"/logo-cinema.png"}
+                            src={"/logo-cinema.png"} //movieImage varaible
                             alt="poster of movie"
                             width={150}
                             height={100}

@@ -201,6 +201,9 @@ header {
       padding: 0;
       margin-bottom: 0;
       font-size: large;
+      &::-webkit-scrollbar {
+        display: none;
+      }
       @media screen and (min-width: $medium-screen) {
         flex-direction: row;
         width: 100%;
