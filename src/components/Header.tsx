@@ -233,12 +233,6 @@ export default function Header() {
                   </ul>
                 </div>
               )}
-              <button
-                className="btn btn-outline-primary my-2 my-sm-0"
-                type="submit"
-              >
-                Sök
-              </button>
             </form>
           </div>
         </div>
