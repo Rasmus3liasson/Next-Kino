@@ -3,7 +3,8 @@ import ScreeningsHome from "../components/ScreeningsHome";
 import { ScreeningType } from "@/util/types";
 import { getData } from "./api/screenings";
 
-// This gets called on every request
+
+// TODO: Add database functions here. 
 export async function getServerSideProps() {
   const data = await getData();
   return {
