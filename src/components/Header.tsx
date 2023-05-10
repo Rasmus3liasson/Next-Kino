@@ -14,7 +14,7 @@ const data: string[] = [
   "Maio",
   "Maio",
   "Maio",
-  "figh",
+  "fight",
   "Fight Club",
 ];
 
@@ -215,14 +215,21 @@ export default function Header() {
                           <p>{movieDetails}</p>
                           {/* temporarly image waiting on poster from database */}
                           <Image
-                            src={"/logo-cinema.png"} //movieImage varaible
+                            src={"/dummy.jpg"} //movieImage varaible
                             alt="poster of movie"
                             width={150}
-                            height={100}
+                            height={150}
                           ></Image>
                         </Link>
                       </li>
                     ))}
+                  </ul>
+                </div>
+              )}
+              {searchInput.length > 0 && searchResult.length === 0 && (
+                <div className="dropdown-menu show">
+                  <ul>
+                    <li className="no-match">Ingen matchning</li>
                   </ul>
                 </div>
               )}

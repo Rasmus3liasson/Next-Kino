@@ -202,7 +202,11 @@ header {
       margin-bottom: 0;
       font-size: large;
       &::-webkit-scrollbar {
-        display: none;
+        background-color: $site-bg;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: $text-light;
+        border-radius: 1rem;
       }
       @media screen and (min-width: $medium-screen) {
         flex-direction: row;
@@ -220,29 +224,41 @@ header {
           display: flex;
           align-items: center;
           justify-content: center;
+          gap: 1rem;
           color: $text-light;
           min-width: 20rem;
           box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.15);
 
           &:hover {
             background-color: $site-bg;
-            text-decoration: underline;
+
             color: $text-light;
           }
           &:active {
             scale: 1.02;
           }
+          p:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      .no-match {
+        width: 100%;
+        text-decoration: underline;
+        font-size: x-large;
+        @media screen and (min-width: $large-screen) {
+          min-width: 18rem;
         }
       }
     }
   }
+}
 
-  @keyframes slide-in {
-    from {
-      transform: translateX(80%);
-    }
-    to {
-      transform: translateX(0);
-    }
+@keyframes slide-in {
+  from {
+    transform: translateX(80%);
+  }
+  to {
+    transform: translateX(0);
   }
 }
