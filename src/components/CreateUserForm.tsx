@@ -1,5 +1,6 @@
 import React, { useState, useEffect, FormEvent } from "react";
-import strongPasswordCheck from "@/utils/strongPasswordCheck";
+import strongPasswordCheck from "@/util/strongPasswordCheck";
+import { StrengthMeterStyles, SubmitedUserResponse, User } from "@/util/types";
 
 const CreateUserForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -14,29 +15,8 @@ const CreateUserForm = () => {
   useEffect(() => {
     setPwStrength(strongPasswordCheck(password));
   }, [password]);
-
-  //All types should be moved to bundle types/interfaces.ts
   
-  type SubmitedUserResponse = {
-    userCreated: boolean;
-    errors: string[];
-  };
-  
-  type NewUser = {
-    userName: string;
-    firstName: string;
-    lastName: string;
-    eMail: string;
-    password: string;
-  };
-  
-  type StrengthMeterStyles = {
-    25: { style: string; text: string };
-    50: { style: string; text: string };
-    75: { style: string; text: string };
-    100: { style: string; text: string };
-  };
-  
+  //keyvalues acts as percentage
   const strengthMeter: StrengthMeterStyles = {
     25: { style: "w-[25%] bg-red-500 ", text: "Too weak" },
     50: { style: "w-[50%] bg-orange-500 ", text: "Weak" },
@@ -48,7 +28,7 @@ const CreateUserForm = () => {
     e.preventDefault();
     setErrors([]);
 
-    const newUser: NewUser = {
+    const newUser: User = {
       userName: userName,
       firstName: firstName,
       lastName: lastName,

@@ -1,21 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcrypt";
-import { Exception } from "sass";
+import { SubmitedUserResponse } from "@/util/types";
 /* prefixed imports */
 //import connectMongoDB from "@/src/*path*"
 //import user from "@/models/user";
-
-// intefaces should be moved to bundlefile types/interfaces.ts
-interface SubmitedUserResponse {
-  userCreated: boolean;
-  errors: string[];
-}
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<SubmitedUserResponse>
 ) {
-
   // connectMongoDB is not available atm, waiting for database import
   // row 22,24,25,37 & 46 is based on planned Schemas and connectionapproach
   try {
