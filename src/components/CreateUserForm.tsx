@@ -15,18 +15,13 @@ const CreateUserForm = () => {
     setPwStrength(strongPasswordCheck(password));
   }, [password]);
 
-  type StrengthMeterStyles = {
-    25: { style: string; text: string };
-    50: { style: string; text: string };
-    75: { style: string; text: string };
-    100: { style: string; text: string };
-  };
-
+  //All types should be moved to bundle types/interfaces.ts
+  
   type SubmitedUserResponse = {
     userCreated: boolean;
     errors: string[];
   };
-
+  
   type NewUser = {
     userName: string;
     firstName: string;
@@ -34,7 +29,14 @@ const CreateUserForm = () => {
     eMail: string;
     password: string;
   };
-
+  
+  type StrengthMeterStyles = {
+    25: { style: string; text: string };
+    50: { style: string; text: string };
+    75: { style: string; text: string };
+    100: { style: string; text: string };
+  };
+  
   const strengthMeter: StrengthMeterStyles = {
     25: { style: "w-[25%] bg-red-500 ", text: "Too weak" },
     50: { style: "w-[50%] bg-orange-500 ", text: "Weak" },
@@ -167,6 +169,11 @@ const CreateUserForm = () => {
             />
           </div>
         </section>
+        <h4 className="text-center text-white">
+          {password !== confirmPassword &&
+            confirmPassword.length > 0 &&
+            "Lösenorden matchar inte"}
+        </h4>
 
         {password.length > 0 && (
           <div
@@ -191,6 +198,7 @@ const CreateUserForm = () => {
         <button
           className="rounded-md my-4 w-1/2 self-center bg-clightblue font-semibold  border-2 border-transparent hover:border-white"
           id="submitBtn"
+          disabled={password !== confirmPassword}
         >
           Bekräfta
         </button>
