@@ -7,12 +7,14 @@ import { SetStateAction, useState } from "react";
 const data: string[] = [
   "End Game",
   "Mario",
-  "Mario",
-  "Mario",
-  "Mario",
-  "Mario",
-  "Mario",
-  "Mario",
+  "asario",
+  "maridsdteo",
+  "Maereo",
+  "Maio",
+  "Maio",
+  "Maio",
+  "Maio",
+  "figh",
   "Fight Club",
 ];
 
@@ -178,16 +180,28 @@ export default function Header() {
               {/* condition so not show dropdown */}
               {searchResult.length > 0 && (
                 <div className="dropdown-menu show">
-                  {searchResult.map((movieTitle) => (
-                    <Link
-                      key={movieTitle}
-                      className="dropdown-item"
-                      href="#"
-                      onClick={() => setSearchInput(movieTitle)}
-                    >
-                      {movieTitle}
-                    </Link>
-                  ))}
+                  <ul>
+                    {searchResult.map((movieTitle) => (
+                      // eslint-disable-next-line react/jsx-key
+                      <li>
+                        <Link
+                          key={movieTitle}
+                          className="dropdown-item"
+                          href="#"
+                          onClick={() => setSearchInput(movieTitle)}
+                        >
+                          {movieTitle}
+                          <Image
+                            src={"/logo-cinema.png"}
+                            alt="poster of movie"
+                            width={100}
+                            height={100}
+                          ></Image>
+                        </Link>
+                        {/* temporarly image waiting on poster from database */}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               )}
               <button

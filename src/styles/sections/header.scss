@@ -174,17 +174,55 @@ header {
   .animation-nav {
     animation: slide-in 0.5s ease-in-out;
   }
-  form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    .show {
-      position: absolute;
-      margin-right: 9rem;
-      background-color: red;
-      color: green;
-      z-index: 5;
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+
+    min-width: 12rem;
+    font-size: 1rem;
+    color: $text-light;
+    text-align: center;
+    background-color: $site-bg;
+
+    @media screen and (max-width: $large-screen) {
+      width: 100%;
+      margin-left: -0.5rem;
+    }
+    ul {
+      max-height: 300px;
+
+      overflow-y: auto;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      list-style: none;
+      padding: 0;
+      @media screen and (min-width: $medium-screen) {
+        flex-direction: row;
+        width: 100%;
+      }
+      @media screen and (min-width: $large-screen) {
+        flex-direction: column;
+      }
+
+      li {
+        padding: 0.25rem;
+
+        a {
+          color: $text-light;
+          min-width: 20rem;
+
+          &:hover {
+            background-color: $site-bg;
+            text-decoration: underline;
+            color: $text-light;
+          }
+          &:active {
+            scale: 1.02;
+          }
+        }
+      }
     }
   }
 
