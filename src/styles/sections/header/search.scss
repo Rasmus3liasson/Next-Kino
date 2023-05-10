@@ -1,0 +1,78 @@
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  margin-right: -5rem;
+  min-width: 12rem;
+  font-size: 1rem;
+  color: $text-light;
+  text-align: center;
+  background-color: $site-bg;
+
+  @media screen and (max-width: $large-screen) {
+    width: 100%;
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
+  ul {
+    max-height: 300px;
+
+    overflow-y: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0;
+    font-size: large;
+
+    &::-webkit-scrollbar {
+      background-color: $site-bg;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $text-light;
+      border-radius: 1rem;
+    }
+    @media screen and (min-width: $medium-screen) {
+      flex-direction: row;
+      width: 100%;
+    }
+    @media screen and (min-width: $large-screen) {
+      flex-direction: column;
+      font-size: x-large;
+    }
+
+    li {
+      padding: 0.35rem;
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        color: $text-light;
+        min-width: 20rem;
+        box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.15);
+
+        &:hover {
+          background-color: $site-bg;
+
+          color: $text-light;
+        }
+        &:active {
+          scale: 1.02;
+        }
+        p:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .no-match {
+      width: 100%;
+      text-decoration: underline;
+      font-size: x-large;
+      @media screen and (min-width: $large-screen) {
+        min-width: 18rem;
+      }
+    }
+  }
+}

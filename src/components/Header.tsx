@@ -226,7 +226,8 @@ export default function Header() {
                   </ul>
                 </div>
               )}
-              {searchInput.length > 0 && searchResult.length === 0 && (
+              {/* if no matching results */}
+              {searchInput.length > 1 && searchResult.length === 0 && (
                 <div className="dropdown-menu show">
                   <ul>
                     <li className="no-match">Ingen matchning</li>
