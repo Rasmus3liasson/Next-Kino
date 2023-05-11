@@ -27,7 +27,9 @@ export default function Review({ screenings }) {
 
   return (
     <>
-      <h2>hejsan</h2>
+      <section>
+        <h1>hej</h1>
+      </section>
     </>
   );
 }
