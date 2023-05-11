@@ -8,7 +8,7 @@ export type ScreeningType = {
     poster: string;
     screeningId: string;
   };
-export type MovieType = {
+  export type MovieType = {
     id: number;
     title: string;
     poster: string;
