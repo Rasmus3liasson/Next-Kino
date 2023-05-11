@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
+import style from "./style.module.scss";
 
 import { reviewData } from "@/util/mockReview";
 
@@ -9,6 +10,7 @@ export default function SendReview() {
 
   const [rating, setRating] = useState<number>(1); //change that this isn't a number in the real database
   const [comment, setComment] = useState<string>("");
+  const [name, setName] = useState<string>("");
   const [isActive, setIsActive] = useState<boolean>(false);
 
   //filter the movies that match
@@ -17,15 +19,16 @@ export default function SendReview() {
   );
 
   //can't test if it updates the reviews in my mocked data just because it is mocked and
-  //no actuall data. But request goes through in networks panel
+  //no actuall data. But request goes through in networks panel and expect to change the reviews
   async function updateReview() {
+    event?.preventDefault();
     if (specificMovieReview) {
       const updatedReviews = [
         ...specificMovieReview.reviews,
         {
           rating: rating,
           comment: comment,
-          reviewer: "Rasmus Eliasson",
+          reviewer: name,
           date: new Date().toLocaleString("sv-SE", {
             timeZone: "Europe/Stockholm",
           }),
@@ -40,6 +43,7 @@ export default function SendReview() {
         }),
       });
     }
+    setIsActive(false);
   }
 
   function toggleSendReviewForm() {
@@ -48,35 +52,45 @@ export default function SendReview() {
 
   return (
     <>
-      <form>
+      <div className={style.sendReviewContainer}>
         {isActive && (
-          <>
-            <p>Lämna Betyg</p>
-            <input
-              type="number"
-              value={rating}
-              onChange={(e) => setRating(parseInt(e.target.value))}
-              min={1}
-              max={5}
-            />
-            <p>Lämna en kommentar</p>
-            <input
-              type="text"
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-            />
-            <p>Dit namn</p>
-            <input type="text" />
-            <div>
-              <button onClick={updateReview}>Skicka in</button>
-            </div>
-          </>
-        )}
-      </form>
+          <form className={style.sendReviewForm}>
+            <>
+              <div className={style.container}>
+                <h3>Skicka Recension</h3>
+                <input
+                  placeholder="Lämna en kommentar"
+                  type="text"
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                />
 
-      <button onClick={toggleSendReviewForm}>
-        {!isActive ? "Lämna recension" : "Avbryt"}
-      </button>
+                <input
+                  type="text"
+                  placeholder="Ditt namn"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <p>Lämna Betyg</p>
+                <input
+                  type="number"
+                  value={rating}
+                  onChange={(e) => setRating(parseInt(e.target.value))}
+                  min={1}
+                  max={5}
+                />
+                <div>
+                  <button onClick={updateReview}>Skicka in</button>
+                </div>
+              </div>
+            </>
+          </form>
+        )}
+
+        <button className={style.toggleBtn} onClick={toggleSendReviewForm}>
+          {!isActive ? "Lämna recension" : "Avbryt"}
+        </button>
+      </div>
     </>
   );
 }
