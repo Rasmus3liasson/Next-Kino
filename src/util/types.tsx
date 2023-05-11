@@ -14,7 +14,7 @@ export type ScreeningType = {
     errors: string[];
   }
 
-  export type User = {
+  export type UserType = {
     userName: string;
     firstName: string;
     lastName: string;
