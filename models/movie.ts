@@ -1,27 +1,36 @@
-import { Schema, model, models} from "mongoose";
+import { Schema, model, models } from "mongoose";
 import { type } from "os";
 
 interface IMovie {
-  title: string,
-  description: string,
-  imgUrl: string,
-  duration: number,
-  screenings: Date,
-  reviews: Review[],
+  title: string;
+  description: string;
+  imgUrl: string;
+  duration: number;
+  screenings: Date[];
+  reviews: [
+    {
+      reviewerName: string;
+      reviewerText: string;
+      postDate: Date;
+      rating: number;
+    }
+  ];
 }
 
-const movie = new Schema<IMovie>({
-    title: String,
-    description: String,
-    imgUrl: String,
-    duration: Number,
-    screenings: [Date],
-    reviews: [Review],
+const movieSchema = new Schema<IMovie>({
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  imgUrl: { type: String, required: true },
+  duration: { type: Number, required: true },
+  screenings: [Date],
+  reviews: [
+    {
+      reviewerName: { type: String, required: true },
+      reviewerText: { type: String, required: true },
+      postDate: { type: Date, required: true },
+      rating: { type: Number, min: 1, max: 5, required: true },
+    },
+  ],
 });
 
-type Review = {
-  reviewerName: String,
-  reviewerText: String, 
-  postDate: String,
-  rating: Number,
-};
+const Movie = models.test || model<IMovie>('Movie', movieSchema);

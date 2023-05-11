@@ -1,7 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-if (typeof process.env.MONGO_URI === 'string') {
-    const connectMongo = async () => mongoose.connect(process.env.MONGO_URI as string);
-}
+const connectMongo = async () =>
+  mongoose.connect(process.env.MONGO_URI as string);
 
-
+  export default connectMongo;
