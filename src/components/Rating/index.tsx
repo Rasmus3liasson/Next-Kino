@@ -1,41 +1,36 @@
+import { useState, useEffect } from "react";
 import style from "./style.module.scss";
-import Image from "next/image";
 import Link from "next/link";
-import { MovieData } from "@/util/types";
+import { ScreeningType } from "@/util/types";
 
 interface MovieProps {
-  movieData: MovieData;
-  rating: number;
+  movieData: ScreeningType;
 }
 
-const Movie: React.FC<MovieProps> = ({ movieData, rating }) => {
+const Rating: React.FC<MovieProps> = ({ movieData }) => {
+  const [rating, setRating] = useState("");
+
+  useEffect(() => {
+    fetch(`/api/reviews/${movieData.id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        const imdbRating = data.rating;
+        setRating(imdbRating);
+      })
+      .catch((error) => {
+        console.log("Error fetching movie rating:", error);
+      });
+  }, [movieData.id]);
+
   const link = `/movie/${movieData.id}/reviews`;
 
   return (
     <Link href={link} passHref>
       <a className={style.card}>
-        <Image
-          className={style.img}
-          height={120}
-          width={90}
-          src="/dummy.jpg"
-          alt={`The poster for ${movieData.title}`}
-        />
-        <h3 className={`${style.title} ${style.cardItem}`}>
-          {movieData.title}
-        </h3>
-        <small className={`${style.date} ${style.cardItem}`}>
-          {movieData.date}
-        </small>
-        <small className={`${style.location} ${style.cardItem}`}>
-          {movieData.location}
-        </small>
-        <small className={`${style.rating} ${style.cardItem}`}>
-          IMDB Rating: {rating}
-        </small>
+        <div className={style.rating}>IMDB Rating: {rating || "N/A"}</div>
       </a>
     </Link>
   );
 };
 
-export default Movie;
+export default Rating;
