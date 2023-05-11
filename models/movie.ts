@@ -34,3 +34,5 @@ const movieSchema = new Schema<IMovie>({
 });
 
 const Movie = models.test || model<IMovie>('Movie', movieSchema);
+
+export default Movie;
