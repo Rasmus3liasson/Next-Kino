@@ -1,14 +1,23 @@
 import style from "./style.module.scss";
 import Link from "next/link";
+import Image from "next/image";
 import { ScreeningType } from "@/util/types";
-import LangComponent from "./LangComponent";
+
+// Helper component to render language flags
+function LangComponent ({language, form = ''}: {language: string, form: string}) {
+  return (
+  <span>
+      {form}
+      <Image alt={language} src={`/${language}.svg`} width={40} height={15} />
+  </span>
+  )
+}
 
 export default function SpecificMovieScreening({
   screening
 }: {
   screening: ScreeningType;
 }) {
-    console.log(1, screening);
   const link = `/movie/${screening.id}/booking?screening=${screening.screeningId}`;
   return (
     <li>
