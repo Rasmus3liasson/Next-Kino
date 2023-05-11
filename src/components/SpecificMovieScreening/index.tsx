@@ -21,6 +21,7 @@ export default function SpecificMovieScreening({
   const link = `/movie/${screening.id}/booking?screening=${screening.screeningId}`;
   return (
     <li>
+      <LangComponent language="gb" form='Text' />
       {/* <h4>
         {screening || "21:00"} {screening || "Salong 2"}
       </h4>

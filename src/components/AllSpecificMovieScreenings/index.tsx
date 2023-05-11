@@ -15,9 +15,10 @@ function handleClick(){
   return (
     <section>
       <h3>Kommande visningar</h3>
-      {list.map((screening: ScreeningType) => {
+      <SpecificMovieScreening screening={specificScreenings[0]}/>
+      {/* {list.map((screening: ScreeningType) => {
         <SpecificMovieScreening screening={screening} />;
-      })}
+      })} */}
       <button onClick={handleClick}>Se fler visningar</button>
     </section>
   );
