@@ -1,7 +1,9 @@
 import connectMongo from "../../../../utils/connectMongo";
 import Movie from "../../../../models/movie";
+import renderMovies from "../../../../utils/createMovies";
 
 export default async function getMovies(req: any, res: any) {
+  renderMovies();
   try {
     console.log("CONNECTING TO MONGO");
     await connectMongo();

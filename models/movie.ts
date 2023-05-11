@@ -1,7 +1,6 @@
 import { Schema, model, models } from "mongoose";
-import { type } from "os";
 
-interface IMovie {
+export interface IMovie {
   title: string;
   description: string;
   imgUrl: string;
@@ -33,6 +32,6 @@ const movieSchema = new Schema<IMovie>({
   ],
 });
 
-const Movie = models.test || model<IMovie>('Movie', movieSchema);
+const Movie = models.Movie || model<IMovie>("Movie", movieSchema);
 
 export default Movie;
