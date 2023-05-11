@@ -4,7 +4,7 @@ import { ReviewType } from "@/util/mockReview";
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<ReviewType>
+  res: NextApiResponse<ReviewType[]>
 ) {
   res.status(200).json(reviewData);
 }

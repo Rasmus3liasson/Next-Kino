@@ -1,23 +1,7 @@
 import Head from "next/head";
-import Review from "@/components/Rating";
+import SendReview from "@/components/SendReview";
 
-import { ScreeningType } from "@/util/types";
-import { getData } from "@/pages/api/screenings";
-
-export async function getServerSideProps() {
-  const data = await getData();
-  return {
-    props: {
-      screenings: data,
-    },
-  };
-}
-
-export default function MovieDetailsPage({
-  screenings,
-}: {
-  screenings: ScreeningType[];
-}) {
+export default function MovieDetailsPage({}: {}) {
   return (
     <>
       <Head>
@@ -28,7 +12,7 @@ export default function MovieDetailsPage({
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Review screenings={screenings} />
+      <SendReview />
     </>
   );
 }

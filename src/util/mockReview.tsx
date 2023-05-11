@@ -1,5 +1,5 @@
 export type ReviewType = {
-  movieId: number;
+  movieId: string;
   reviews: {
     rating: number;
     comment: string;
@@ -14,7 +14,7 @@ const swedishDate = new Date().toLocaleString("sv-SE", {
 
 export const reviewData: ReviewType[] = [
   {
-    movieId: 1235,
+    movieId: "1235",
     reviews: [
       {
         rating: 5,
@@ -37,7 +37,7 @@ export const reviewData: ReviewType[] = [
     ],
   },
   {
-    movieId: 6589,
+    movieId: "6589",
     reviews: [
       {
         rating: 1,
