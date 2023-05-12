@@ -1,0 +1,39 @@
+@import "/src/styles/variables.scss";
+
+.screeningListItem {
+  width: 90%;
+  margin: 10px auto;
+  padding: 0 !important;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: 3;
+  border-radius: 7.5px;
+  border: solid 2px black;
+}
+.screeningText {
+  color: $text-light;
+  font-size: medium;
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 6;
+}
+.languageFlags {
+  align-self: left;
+  font-size: small;
+  font-weight: 300;
+  color: $text-light;
+  grid-row: 3 / span 1;
+  grid-column: 1 / span 6;
+}
+.ticketButton {
+  margin-top: 10px;
+  grid-row: 1 / span 2;
+  grid-column: 10 / span 2;
+  
+  button {
+    color: $text-light;
+    background-color: $button-secondary;
+    padding: 0.1em 0.5em;
+    border: solid 1.5px $button-payment-confirm-shade;
+    border-radius: 7.49px;
+  }
+}
