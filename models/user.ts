@@ -6,7 +6,7 @@ export interface IUser {
     last: string;
   };
   email: string;
-  password: string;
+  passwordHash: string;
 }
 
 const userSchema = new Schema<IUser>({
@@ -15,7 +15,7 @@ const userSchema = new Schema<IUser>({
     last: { type: String, required: true },
   },
   email: { type: String, required: true },
-  password: { type: String, required: true },
+  passwordHash: { type: String, required: true },
 });
 
 const User = models.User || model<IUser>("User", userSchema);
