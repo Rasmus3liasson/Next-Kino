@@ -112,6 +112,8 @@ export default function MovieInfoPage({ screenings }) {
                 </p>
                 <p>{screeningData.location}</p>
               </div>
+              {//implemented
+              }
               <div className={style.time}>
                 <p>{screeningData.date.slice(0, 5)}</p>
                 <p>
@@ -138,7 +140,8 @@ export default function MovieInfoPage({ screenings }) {
                 </p>
               </div>
             </div>
-            <div>
+            <div>{ //implemented
+            }
               <Link
                 href={`/movie/${screeningData.id}/booking?screening=${screeningData.screeningId}`}
               >
