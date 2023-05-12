@@ -1,26 +1,30 @@
 import { useState } from "react";
 import { ScreeningType } from "@/util/types";
 import SpecificMovieScreening from "../SpecificMovieScreening";
+import style from './style.module.scss';
 
-export default function AllSpecificMovieScreenings(
-   { specificScreenings }: { specificScreenings: ScreeningType[]}
-) {
-    console.log(specificScreenings);
-    const [expanded, setExpanded] = useState(false); 
-    const list = expanded ? specificScreenings : specificScreenings.slice(0,3);
+export default function AllSpecificMovieScreenings({
+  specificScreenings,
+}: {
+  specificScreenings: ScreeningType[];
+}) {
+  console.log(specificScreenings);
+  const [expanded, setExpanded] = useState(false);
+  const list = expanded ? specificScreenings : specificScreenings.slice(0, 3);
 
-function handleClick(){
+  function handleClick() {
     expanded ? setExpanded(false) : setExpanded(true);
-}
+  }
   return (
-    <section>
+    <section className={style.screeningList}>
       <h3>Kommande visningar</h3>
-      <SpecificMovieScreening screening={specificScreenings[0]}/>
-      {/* {list.map((screening: ScreeningType) => {
+      <ul>
+        <SpecificMovieScreening screening={specificScreenings[0]} />
+        {/* {list.map((screening: ScreeningType) => {
         <SpecificMovieScreening screening={screening} />;
       })} */}
-      <button onClick={handleClick}>Se fler visningar</button>
+      </ul>
+      <button className={style.showMoreButton} onClick={handleClick}>Se fler visningar</button>
     </section>
   );
 }
- 
