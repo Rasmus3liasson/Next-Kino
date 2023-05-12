@@ -1,17 +1,17 @@
 import connectMongo from "../../../../utils/connectMongo";
-import Movie from "../../../../models/movie";
+import Booking from "../../../../models/booking";
 
 /**
  * @param {import('next').NextApiRequest} req
  * @param {import('next').NextApiResponse} res
  */
 
-export default async function getMovies(req: any, res: any) {
+export default async function createBooking(req: any, res: any) {
   try {
     await connectMongo();
-    const movies = await Movie.find();
-    res.json({ movies });
-
+    const booking = await Booking.create(req.body);
+    res.json({ booking: booking });
+    
   } catch (error) {
     console.log(error);
     res.json({ error });
