@@ -1,0 +1,102 @@
+@import "@/styles/variables.scss";
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  margin-right: -5rem;
+  min-width: 12rem;
+  font-size: 1rem;
+  color: $text-light;
+  text-align: center;
+  background-color: $site-bg;
+  border-radius: 0 0 9px 9px;
+
+  @media screen and (max-width: $large-screen) {
+    width: 100%;
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
+  ul {
+    max-height: 300px;
+    width: 100%;
+    overflow-y: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0;
+    font-size: large;
+
+    &::-webkit-scrollbar {
+      background-color: $site-bg;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $text-light;
+      border-radius: 1rem;
+    }
+    @media screen and (min-width: $medium-screen) {
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
+    }
+    @media screen and (min-width: $large-screen) {
+      flex-direction: column;
+      font-size: x-large;
+    }
+
+    li {
+      padding: 0.35rem;
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+
+        color: $text-light;
+        min-width: 20rem;
+        max-width: 25rem;
+        box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.15);
+        @media screen and (min-width: $medium-screen) and (max-width: $large-screen) {
+          flex-direction: column;
+        }
+
+        &:hover {
+          background-color: $site-bg;
+
+          color: $text-light;
+        }
+        &:active {
+          scale: 1.02;
+        }
+        p {
+          font-size: 22px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          width: 12rem;
+          @media screen and (min-width: $large-screen) {
+            font-size: 24px;
+          }
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        img {
+          width: 7rem;
+          border-radius: 0.5rem;
+        }
+      }
+    }
+  }
+}
+.noMatch {
+  font-size: x-large;
+  padding-bottom: 1rem;
+  @media screen and (min-width: $large-screen) {
+    max-width: 18rem;
+    padding: 1rem;
+    margin-right: -1rem;
+  }
+}

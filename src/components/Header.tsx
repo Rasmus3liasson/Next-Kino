@@ -1,13 +1,35 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import SearchInput from "./SearchInput";
+
+/* async function retriveMovieData() {
+  const res = await fetch("/api/screenings");
+  const data = await res.json();
+
+  return data;
+} */
 
 export default function Header() {
   const router = useRouter();
 
   //Just an example path
   const [path, setPath] = useState<string>("/login");
+
+  /*   const [movieTitle, setMovieTitle] = useState<string[]>([]);
+  const [movieImage, setMovieImage] = useState<string[]>([]);
+
+  async function setMovieContent() {
+    const data = await retriveMovieData();
+
+    setMovieTitle(data);
+    setMovieImage(data);
+  }
+
+  useEffect(() => {
+    setMovieContent();
+  }, [searchResult]); */
 
   const toggleNav = () => {
     const nav = document.querySelector("#navbarSupportedContent");
@@ -134,25 +156,9 @@ export default function Header() {
               </Link>
             </li>
           </ul>
-
-          <div>
-            <form className="d-flex p-2 my-2 my-lg-0">
-              <input
-                className="form-control mr-sm-2"
-                type="search"
-                placeholder="Sök"
-                aria-label="Search"
-              />
-
-              <button
-                className="btn btn-outline-primary my-2 my-sm-0"
-                type="submit"
-              >
-                Sök
-              </button>
-            </form>
-          </div>
+          <SearchInput />
         </div>
+
         <div className="account-icon">
           <Image
             className="logo-image"
