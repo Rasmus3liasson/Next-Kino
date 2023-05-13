@@ -1,4 +1,6 @@
-.dropdown-menu {
+@import "@/styles/variables.scss";
+
+.dropdownMenu {
   position: absolute;
   top: 100%;
   margin-right: -5rem;
@@ -7,6 +9,7 @@
   color: $text-light;
   text-align: center;
   background-color: $site-bg;
+  border-radius: 0 0 9px 9px;
 
   @media screen and (max-width: $large-screen) {
     width: 100%;
@@ -15,10 +18,11 @@
   }
   ul {
     max-height: 300px;
-
+    width: 100%;
     overflow-y: auto;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     list-style: none;
     padding: 0;
@@ -54,6 +58,9 @@
         min-width: 20rem;
         max-width: 25rem;
         box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.15);
+        @media screen and (min-width: $medium-screen) and (max-width: $large-screen) {
+          flex-direction: column;
+        }
 
         &:hover {
           background-color: $site-bg;
@@ -64,11 +71,15 @@
           scale: 1.02;
         }
         p {
-          height: 2em;
+          padding-left: 1rem;
+          font-size: 22px;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
           width: 12rem;
+          @media screen and (min-width: $large-screen) {
+            font-size: 24px;
+          }
           &:hover {
             text-decoration: underline;
           }
@@ -78,12 +89,13 @@
         }
       }
     }
-    .no-match {
-      width: 100%;
-      font-size: x-large;
-      @media screen and (min-width: $large-screen) {
-        min-width: 18rem;
-      }
-    }
+  }
+}
+.noMatch {
+  font-size: x-large;
+  @media screen and (min-width: $large-screen) {
+    max-width: 18rem;
+    padding: 1rem;
+    margin-right: -1rem;
   }
 }

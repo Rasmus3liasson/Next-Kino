@@ -2,22 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
-//temporary data should include movie title and image from database that will be retrieved from the comment code
-const data: string[] = [
-  "End Game",
-  "Mario",
-  "Maria",
-  "maridsdteo",
-  "thereo",
-  "Maio",
-  "Maio",
-  "Maio",
-  "Maio",
-  "fight",
-  "Fight Club",
-  "The Shawshank Redemption",
-];
+import SearchInput from "./SearchInput";
 
 /* async function retriveMovieData() {
   const res = await fetch("/api/screenings");
@@ -31,9 +16,6 @@ export default function Header() {
 
   //Just an example path
   const [path, setPath] = useState<string>("/login");
-
-  const [searchInput, setSearchInput] = useState("");
-  const [searchResult, setSearchResult] = useState<string[]>([]);
 
   /*   const [movieTitle, setMovieTitle] = useState<string[]>([]);
   const [movieImage, setMovieImage] = useState<string[]>([]);
@@ -69,20 +51,6 @@ export default function Header() {
   //sets underline to link based on current route
   const currentPage = (path: string[]) => {
     return path.includes(router.asPath) ? "current-page" : "";
-  };
-
-  //filter and show result that match value
-  const manageInput = (event: { target: { value: string } }) => {
-    const inputValue = event.target.value;
-    setSearchInput(inputValue);
-    if (inputValue.length >= 2) {
-      const filteredResults = data.filter((input) =>
-        input.toLowerCase().includes(inputValue.toLowerCase())
-      );
-      setSearchResult(filteredResults);
-    } else {
-      setSearchResult([]);
-    }
   };
 
   return (
@@ -188,54 +156,9 @@ export default function Header() {
               </Link>
             </li>
           </ul>
-
-          <div>
-            <form className="d-flex p-2 my-2 my-lg-0">
-              <input
-                className="form-control mr-sm-2"
-                type="search"
-                placeholder="Sök"
-                aria-label="Search"
-                value={searchInput}
-                onChange={manageInput}
-              />
-              {/* condition so not show dropdown */}
-              {searchResult.length > 0 && (
-                <div className="dropdown-menu show">
-                  <ul>
-                    {searchResult.map((movieDetails) => (
-                      <li key={movieDetails}>
-                        <Link
-                          className="dropdown-item"
-                          /* need to add correct id from database movieTitle variable */
-                          href="/movies/id"
-                          onClick={() => setSearchInput(movieDetails)}
-                        >
-                          <p>{movieDetails}</p>
-                          {/* temporarly image waiting on poster from database */}
-                          <Image
-                            src={"/dummy.jpg"} //movieImage varaible
-                            alt="poster of movie"
-                            width={150}
-                            height={150}
-                          ></Image>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {/* if no matching results */}
-              {searchInput.length > 1 && searchResult.length === 0 && (
-                <div className="dropdown-menu show">
-                  <ul>
-                    <li className="no-match">Ingen matchning</li>
-                  </ul>
-                </div>
-              )}
-            </form>
-          </div>
+          <SearchInput />
         </div>
+
         <div className="account-icon">
           <Image
             className="logo-image"
