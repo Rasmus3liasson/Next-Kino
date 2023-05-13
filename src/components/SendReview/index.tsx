@@ -56,11 +56,12 @@ export default function SendReview() {
   return (
     <>
       <div className={style.sendReviewContainer}>
-        {!isActive && !toggleBtn ? (
+        {!isActive && !toggleBtn && (
           <button className={style.toggleBtn} onClick={toggleSendReviewForm}>
             Lämna Recension
           </button>
-        ) : (
+        )}
+        {!isActive && toggleBtn && (
           <button
             disabled
             className={style.toggleBtn}
