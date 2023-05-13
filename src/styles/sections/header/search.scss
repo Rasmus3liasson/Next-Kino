@@ -47,10 +47,12 @@
       a {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
+
         gap: 1rem;
         color: $text-light;
         min-width: 20rem;
+        max-width: 25rem;
         box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.15);
 
         &:hover {
@@ -61,8 +63,18 @@
         &:active {
           scale: 1.02;
         }
-        p:hover {
-          text-decoration: underline;
+        p {
+          height: 2em;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          width: 12rem;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        img {
+          width: 7rem;
         }
       }
     }

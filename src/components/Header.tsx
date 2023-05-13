@@ -9,13 +9,14 @@ const data: string[] = [
   "Mario",
   "Maria",
   "maridsdteo",
-  "Maereo",
+  "thereo",
   "Maio",
   "Maio",
   "Maio",
   "Maio",
   "fight",
   "Fight Club",
+  "The Shawshank Redemption",
 ];
 
 /* async function retriveMovieData() {
