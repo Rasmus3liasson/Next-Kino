@@ -1,18 +1,17 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import {UserType} from "@/util/types"
-import { cookies } from "next/dist/client/components/headers";
-import { NextResponse } from "next/server";
-//import UserModel from "@/models/........."
-//import connectMongoDB from "@/src/lib/......"
+import { UserType } from "@/util/types";
+import { serialize } from "cookie";
+//import connectMongo from "@/src/util.connectMongo"
+//import User from "/models/user"
 
 type ResType = {
   authenticated: boolean;
   message?: string;
 };
-type LoginDataType = {
-  username: string;
+type LoginParams = {
+  userName: string;
   password: string;
 };
 
@@ -20,31 +19,42 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResType>
 ) {
-  const { userName, password } = req.body;
+  const { userName, password }: LoginParams = req.body;
 
+  
   try {
-    await connectMongoDB();
-    UserModel.findOne({ userName: userName }, (err: Error | null, user: UserType) => {
-      if (!err) {
-        bcrypt.compare(password, user.password, (err, isApproved) => {
-          if (!err) {
-            
-            const sessionData = {
-              currentUser: user.firstName,
-            } 
-            const response = new NextResponse()
-            const jwtToken = jwt.sign(sessionData, process.env.JWTKEY)
-            response.cookies.set("session", jwtToken)
-            res.status(202).json({ authenticated: isApproved });
-          }
-        });
+    await connectMongo();
+    await User.findOne(
+      { userName: userName },
+      (err: Error | null, user: UserType) => {
+        if (user) {
+          bcrypt.compare(password, user.password, (err, match) => {
+            if (match) {
+              const authToken = jwt.sign(
+                {
+                  user: user.firstName,
+                },
+                process.env.JWTKEY
+              );
+
+              res.setHeader(
+                "Set-Cookie",
+                serialize("AuthToken", authToken, {
+                  httpOnly: true,
+                  secure: process.env.NODE_ENV !== "development",
+                  maxAge: 60 * 60,
+                  path: "/",
+                })
+              );
+
+              res.status(201).json({ authenticated: true });
+            }
+          });
+        }
       }
-    });
+    );
   } catch (error) {
     console.error(error);
     res.status(401).json({ authenticated: false });
   }
-
 }
-
-
