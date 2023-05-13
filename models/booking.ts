@@ -5,7 +5,6 @@ export interface IBooking {
   email: string;
   movieTitle: string;
   date: Date;
-  screeningID: string;
   seats: number[];
 }
 
@@ -14,7 +13,6 @@ const bookingSchema = new Schema<IBooking>({
   email: String,
   movieTitle: String,
   date: Date,
-  screeningID: String,
   seats: [Number],
 });
 
