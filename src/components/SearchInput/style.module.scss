@@ -22,7 +22,6 @@
     overflow-y: auto;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
     list-style: none;
     padding: 0;
@@ -38,6 +37,7 @@
     }
     @media screen and (min-width: $medium-screen) {
       flex-direction: row;
+      justify-content: center;
       width: 100%;
     }
     @media screen and (min-width: $large-screen) {
@@ -71,7 +71,6 @@
           scale: 1.02;
         }
         p {
-          padding-left: 1rem;
           font-size: 22px;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -80,6 +79,7 @@
           @media screen and (min-width: $large-screen) {
             font-size: 24px;
           }
+
           &:hover {
             text-decoration: underline;
           }
@@ -93,6 +93,7 @@
 }
 .noMatch {
   font-size: x-large;
+  padding-bottom: 1rem;
   @media screen and (min-width: $large-screen) {
     max-width: 18rem;
     padding: 1rem;
