@@ -4,6 +4,32 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+
+  .toggleBtn {
+    background-color: $button-primary-shade;
+    border-radius: 12px;
+    border: none;
+    color: $text-dark;
+    padding: 1rem;
+    font-size: 18px;
+    height: 50px;
+    margin-top: 38px;
+    text-align: center;
+    transition: 0.3s;
+    transition-timing-function: ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 15px 40px -15px $text-dark;
+
+    &:hover {
+      opacity: 0.8;
+    }
+    &:active {
+      scale: 1.02;
+    }
+  }
   .sendReviewForm {
     background-color: $site-bg;
     color: $text-light;
@@ -15,7 +41,14 @@
     justify-content: center;
     align-items: center;
     margin-right: 0;
-    scale: 0.8;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-60%);
+    z-index: 1;
+    scale: 0.85;
+    @media screen and (min-width: $large-screen) {
+      scale: 1.2;
+    }
     .container {
       display: flex;
       flex-direction: column;
@@ -83,29 +116,20 @@
       }
     }
   }
-
-  .toggleBtn {
-    background-color: $button-primary-shade;
-    border-radius: 12px;
-    border: none;
-    color: $text-dark;
-    padding: 1rem;
-    font-size: 18px;
-    height: 50px;
-    margin-top: 38px;
-    text-align: center;
-    transition: 0.3s;
-    transition-timing-function: ease-in-out;
+  .buttonContainer {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0px 15px 40px -15px $text-dark;
-
-    &:hover {
-      opacity: 0.8;
+    flex-direction: column;
+    @media screen and (min-width: $large-screen) {
+      flex-direction: row;
+      gap: 1.2rem;
     }
-    &:active {
-      scale: 1.02;
+    button:last-child {
+      display: flex;
+      justify-content: center;
+      background-color: $button-secondary-shade;
+      color: $text-light;
     }
   }
 }

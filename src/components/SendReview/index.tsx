@@ -12,6 +12,7 @@ export default function SendReview() {
   const [comment, setComment] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [isActive, setIsActive] = useState<boolean>(false);
+  const [toggleBtn, setToggleBtn] = useState<boolean>(false);
 
   //filter the movies that match
   const specificMovieReview = reviewData.find(
@@ -43,6 +44,8 @@ export default function SendReview() {
         }),
       });
     }
+
+    setToggleBtn(true);
     setIsActive(false);
   }
 
@@ -53,43 +56,64 @@ export default function SendReview() {
   return (
     <>
       <div className={style.sendReviewContainer}>
-        {isActive && (
-          <form className={style.sendReviewForm}>
-            <>
-              <div className={style.container}>
-                <h3>Skicka Recension</h3>
-                <input
-                  placeholder="Lämna en kommentar"
-                  type="text"
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                />
-
-                <input
-                  type="text"
-                  placeholder="Ditt namn"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-                <p>Lämna Betyg</p>
-                <input
-                  type="number"
-                  value={rating}
-                  onChange={(e) => setRating(parseInt(e.target.value))}
-                  min={1}
-                  max={5}
-                />
-                <div>
-                  <button onClick={updateReview}>Skicka in</button>
-                </div>
-              </div>
-            </>
-          </form>
+        {!isActive && !toggleBtn ? (
+          <button className={style.toggleBtn} onClick={toggleSendReviewForm}>
+            Lämna Recension
+          </button>
+        ) : (
+          <button
+            disabled
+            className={style.toggleBtn}
+            onClick={toggleSendReviewForm}
+          >
+            Inskickad
+          </button>
         )}
 
-        <button className={style.toggleBtn} onClick={toggleSendReviewForm}>
-          {!isActive ? "Lämna recension" : "Avbryt"}
-        </button>
+        {isActive && (
+          <form
+            className={style.sendReviewForm}
+            onSubmit={() => {
+              event?.preventDefault();
+              name && comment !== "" && updateReview();
+            }}
+          >
+            <div className={style.container}>
+              <h3>Skicka Recension</h3>
+              <input
+                placeholder="Lämna en kommentar"
+                type="text"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+              />
+
+              <input
+                type="text"
+                placeholder="Ditt namn"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <p>Lämna Betyg</p>
+              <input
+                type="number"
+                value={rating}
+                onChange={(e) => setRating(parseInt(e.target.value))}
+                min={1}
+                max={5}
+              />
+              <div className={style.buttonContainer}>
+                <button>Skicka in</button>
+                <button
+                  className={style.returnBtn}
+                  type="button"
+                  onClick={toggleSendReviewForm}
+                >
+                  Avbryt
+                </button>
+              </div>
+            </div>
+          </form>
+        )}
       </div>
     </>
   );
