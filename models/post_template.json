@@ -1,7 +1,7 @@
 {
   "MOVIE": {
     "title": "Shrek",
-    "description": "Robins favourite movie",
+    "description": "En film om en grön gubbe",
     "imgUrl": "https://i-viaplay-com.akamaized.net/viaplay-prod/993/800/1613762117-f07774c22a81b35740522f9e1b18e1e03331bc19.jpg?width=400&height=600",
     "duration": "86",
     "screenings": [],
@@ -14,7 +14,7 @@
       "last": "doe"
     },
     "email": "johndoe@gmail.com",
-    "password": "abc123"
+    "passwordHash": "abc123"
   },
 
   "BOOKING": {
@@ -22,7 +22,7 @@
     "email": "user123@gmail.com",
     "movieTitle": "Shrek",
     "date": "2023-05-12",
-    "screeningID": "unique_ID_implemented_by_mongoose",
+    "screeningID": "an_unique_ID_implemented_by_mongoDB",
     "seats": [22, 23, 24]
   }
 }

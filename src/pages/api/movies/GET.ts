@@ -11,7 +11,7 @@ export default async function getMovies(req: any, res: any) {
     await connectMongo();
     const movies = await Movie.find();
     res.json({ movies });
-
+    
   } catch (error) {
     console.log(error);
     res.json({ error });

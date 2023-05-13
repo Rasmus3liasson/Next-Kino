@@ -11,7 +11,7 @@ export default async function createMovie(req: any, res: any) {
     await connectMongo();
     const movie = await Movie.create(req.body);
     res.json({ movie });
-
+    
   } catch (error) {
     console.log(error);
     res.json({ error });
