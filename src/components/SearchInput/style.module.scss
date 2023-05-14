@@ -41,7 +41,7 @@
       width: 100%;
     }
     @media screen and (min-width: $large-screen) {
-      flex-direction: column;
+      display: block;
       font-size: x-large;
     }
 
