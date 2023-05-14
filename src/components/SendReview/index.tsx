@@ -7,6 +7,7 @@ import { reviewData } from "@/util/mockReview";
 export default function SendReview() {
   const router = useRouter();
   const { id } = router.query;
+  console.log(id);
 
   const [rating, setRating] = useState<number>(1); //change that this isn't a number in the real database
   const [comment, setComment] = useState<string>("");
@@ -23,20 +24,19 @@ export default function SendReview() {
   //no actuall data. But request goes through in networks panel and expect to change the reviews
   async function updateReview() {
     event?.preventDefault();
+
     if (specificMovieReview) {
       const updatedReviews = [
         ...specificMovieReview.reviews,
         {
+          reviewerName: name,
+          reviewerText: comment,
+          postDate: new Date().toISOString(),
           rating: rating,
-          comment: comment,
-          reviewer: name,
-          date: new Date().toLocaleString("sv-SE", {
-            timeZone: "Europe/Stockholm",
-          }),
         },
       ];
 
-      await fetch(`/api/reviews/${id}`, {
+      await fetch(`/api/reviews/${id}/sendReview`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
