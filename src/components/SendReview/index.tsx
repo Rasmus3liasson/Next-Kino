@@ -36,7 +36,7 @@ export default function SendReview() {
         },
       ];
 
-      const res = await fetch(`/api/reviews/${id}`, {
+      await fetch(`/api/reviews/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
