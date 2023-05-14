@@ -24,11 +24,6 @@ export default function Home({
   screenings: ScreeningType[];
   movies: MovieType[];
 }) {
-  const { accountState, setAccountState } = useContext(accountStateContext);
-  const handleAccountState = () => {
-    setAccountState(true);
-  };
-
   return (
     <>
       <Head>
@@ -36,9 +31,9 @@ export default function Home({
         <meta name="description" content="Kino project in next.js" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+
       <AllMovies movieData={movies} />
       <ScreeningsHome screenings={screenings} />
-      <button onClick={handleAccountState}>hejsanm</button>
     </>
   );
 }
