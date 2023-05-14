@@ -1,0 +1,60 @@
+@import "../../styles/variables.scss";
+
+.openingHours {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 1em;
+  color: $text-light;
+
+  .opening-contact {
+    width: 75%;
+  }
+  h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 3.8em;
+    letter-spacing: 0.3em;
+    padding-bottom: 0.8em;
+    padding-top: 1em;
+  }
+  h2 {
+    text-align: center;
+    font-size: 2em;
+    padding-bottom: 1em;
+  }
+  ul {
+    text-align: center;
+    font-size: 1.6em;
+    list-style-type: none;
+    font-weight: bold;
+    word-spacing: 2em;
+  }
+  .avikande {
+    word-spacing: 0px;
+  }
+  .contactUs {
+    padding-bottom: 1em;
+    text-align: center;
+    font-size: 2em;
+  }
+  .contactInfo {
+    text-align: center;
+    font-size: 1.6em;
+    list-style-type: none;
+    font-weight: bold;
+  }
+  .hyra {
+    padding-bottom: 1em;
+    padding-top: 2em;
+    text-align: center;
+    font-size: 2em;
+  }
+  p {
+    padding-bottom: 2em;
+    text-align: center;
+    font-size: 1.6em;
+    list-style-type: none;
+    font-weight: bold;
+  }
+}
