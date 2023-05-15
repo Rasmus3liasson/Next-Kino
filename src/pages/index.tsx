@@ -3,6 +3,8 @@ import Saloon from "@/components/Saloon";
 import ScreeningsHome from "../components/ScreeningsHome";
 import { ScreeningType } from "@/util/types";
 import { getData } from "./api/screenings";
+import BuyTickets from "@/components/BuyTickets";
+import Payment from "@/components/Payment";
 
 // TODO: Add database functions here. 
 export async function getServerSideProps() {
@@ -10,6 +12,7 @@ export async function getServerSideProps() {
   return {
     props: {
       screenings: data,
+      selectedSeats: data
     },
   };
 }
@@ -23,9 +26,7 @@ export default function Home({ screenings }: { screenings: ScreeningType[] }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <Saloon></Saloon>
-  
-      <ScreeningsHome screenings={screenings} />
+      <Payment></Payment>
 
     </>
   );

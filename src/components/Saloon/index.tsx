@@ -4,10 +4,10 @@ import Seat from "../Seat";
 
 export default function Saloon() {
     return (
-        <section className={style.saloon}>
+        <div className={style.saloon}>
             <div className={style.screen}>Bioduk</div>
             <PickSeat></PickSeat>
-            <div className={style.legend}>
+            <div className={style.legend}>  sš
                 <div className={style.seat_legend_free}><Seat></Seat></div>
                 <p className={style.legendText_free}>Tillgänglig</p>
                 <div className={style.seat_legend_unavailable}><Seat></Seat></div>
@@ -16,6 +16,6 @@ export default function Saloon() {
                 <p className={style.legendText_selected}>Vald</p>
                
             </div>
-        </section>
+        </div>
     );
   }

@@ -1,0 +1,21 @@
+@import '../../styles/variables.scss';
+
+.paymentContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Headline{
+    font-size: 28px;
+    color: white; 
+}   
+
+.SavedCreditCard{
+background-color: lightgray;
+}
+
+.cardNumber{
+    font-size: small;
+}
