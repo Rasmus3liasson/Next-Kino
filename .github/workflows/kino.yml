@@ -1,0 +1,18 @@
+name: Check pull request synchronization
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  check-synchronization:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Check out main branch
+      run: git fetch --no-tags --prune --depth=1 origin +refs/heads/main:refs/remotes/origin/main
+    - name: Check if pull request is synchronized with main
+      run: |
+        git fetch origin main --depth=1
+        git merge-base --is-ancestor ${{ github.event.pull_request.head.sha }} origin/main
