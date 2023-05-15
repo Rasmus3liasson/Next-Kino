@@ -4,7 +4,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: left;
+    margin-left: 10%;
+    margin-top: 3em;
 }
 
 .Headline{
@@ -12,10 +14,51 @@
     color: white; 
 }   
 
+.savedCreditCardTitle{
+    color: white;
+    text-align: left !important;
+}
+
 .SavedCreditCard{
 background-color: lightgray;
 }
 
 .cardNumber{
     font-size: small;
+}
+
+.totalAmountToPay{
+    color: white;
+}
+
+.confirmButton{
+    border-radius: 10px;
+    background-color: red;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 70%;
+}
+
+.cardNumber{
+    color: white;
+}
+
+.creditCardIssuer{
+    color: white;
+}
+
+.cancelButton{
+    border-radius: 10px;
+    background-color:deepskyblue;
+    padding: 10px;
+    width: 70%;
+}
+
+.paymentMethod{
+    list-style-type: none;
+    color: white;
+}
+
+.movieCover{
+    width: 150px;
 }
