@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import style from "./style.module.scss";
 import Image from "next/image";
+import SendReview from "../SendReview";
 
 interface ReviewData {
   movieId: string;
@@ -26,7 +27,6 @@ export default function ShowReviews() {
       const data = await res.json();
       setReviewData(data);
     };
-
     getReviewData();
   }, [id]);
 
@@ -79,8 +79,11 @@ export default function ShowReviews() {
                   </li>
                 ))
               ) : (
-                <p>Finns inga recensioner för denna film!</p>
+                <p className={style.noReview}>
+                  Finns inga recensioner för denna film!
+                </p>
               )}
+              <SendReview />
             </ul>
           </section>
         </>
