@@ -20,16 +20,17 @@ function LangComponent({
 }
 
 export default function SpecificMovieScreening({
-  screening,
+  time, hrefLink
 }: {
-  screening: ScreeningType;
+  time: string, hrefLink: number;
 }) {
-  const screeningLink = `/movie/${screening.id}/booking?screening=${screening.screeningId}`;
+  console.log('specificMovieComponent', time)
+  const screeningLink = `/movie/${hrefLink}/booking?screening=${Date(time)}`;
   return (
     <li className={style.screeningListItem}>
       <h4 className={style.screeningText}>
-        {screening.date.toLocaleString().split(" ")[0]}{" "}
-        {screening.location || "Salong 2"}
+        {time.toLocaleString().split(" ")[0]}{" "}
+        {/* {screening.location || "Salong 2"} */}
       </h4>
       <LangComponent language="gb" form="ENG Tal" />
       <LangComponent language="se" form="SV Text" />

@@ -1,23 +1,26 @@
 import Head from "next/head";
 import MovieInfoPage from "@/components/MovieInfo";
-
 import { ScreeningType } from "@/util/types";
 import { getData } from "@/pages/api/screenings";
 
-export async function getServerSideProps() {
+
+export async function getServerSideProps(context) {
   const data = await getData();
+  console.log('index/getServerSideProps', data)
   return {
     props: {
       screenings: data,
+      params: context.params
     },
   };
 }
 
 export default function MovieDetailsPage({
-  screenings,
+  screenings, params
 }: {
   screenings: ScreeningType[];
 }) {
+  console.log('MovieDetailsPage', params)
   return (
     <>
       <Head>
@@ -28,7 +31,7 @@ export default function MovieDetailsPage({
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <MovieInfoPage screenings={screenings} />
+      <MovieInfoPage params={params} screenings={screenings} />
     </>
   );
 }

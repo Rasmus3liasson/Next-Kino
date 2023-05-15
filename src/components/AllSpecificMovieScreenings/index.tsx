@@ -9,16 +9,6 @@ type DayScreenings = {
   screenings: ScreeningType[];
 };
 
-const dates = [
-  new Date('2023-05-10T09:30:00'), 
-  new Date('2023-05-10T14:45:00'), 
-  new Date('2023-05-10T16:15:00'), 
-  new Date('2023-05-11T10:00:00'), 
-  new Date('2023-05-11T14:30:00'), 
-  new Date('2023-05-11T11:30:00'), 
-  new Date('2023-05-12T13:45:00'),
-];
-console.log(sortByDayAndTime(dates));
 // pass n to render
 // render the date and then n
 // if n + 1 is the same day as n
@@ -29,14 +19,16 @@ console.log(sortByDayAndTime(dates));
 
 
 // Helper component to render screenings by day
-function ScreeningDay(screeningDay: DayScreenings) {
-  const dayList = screeningDay.screenings;
+function ScreeningDay({ screeningDay, movie }: {screeningDay: string[], movieId: string}) {
+  
+  const dayList = screeningDay;
+  console.log('ScreeningDay',dayList)
   return (
     <>
-      <h4>{screeningDay.date}</h4>
+      <h4>{screeningDay[0]}</h4>
       <ul className={style.day}>
-        {dayList.map((screening) => {
-          return <SpecificMovieScreening screening={screening} />;
+        {dayList.map((time) => {
+          return <SpecificMovieScreening time={time} hrefLink={movieId} />;
         })}
       </ul>
     </>
@@ -47,25 +39,28 @@ function ScreeningDay(screeningDay: DayScreenings) {
  *   of the ScreeningDay component.
  */
 export default function AllSpecificMovieScreenings({
-  specificScreenings,
+  movie,
 }: {
-  specificScreenings: ScreeningType[];
+  movie: ScreeningType[];
 }) {
-  console.log(sortByDayAndTime(dates));
-
-  // console.log(specificScreenings);
+  console.log('Movie object', movie)
+  const screenings = movie[0].screenings;
+  const movieId = movie[0].id;
   const [expanded, setExpanded] = useState(false);
-  const list = expanded ? specificScreenings : specificScreenings.slice(0, 2);
+
+  //TODO: This is static at the moment, needs to be changed into a result
+  const list = expanded ? screenings : screenings.slice(0, 2);
 
   function handleClick() {
     expanded ? setExpanded(false) : setExpanded(true);
   }
+  console.log('AllSpecificScreenings',list)
   return (
     <section className={style.screeningList}>
       <h3>Kommande visningar</h3>
-      {data.map((screening: string, index: number) => {
-         return <ScreeningDay screeningDay={screening} />;
-      })}
+      <ScreeningDay screeningDay={list} movieId={movieId} />;
+      {/* {list.map((screening: string) => {
+      })} */}
       <button className={style.showMoreButton} onClick={handleClick}>
         Se fler visningar
       </button>
