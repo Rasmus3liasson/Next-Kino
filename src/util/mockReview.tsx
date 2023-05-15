@@ -24,13 +24,31 @@ export const reviewData: ReviewType[] = [
       },
       {
         rating: 2,
-        comment: "Okej",
+        comment: "Okejjdfkljskljfkljsdlkfjklsdjfklsdjklfjsdkljfklsdjfkljsdkl",
         reviewer: "Hamster Peter",
         date: swedishDate,
       },
       {
         rating: 4,
         comment: "Helt klart sevärd",
+        reviewer: "Henrik",
+        date: swedishDate,
+      },
+      {
+        rating: 2,
+        comment: "Sisådär",
+        reviewer: "Henrik",
+        date: swedishDate,
+      },
+      {
+        rating: 2,
+        comment: "Sisådär",
+        reviewer: "Henrik",
+        date: swedishDate,
+      },
+      {
+        rating: 2,
+        comment: "Sisådär",
         reviewer: "Henrik",
         date: swedishDate,
       },

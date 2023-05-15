@@ -1,5 +1,6 @@
 import Head from "next/head";
 import SendReview from "@/components/SendReview";
+import ShowReviews from "@/components/ShowReviews";
 
 export default function MovieDetailsPage({}: {}) {
   return (
@@ -12,6 +13,7 @@ export default function MovieDetailsPage({}: {}) {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+      <ShowReviews />
       <SendReview />
     </>
   );
