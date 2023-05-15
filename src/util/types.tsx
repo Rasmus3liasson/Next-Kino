@@ -28,3 +28,8 @@ export type ScreeningType = {
     75: { style: string; text: string };
     100: { style: string; text: string };
   };
+export type MovieType = {
+    id: number;
+    title: string;
+    poster: string;
+}

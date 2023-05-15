@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Header() {
+export default function Footer() {
   return (
     <footer className="darkblue-color">
       <div className="container py-3 justify-content-evenly align-items-center">
