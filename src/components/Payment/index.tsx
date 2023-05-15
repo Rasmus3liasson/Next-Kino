@@ -4,7 +4,7 @@ export default function Payment() {
     return (
         <section className={style.paymentContainer}>
             <h2 className={style.Headline}>Hur vill du betala?</h2>
-            <img className={style.movieCover} src="/dummy.jpg" alt="A picture of the movie cover" />
+
             <ul>
                 <li className={style.paymentMethod}><input type="radio"/>Betala med mina poäng</li>
                 <li className={style.paymentMethod}><input type="radio"/>Bankkort</li>

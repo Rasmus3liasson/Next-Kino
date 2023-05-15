@@ -10,7 +10,6 @@ export default function confirmPurchase() {
             <p>Movie title goes here</p>
             <p>price for selected seats</p>
             <p>Medlamsrabatt</p>
-            </div>
         </section>
     );
   }

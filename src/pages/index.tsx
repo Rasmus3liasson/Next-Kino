@@ -5,6 +5,7 @@ import { ScreeningType } from "@/util/types";
 import { getData } from "./api/screenings";
 import BuyTickets from "@/components/BuyTickets";
 import Payment from "@/components/Payment";
+import confirmPurchase from "@/components/ConfirmPurchase";
 
 // TODO: Add database functions here. 
 export async function getServerSideProps() {
@@ -25,7 +26,7 @@ export default function Home({ screenings }: { screenings: ScreeningType[] }) {
         <meta name="description" content="Kino project in next.js" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-
+      
       <Payment></Payment>
 
     </>
