@@ -17,14 +17,16 @@ export default ratingHandler;
  */
 
 import { NextApiRequest, NextApiResponse } from "next";
-import { movieDataArray } from "../../util/mockMovieData";
-import { useRouter } from "next/router";
+import { ScreeningType } from "../../util/types";
+
+const movieDataArray: ScreeningType[] = [
+  // Define your movie data objects here
+];
 
 const ratingHandler = (req: NextApiRequest, res: NextApiResponse) => {
-  const router = useRouter();
-  const { movieId } = router.query;
+  const { id } = req.query;
 
-  const movie = movieDataArray.find((movie) => movie.id === movieId);
+  const movie = movieDataArray.find((movie) => movie.id === id);
 
   if (movie) {
     const { rating } = movie;
