@@ -1,26 +1,28 @@
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import { getData } from "@/pages/api/screenings";
 import Image from "next/image";
 import Link from "next/link";
 import style from "./style.module.scss";
 import { useEffect, useState } from "react";
 
-export async function getServerSideProps() {
-  const data = await getData();
-  return {
-    props: {
-      screenings: data,
-    },
-  };
-}
 
-export default function MovieInfoPage({ screenings }) {
-  const router = useRouter();
-  const { id } = router.query;
 
+export default function MovieInfoPage({ screenings, params }) {
+  // const router = useRouter();
+
+  //NOTE: By passing context.params to MovieInfoPage as props,
+  // we dont need to use 'useRouter'
+
+  const { id } = params
+  console.log('movieInfo, ', id);
+
+  // NOTE: These arent stored as states. but are served depending on what prop is
+  // passed to an img element in nested component in SpecificScreening.
   const [spokenLangFlag, setSpokenLangFlag] = useState("/english-flag.png");
   const [subLangFlag, setSubLangFlag] = useState("/swedish-flag.png");
 
+
+  //NOTE: This is sort of implemented, it does store an array of dates for all screenings that are sorted by day.
   // Find the screening object that matches the ID in your path
   const screeningData = screenings.find(
     (screeningObj: { id: string | string[] | undefined | number }) =>
@@ -38,6 +40,7 @@ export default function MovieInfoPage({ screenings }) {
     );
   }
 
+  //NOTE: This code should be implemented in the code that views date.
   //display "Idag" or "Imorgon" if screening date is the same
   //options to show 2 digit
   type typeOptions = {
@@ -62,6 +65,7 @@ export default function MovieInfoPage({ screenings }) {
     .toLocaleDateString("sv-SE", options)
     .replace(/\./g, "/");
 
+    //NOTE: This is served statically depending on what prop an img element has.
   // Determine which flag images to display based on the spokenLang and subLang
   useEffect(() => {
     if (screeningData.spokenLang === "SWE") {
@@ -81,7 +85,7 @@ export default function MovieInfoPage({ screenings }) {
             alt="Poster of Image"
             width={400}
             height={500}
-          />
+            />
           <p className={style.text}>{screeningData.title}</p>
           <p className={style.description}>{screeningData.description}</p>
           <div className={style.upcoming}>
@@ -93,7 +97,10 @@ export default function MovieInfoPage({ screenings }) {
             <Link
               className={style.linkReviews}
               href={`/movie/${screeningData.id}/reviews`}
-            >
+              >
+              {
+              // Will not implement rating/review. 
+            }
               <p>Se resensioner</p>
             </Link>
           </div>
