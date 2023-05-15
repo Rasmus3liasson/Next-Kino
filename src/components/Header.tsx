@@ -55,7 +55,9 @@ export default function Header() {
 
   return (
     <>
-      <button onClick={handleAccountState}>hejsanm</button>
+      <button onClick={handleAccountState}>
+        Test knapp för att ändra state
+      </button>
       <header className="sticky-top">
         <nav className="navbar navbar-expand-lg sticky-top">
           <Link href={"/"}>
