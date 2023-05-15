@@ -36,6 +36,37 @@ const Rating: React.FC<MovieProps> = ({ movieData }) => {
 export default Rating;
  */
 
+/* import { useState, useEffect } from "react";
+import style from "./style.module.scss";
+import Link from "next/link";
+import { ScreeningType } from "@/util/types";
+
+interface RatingProps {
+  movieData: ScreeningType;
+  rating: string;
+}
+
+const Rating: React.FC<RatingProps> = ({ movieData, rating }) => {
+  const link = `/movie/${movieData.id}/reviews`;
+
+  useEffect(() => {
+    if (window.location.pathname === "/rating" && movieData.id === "1235") {
+      console.log("Rating of movie with ID 1235:", rating);
+    }
+  }, [rating]);
+
+  return (
+    <Link href={link} passHref>
+      <a className={style.card}>
+        <div className={style.rating}>Rating: {rating || "N/A"}</div>
+      </a>
+    </Link>
+  );
+};
+
+export default Rating;
+ */
+
 import { useState, useEffect } from "react";
 import style from "./style.module.scss";
 import Link from "next/link";

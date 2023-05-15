@@ -1,5 +1,6 @@
 /* import { NextApiRequest, NextApiResponse } from "next";
 import { movieDataArray } from "../../util/mockMovieData";
+
 const ratingHandler = (req: NextApiRequest, res: NextApiResponse) => {
   const { movieId } = req.query;
 
@@ -17,16 +18,16 @@ export default ratingHandler;
  */
 
 import { NextApiRequest, NextApiResponse } from "next";
-import { ScreeningType } from "../../util/types";
-
-const movieDataArray: ScreeningType[] = [
-  // Define your movie data objects here
-];
+import { movieDataArray } from "../../util/mockMovieData";
 
 const ratingHandler = (req: NextApiRequest, res: NextApiResponse) => {
-  const { id } = req.query;
+  const { movieId } = req.query;
 
-  const movie = movieDataArray.find((movie) => movie.id === id);
+  if (!movieId) {
+    return res.status(400).json({ error: "Movie ID is required" });
+  }
+
+  const movie = movieDataArray.find((movie) => movie.id === movieId);
 
   if (movie) {
     const { rating } = movie;
