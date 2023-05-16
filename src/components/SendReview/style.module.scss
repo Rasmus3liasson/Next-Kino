@@ -94,6 +94,9 @@
           max-width: 9rem;
         }
       }
+      .errorBorder {
+        border: 1px solid $button-secondary-shade;
+      }
       button {
         background-color: $button-primary-shade;
         border-radius: 12px;

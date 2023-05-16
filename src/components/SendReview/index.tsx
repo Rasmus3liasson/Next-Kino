@@ -2,48 +2,31 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import style from "./style.module.scss";
 
-import { reviewData } from "@/util/mockReview";
-
 export default function SendReview() {
   const router = useRouter();
   const { id } = router.query;
-  console.log(id);
 
-  const [rating, setRating] = useState<number>(1); //change that this isn't a number in the real database
+  const [rating, setRating] = useState<number>(1);
   const [comment, setComment] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [isActive, setIsActive] = useState<boolean>(false);
   const [toggleBtn, setToggleBtn] = useState<boolean>(false);
+  const [submitted, setSubmitted] = useState<boolean>(false);
 
-  //filter the movies that match
-  const specificMovieReview = reviewData.find(
-    (review) => review.movieId === id
-  );
-
-  //can't test if it updates the reviews in my mocked data just because it is mocked and
-  //no actuall data. But request goes through in networks panel and expect to change the reviews
   async function updateReview() {
     event?.preventDefault();
 
-    if (specificMovieReview) {
-      const updatedReviews = [
-        ...specificMovieReview.reviews,
-        {
-          reviewerName: name,
-          reviewerText: comment,
-          postDate: new Date().toISOString(),
-          rating: rating,
-        },
-      ];
-
-      await fetch(`/api/reviews/${id}/sendReview`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          reviews: updatedReviews,
-        }),
-      });
-    }
+    const updatedReviews = {
+      reviewerName: name,
+      reviewerText: comment,
+      postDate: new Date().toISOString(),
+      rating: rating,
+    };
+    await fetch(`/api/reviews/${id}/sendReview`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedReviews),
+    });
 
     setToggleBtn(true);
     setIsActive(false);
@@ -76,12 +59,13 @@ export default function SendReview() {
             className={style.sendReviewForm}
             onSubmit={() => {
               event?.preventDefault();
-              name && comment !== "" && updateReview();
+              name && comment !== "" ? updateReview() : setSubmitted(true);
             }}
           >
             <div className={style.container}>
               <h3>Skicka Recension</h3>
               <input
+                className={submitted && comment === "" ? style.errorBorder : ""}
                 placeholder="Lämna en kommentar"
                 type="text"
                 value={comment}
@@ -89,6 +73,7 @@ export default function SendReview() {
               />
 
               <input
+                className={submitted && name === "" ? style.errorBorder : ""}
                 type="text"
                 placeholder="Ditt namn"
                 value={name}

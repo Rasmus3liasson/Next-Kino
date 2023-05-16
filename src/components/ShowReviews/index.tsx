@@ -5,26 +5,25 @@ import Image from "next/image";
 import SendReview from "../SendReview";
 
 interface ReviewData {
-  movieId: string;
-  reviews: {
-    rating: number;
-    comment: string;
-    reviewer: string;
-    date: string;
-  }[];
+  reviewerText: string;
+  reviewerName: string;
+  postDate: string;
+  rating: number;
 }
+[];
 
 export default function ShowReviews() {
   const router = useRouter();
   const { id } = router.query;
 
   const [isOpen, setIsOpen] = useState(true);
-  const [reviewData, setReviewData] = useState<ReviewData>();
+  const [reviewData, setReviewData] = useState<ReviewData[]>([]);
 
   useEffect(() => {
     const getReviewData = async () => {
       const res = await fetch(`/api/reviews/${id}`);
       const data = await res.json();
+      console.log(data);
       setReviewData(data);
     };
     getReviewData();
@@ -37,12 +36,12 @@ export default function ShowReviews() {
   return (
     <>
       {<button onClick={toggleDropdown}>testknapp</button>}
-      {isOpen && (
+      {!isOpen && (
         <>
           <section className={style.reviewsContainer}>
             <ul>
-              {reviewData?.reviews ? (
-                reviewData.reviews.map((review, index) => (
+              {reviewData?.length > 0 ? (
+                reviewData.map((review, index) => (
                   <li key={index}>
                     <div>
                       <p>
@@ -62,19 +61,19 @@ export default function ShowReviews() {
                       <p>
                         <span> Kommentar:</span>
                       </p>
-                      <p> {review.comment}</p>
+                      <p> {review.reviewerText}</p>
                     </div>
                     <div>
                       <p>
                         <span> Namn:</span>
                       </p>
-                      <p>{review.reviewer}</p>
+                      <p>{review.reviewerName}</p>
                     </div>
                     <div>
                       <p>
                         <span> Datum:</span>
                       </p>
-                      <p>{review.date}</p>
+                      <p>{review.postDate}</p>
                     </div>
                   </li>
                 ))
