@@ -9,7 +9,7 @@ const LoginForm = () => {
       className="my-5 max-w-md mx-auto self-center px-5 rounded-2xl shadow-lg flex flex-col flex-grow justify-center bg-cblue"
       onSubmit={(ev) => {
         ev.preventDefault();
-        fetch("/api/login", {
+        fetch("/api/auth/Login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

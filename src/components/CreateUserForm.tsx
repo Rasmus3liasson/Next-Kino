@@ -1,6 +1,6 @@
 import React, { useState, useEffect, FormEvent } from "react";
 import strongPasswordCheck from "@/util/strongPasswordCheck";
-import { StrengthMeterStyles, SubmitedUserResponse, User } from "@/util/types";
+import { StrengthMeterStyles, SubmitedUserResponse, UserType } from "@/util/types";
 
 const CreateUserForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -28,15 +28,17 @@ const CreateUserForm = () => {
     e.preventDefault();
     setErrors([]);
 
-    const newUser: User = {
+    const newUser: UserType = {
+      name: {
+        first: firstName,
+        last: lastName
+      },
       userName: userName,
-      firstName: firstName,
-      lastName: lastName,
-      eMail: eMail,
+      email: eMail,
       password: password,
     };
 
-    const resp = await fetch("/api/CreateNewUser", {
+    const resp = await fetch("/api/auth/CreateNewUser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
