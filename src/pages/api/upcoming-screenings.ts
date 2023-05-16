@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { ScreeningType } from "@/util/types";
 import { movieDataArray } from "@/util/mockMovieData";
 import sortByDayAndTime from "@/util/datehandler";
 
