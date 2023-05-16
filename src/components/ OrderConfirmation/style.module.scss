@@ -1,0 +1,18 @@
+@import '@/styles/variables.scss';
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.Headline{
+    color:white;
+    font-size: xx-large;
+}
+
+.cancelButton{
+    border-radius: 10px;
+    background-color:deepskyblue;
+    padding: 10px;
+    width: 70%;
+}
+

@@ -20,7 +20,9 @@
 }
 
 .SavedCreditCard{
-background-color: lightgray;
+    background-color: lightgray;
+    width: 70%;
+    height: 50px;
 }
 
 .cardNumber{
@@ -45,6 +47,9 @@ background-color: lightgray;
 
 .creditCardIssuer{
     color: white;
+}
+
+.creditCardIssuerImage{
     width: 35px;
 }
 
@@ -57,7 +62,9 @@ background-color: lightgray;
 
 .paymentMethod{
     list-style-type: none;
+    
     color: white;
+    margin-right: 10px;
 }
 
 .movieCover{

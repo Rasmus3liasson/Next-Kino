@@ -12,7 +12,7 @@ export default function Payment() {
             </ul>
             <p className ={style.savedCreditCardTitle}>Sparat bankkort</p>
             <div className="SavedCreditCard">
-                <img src="/visa-logo.png" alt="Image of credit card company"></img>
+                <img className = {style.creditCardIssuerImage}src="/visa-logo.png" alt="Image of credit card company"></img>
                 <p className={style.cardNumber}>**** **** **** 5454</p>
                 <p className={style.creditCardIssuer}>Visa</p>
             </div>

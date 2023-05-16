@@ -4,6 +4,7 @@ import ScreeningsHome from "../components/ScreeningsHome";
 import { ScreeningType, MovieType } from "@/util/types";
 import { getData } from "./api/screenings";
 import { getMovies } from "./api/movies";
+import OrderConfirmation from "../components/ OrderConfirmation";
 
 // TODO: Add database functions here.
 export async function getServerSideProps() {
@@ -23,8 +24,7 @@ export default function Home({ screenings, movies }: { screenings: ScreeningType
         <meta name="description" content="Kino project in next.js" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <AllMovies movieData={movies}/>
-      <ScreeningsHome screenings={screenings} />
+      <OrderConfirmation></OrderConfirmation>
     </>
   );
 }
