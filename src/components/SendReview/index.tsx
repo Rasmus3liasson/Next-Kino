@@ -59,7 +59,9 @@ export default function SendReview() {
             className={style.sendReviewForm}
             onSubmit={() => {
               event?.preventDefault();
-              name && comment !== "" ? updateReview() : setSubmitted(true);
+              name && comment !== "" && rating >= 1 && rating <= 5
+                ? updateReview()
+                : setSubmitted(true);
             }}
           >
             <div className={style.container}>
@@ -81,6 +83,11 @@ export default function SendReview() {
               />
               <p>Lämna Betyg</p>
               <input
+                className={
+                  submitted && (rating > 5 || rating < 1)
+                    ? style.errorBorder
+                    : ""
+                }
                 type="number"
                 value={rating}
                 onChange={(e) => setRating(parseInt(e.target.value))}

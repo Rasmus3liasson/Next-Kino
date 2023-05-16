@@ -35,7 +35,7 @@ export default function ShowReviews() {
   return (
     <>
       {<button onClick={toggleDropdown}>testknapp</button>}
-      {isOpen && (
+      {!isOpen && (
         <>
           <section className={style.reviewsContainer}>
             <ul>
@@ -72,7 +72,7 @@ export default function ShowReviews() {
                       <p>
                         <span> Datum:</span>
                       </p>
-                      <p>{review.postDate}</p>
+                      <p>{review.postDate.slice(0, 10)}</p>
                     </div>
                   </li>
                 ))
