@@ -17,7 +17,6 @@ export default async function getMovies(req: any, res: any) {
     );
     res.json(specificMovieReview.reviews);
   } catch (error) {
-    console.log(error);
     res.json({ error });
   }
 }

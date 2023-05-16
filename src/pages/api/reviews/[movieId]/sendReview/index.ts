@@ -9,14 +9,13 @@ import Movie from "../../../../../../models/movie";
 export default async function createReview(req: any, res: any) {
   try {
     const { movieId } = req.query;
-    console.log(movieId);
 
     await connectMongo();
 
     // Finds movie by title
     const movie = await Movie.findOne({ title: movieId });
-    console.log(movie);
 
+    // if movieId dont match
     if (!movie) {
       return res.status(404).json({ error: "Movie not found" });
     }
@@ -37,7 +36,6 @@ export default async function createReview(req: any, res: any) {
 
     res.json({ movie });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: "Failed to create review" });
   }
 }

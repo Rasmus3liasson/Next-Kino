@@ -23,7 +23,6 @@ export default function ShowReviews() {
     const getReviewData = async () => {
       const res = await fetch(`/api/reviews/${id}`);
       const data = await res.json();
-      console.log(data);
       setReviewData(data);
     };
     getReviewData();
@@ -36,7 +35,7 @@ export default function ShowReviews() {
   return (
     <>
       {<button onClick={toggleDropdown}>testknapp</button>}
-      {!isOpen && (
+      {isOpen && (
         <>
           <section className={style.reviewsContainer}>
             <ul>
