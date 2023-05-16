@@ -7,9 +7,9 @@
      ],
    ]
 */
-export default function sortByDayAndTime(arrayOfDates: Date[]): Date[][] {
+export default function sortByDayAndTime(arrayOfDates: string[]): string[][] {
 
-    const sortedDates: { [key: string]: Date[] } = arrayOfDates.reduce((acc, date) => {
+    const sortedDates: { [key: string]: string[] } = arrayOfDates.reduce((acc, date) => {
         const day = new Date(date).toDateString(); // Turns date into string
         const time = new Date(date).toLocaleString(); // Gets time string
 
@@ -21,6 +21,6 @@ export default function sortByDayAndTime(arrayOfDates: Date[]): Date[][] {
     }, {});
 
     // Convert the object into an array of arrays
-    const resultArray: Date[][] = Object.values(sortedDates);
+    const resultArray: string[][] = Object.values(sortedDates);
     return resultArray;
 }

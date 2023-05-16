@@ -1,26 +1,26 @@
 import Head from "next/head";
-import MovieInfoPage from "@/components/MovieInfo";
-import { ScreeningType } from "@/util/types";
+import AllSpecificMovieScreenings from "@/components/AllSpecificMovieScreenings";
+import { ScreeningType, SortedScreenings } from "@/util/types";
 import { getData } from "@/pages/api/screenings";
+import { getMovieScreenings } from "@/pages/api/upcoming-screenings";
+import type { GetServerSidePropsContext } from "next";
 
+export async function getServerSideProps(context: GetServerSidePropsContext) {
 
-export async function getServerSideProps(context) {
-  const data = await getData();
-  console.log('index/getServerSideProps', data)
   return {
     props: {
-      screenings: data,
-      params: context.params
+      movie: null,
+      movieScreenings: await getMovieScreenings(context.params.id),
     },
   };
 }
 
 export default function MovieDetailsPage({
-  screenings, params
+  movieScreenings, 
 }: {
-  screenings: ScreeningType[];
+  movieScreenings: SortedScreenings;
 }) {
-  console.log('MovieDetailsPage', params)
+  console.log('index.tsx-Movie' + movieScreenings)
   return (
     <>
       <Head>
@@ -31,7 +31,8 @@ export default function MovieDetailsPage({
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <MovieInfoPage params={params} screenings={screenings} />
+      <AllSpecificMovieScreenings screenings={movieScreenings} />
+      {/* <MovieInfoPage params={params} screenings={screenings} /> */}
     </>
   );
 }

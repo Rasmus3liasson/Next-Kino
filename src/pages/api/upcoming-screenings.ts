@@ -1,11 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { movieDataArray } from "@/util/mockMovieData";
 import sortByDayAndTime from "@/util/datehandler";
+import { SortedScreenings } from "@/util/types";
 
-type SortedScreenings = {
-  movieId: string;
-  dayScreenings: Date[][];
-};
 interface idQuery extends NextApiRequest {
     query: {
         id: string;
@@ -14,7 +11,7 @@ interface idQuery extends NextApiRequest {
 
 export default async function GET(
   req: idQuery,
-  res: NextApiResponse<SortedScreenings>
+  res: NextApiResponse<SortedScreenings | string>
 ) {
   // Pass params to function below to
   const data = await getMovieScreenings(req.query.id);
@@ -24,7 +21,7 @@ export default async function GET(
 
 export async function getMovieScreenings(
   idQuery: string
-): Promise<SortedScreenings> {
+): Promise<SortedScreenings | string > {
   //TODO: Add database util function that
   // finds 10 upcoming screenings of movie.
 
@@ -40,6 +37,6 @@ export async function getMovieScreenings(
     };
     return responseData;
   } else {
-    throw new Error("No Screenings found for provided id");
+    return "No Screenings found for provided id";
   }
 }

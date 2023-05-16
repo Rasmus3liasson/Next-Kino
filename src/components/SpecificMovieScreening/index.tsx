@@ -22,10 +22,10 @@ function LangComponent({
 export default function SpecificMovieScreening({
   time, hrefLink
 }: {
-  time: string, hrefLink: number;
+  time: string, hrefLink: string;
 }) {
-  console.log('specificMovieComponent', time)
-  const screeningLink = `/movie/${hrefLink}/booking?screening=${Date(time)}`;
+  console.log('timecheck ' + Date.parse(time))
+  const screeningLink = `/movie/${hrefLink}/booking?screening=${Date.parse(time)}`;
   return (
     <li className={style.screeningListItem}>
       <h4 className={style.screeningText}>
