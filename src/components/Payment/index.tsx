@@ -6,10 +6,14 @@ import { ScreeningType } from "@/util/types";
 import createBooking from "@/pages/api/bookings/POST";
 
 export default function Payment({ screenings }: { screenings: ScreeningType }) {
-    const link = `/api/movies/${screenings.id}/payment`;
-
+    const link = `/orderConfirmation/orderConfirmation`;
+    const cancelLink = `/`;
     function handleClick() {
         Router.push(link);
+      }
+
+      function handleCancelClick() {
+        Router.push(cancelLink);
       }
     return (
         <section className={style.paymentContainer}>
@@ -26,7 +30,7 @@ export default function Payment({ screenings }: { screenings: ScreeningType }) {
             </div>
             <p className={style.totalAmountToPay}>Totalt att betala</p>
             <button onClick={handleClick} className={style.confirmButton} formAction="Submit">Bekräfta</button>
-            <button className={style.cancelButton} formAction="Cancel">Avbryt</button>    
+            <button onClick={handleCancelClick} className={style.cancelButton} formAction="Cancel">Avbryt</button>    
         </section>
     )
 }
