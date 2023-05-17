@@ -17,3 +17,4 @@ export async function getMovies(){
   // of movie.
   return mockMovies;
 }
+
