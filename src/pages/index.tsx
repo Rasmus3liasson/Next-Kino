@@ -28,7 +28,7 @@ export default function Home({ screenings, movies, token }: { screenings: Screen
         <meta name="description" content="Kino project in next.js" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      {/* TEST */<h1 className="text-white text-6xl">{token?.name.first}</h1>}      
+      {/* TEST */<h1 className="text-center text-white text-6xl">{token?.name.first}</h1>}      
       <AllMovies movieData={movies}/>
       <ScreeningsHome screenings={screenings} />
     </>
