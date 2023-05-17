@@ -1,7 +1,15 @@
+import Link from "next/link";
 import style from "./style.module.scss";
 import React from "react";
+import Router from "next/router";
+import { ScreeningType } from "@/util/types";
 
-export default function Payment() {
+export default function Payment({ movieData }: { movieData: ScreeningType }) {
+    const link = `/api/movies/${movieData.id}/payment`;
+
+    function handleClick() {
+        Router.push(link);
+      }
     return (
         <section className={style.paymentContainer}>
             <h2 className={style.Headline}>Hur vill du betala?</h2>
@@ -18,7 +26,7 @@ export default function Payment() {
                 <p className={style.creditCardIssuer}>Visa</p>
             </div>
             <p className={style.totalAmountToPay}>Totalt att betala</p>
-            <button className={style.confirmButton} formAction="Submit">Bekräfta</button>
+            <button onClick={handleClick} className={style.confirmButton} formAction="Submit">Bekräfta</button>
             <button className={style.cancelButton} formAction="Cancel">Avbryt</button>    
         </section>
     )
