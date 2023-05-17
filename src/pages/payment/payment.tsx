@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Payment from "@/components/Payment";
 import ConfirmPurchase from "@/components/ConfirmPurchase";
-import { ScreeningType, MovieType } from "@/util/types";
+import { ScreeningType } from "@/util/types";
 import { getData } from "../api/screenings";
   
   export async function getServerSideProps() {

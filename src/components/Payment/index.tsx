@@ -15,9 +15,9 @@ export default function Payment({ screenings }: { screenings: ScreeningType }) {
         <section className={style.paymentContainer}>
             <h2 className={style.Headline}>Hur vill du betala?</h2>
             <ul>
-                <li className={style.paymentMethod}><input type="radio" name="paymentMethod"/>Betala med mina poäng</li>
-                <li className={style.paymentMethod}><input type="radio" name="paymentMethod"/>Bankkort</li>
-                <li className={style.paymentMethod}><input type="radio" name="paymentMethod"/>Swish</li>
+                <li className={style.paymentMethod}><input type="radio" name="paymentMethod"/><span className={style.radioText}>Betala med mina poäng</span></li>
+                <li className={style.paymentMethod}><input type="radio" name="paymentMethod"/><span className={style.radioText}>Bankkort</span></li>
+                <li className={style.paymentMethod}><input type="radio" name="paymentMethod"/><span className={style.radioText}>Swish</span></li>
             </ul>
             <p className ={style.savedCreditCardTitle}>Sparat bankkort</p>
             <div className={style.SavedCreditCard}>
