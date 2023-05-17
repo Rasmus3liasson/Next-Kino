@@ -1,6 +1,7 @@
 import style from "./style.module.scss";
 import PickSeat from "../PickSeat";
 import Seat from "../Seat";
+import React from "react";
 
 export default function Saloon() {
     return (
