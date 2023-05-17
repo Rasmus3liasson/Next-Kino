@@ -9,20 +9,24 @@
   background-color: $main-bg;
   padding-top: 50px;
 }
-  .text {
-    text-align: center;
-    font-weight: 600;
-    font-size: 23px;
-  }
+.text {
+  text-align: center;
+  font-weight: 600;
+  font-size: 23px;
+}
 
-  .img{
-    max-width: 90%;
-  }
-  .title{
- 
-      text-align: center;
-      font-weight: 600;
-      font-size: 23px;
-      color: $text-light;
-
-  }
+.img {
+  max-width: 80%;
+  height: auto;
+  margin: 0.5em;
+}
+.title {
+  max-width: 80%;
+  text-align: center;
+  font-weight: 600;
+  font-size: 22px;
+  color: $text-light;
+}
+.description {
+  max-width: 80%;
+}

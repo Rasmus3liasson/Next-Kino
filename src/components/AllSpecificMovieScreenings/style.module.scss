@@ -1,24 +1,33 @@
-@import '/src/styles/variables.scss';
+@import "/src/styles/variables.scss";
 
-.screeningList{
+.screeningList {
+  width: 95%;
+  margin: 10px auto;
+  background-color: $site-bg;
+  border-radius: 7.5px;
+  display: flex;
+  flex-direction: column;
 
-    width: 95%;
-    margin: 10px auto;
-    background-color: $site-bg;
-    border-radius: 7.5px;
-    display: flex;
-    flex-direction: column;
-
-    h3{
-        color: $text-light;
-        text-align: center;
-        padding-top: 10px; 
-    }
-}
-.showMoreButton {
-    background-color: transparent;
-    border: none;
-    font-weight: 300;
+  h3 {
     color: $text-light;
-    margin: 20px auto;
+    text-align: center;
+    margin: 0.75em;
+  }
+  ul {
+    padding: 0;
+  }
+}
+.dateHeader {
+  width: 90%;
+  margin: 0.5em auto;
+  margin-bottom: 0;
+  color: $text-light;
+}
+
+.showMoreButton {
+  background-color: transparent;
+  border: none;
+  font-weight: 300;
+  color: $text-light;
+  margin: 20px auto;
 }

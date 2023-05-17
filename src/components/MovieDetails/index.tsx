@@ -2,11 +2,15 @@ import Image from "next/image";
 import style from "./style.module.scss";
 import { ScreeningType } from "@/util/types";
 
-export default function MovieDetails({ movieData } :{movieData: ScreeningType}) {
+export default function MovieDetails({
+  movieData,
+}: {
+  movieData: ScreeningType;
+}) {
   return (
     <div className={style.container}>
       <Image
-      className={style.img}
+        className={style.img}
         src={movieData.poster}
         alt="Poster of Image"
         width={400}

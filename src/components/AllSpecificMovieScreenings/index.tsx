@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { ScreeningType } from "@/util/types";
 import SpecificMovieScreening from "../SpecificMovieScreening";
 import style from "./style.module.scss";
 import { SortedScreenings } from "@/util/types";
 
-// Helper component to render screenings by day
 function ScreeningDay({
   screeningDay,
   movieId,
-  location
+  location,
 }: {
   screeningDay: string[];
   movieId: string;
@@ -18,7 +16,13 @@ function ScreeningDay({
   return (
     <ul className={style.day}>
       {dayList.map((time) => {
-        return <SpecificMovieScreening location={location} time={time} hrefLink={movieId} />;
+        return (
+          <SpecificMovieScreening
+            location={location}
+            time={time}
+            hrefLink={movieId}
+          />
+        );
       })}
     </ul>
   );
@@ -38,7 +42,6 @@ export default function AllSpecificMovieScreenings({
   screenings: SortedScreenings;
 }) {
   const [expanded, setExpanded] = useState(false);
-  console.log(tomorrow);
 
   //TODO: This is static at the moment, needs to be changed into a result
   const list = expanded
@@ -53,14 +56,14 @@ export default function AllSpecificMovieScreenings({
       {list.map((screeningDay) => {
         const dayOfScreening = new Date(screeningDay[0]).toLocaleDateString();
         return (
-          <div>
-            <h4>
+          <div className={style.dayContainer}>
+            <h6 className={style.dateHeader}>
               {today.toLocaleDateString() === dayOfScreening
                 ? "Idag"
                 : tomorrow.toLocaleDateString() === dayOfScreening
                 ? "Imorgon"
-                : dayOfScreening}
-            </h4>
+                : dayOfScreening.slice(0, 5)}
+            </h6>
             <ScreeningDay
               movieId={screenings.movieId}
               screeningDay={screeningDay}
