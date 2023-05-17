@@ -1,11 +1,15 @@
 import Head from "next/head";
 import AllMovies from "@/components/AllMovies";
 import ScreeningsHome from "../components/ScreeningsHome";
+import Saloon from "@/components/Saloon";
 import { ScreeningType, MovieType } from "@/util/types";
 import { getData } from "./api/screenings";
 import { getMovies } from "./api/movies";
-import Saloon from "../components/Saloon";
-import BuyTickets from "../components/BuyTickets";
+
+export type SaloonProps = {
+  movieProps: MovieType
+  screeningProps: ScreeningType
+}
 
 // TODO: Add database functions here.
 export async function getServerSideProps() {
@@ -17,7 +21,7 @@ export async function getServerSideProps() {
   };
 }
 
-export default function Home({ screenings, movies }: { screenings: ScreeningType[], movies: MovieType[] }) {
+export default function Home({ screenings, movies, saloonPropps }: { screenings: ScreeningType[], movies: MovieType[] , saloonPropps: SaloonProps}) {
   return (
     <>
       <Head>
@@ -25,8 +29,8 @@ export default function Home({ screenings, movies }: { screenings: ScreeningType
         <meta name="description" content="Kino project in next.js" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Saloon></Saloon>
-      <BuyTickets></BuyTickets>
+      <AllMovies movieData={movies}/>
+      <ScreeningsHome screenings={screenings} />
     </>
   );
 }
