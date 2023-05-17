@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import style from "./style.module.scss";
 
 export default function SendReview() {
+  //gets id from url
   const router = useRouter();
   const { id } = router.query;
 
@@ -13,6 +14,7 @@ export default function SendReview() {
   const [toggleBtn, setToggleBtn] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
 
+  //post new review
   async function updateReview() {
     event?.preventDefault();
 
@@ -32,6 +34,7 @@ export default function SendReview() {
     setIsActive(false);
   }
 
+  //toggle form
   function toggleSendReviewForm() {
     setIsActive(!isActive);
   }
@@ -71,7 +74,12 @@ export default function SendReview() {
                 placeholder="Lämna en kommentar"
                 type="text"
                 value={comment}
-                onChange={(e) => setComment(e.target.value)}
+                onChange={(e) => {
+                  const input = e.target.value;
+                  const FirstLetterUpperCase =
+                    input.charAt(0).toUpperCase() + input.slice(1);
+                  setComment(FirstLetterUpperCase);
+                }}
               />
 
               <input
@@ -79,7 +87,12 @@ export default function SendReview() {
                 type="text"
                 placeholder="Ditt namn"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => {
+                  const input = e.target.value;
+                  const FirstLetterUpperCase =
+                    input.charAt(0).toUpperCase() + input.slice(1);
+                  setName(FirstLetterUpperCase);
+                }}
               />
               <p>Lämna Betyg</p>
               <input
@@ -93,6 +106,7 @@ export default function SendReview() {
                 onChange={(e) => setRating(parseInt(e.target.value))}
                 min={1}
                 max={5}
+                required
               />
               <div className={style.buttonContainer}>
                 <button>Skicka in</button>

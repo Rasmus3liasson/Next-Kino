@@ -1,32 +1,11 @@
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import style from "./style.module.scss";
 import Image from "next/image";
 import SendReview from "../SendReview";
+import { ReviewProps } from "@/pages/movies/[id]";
 
-interface ReviewData {
-  reviewerText: string;
-  reviewerName: string;
-  postDate: string;
-  rating: number;
-}
-[];
-
-export default function ShowReviews() {
-  const router = useRouter();
-  const { id } = router.query;
-
+export default function ShowReviews({ reviewData }: ReviewProps) {
   const [isOpen, setIsOpen] = useState(true);
-  const [reviewData, setReviewData] = useState<ReviewData[]>([]);
-
-  useEffect(() => {
-    const getReviewData = async () => {
-      const res = await fetch(`/api/reviews/${id}`);
-      const data = await res.json();
-      setReviewData(data);
-    };
-    getReviewData();
-  }, [id]);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);

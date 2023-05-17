@@ -15,7 +15,13 @@ export async function getServerSideProps() {
   };
 }
 
-export default function Home({ screenings, movies }: { screenings: ScreeningType[], movies: MovieType[] }) {
+export default function Home({
+  screenings,
+  movies,
+}: {
+  screenings: ScreeningType[];
+  movies: MovieType[];
+}) {
   return (
     <>
       <Head>
@@ -23,7 +29,7 @@ export default function Home({ screenings, movies }: { screenings: ScreeningType
         <meta name="description" content="Kino project in next.js" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <AllMovies movieData={movies}/>
+      <AllMovies movieData={movies} />
       <ScreeningsHome screenings={screenings} />
     </>
   );
