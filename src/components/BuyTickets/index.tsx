@@ -13,32 +13,13 @@ export default function BuyTickets({ screenings }: { screenings: ScreeningType }
     Router.push(Link);
   }
   return (
-  
     <div className={style.container}>
       <hr className={style.divider}/>
       <h2 className={style.title }>{screenings.title}</h2>
       <p className={style.date}> Tid och datum: {screenings.date}</p>
+      <p className={style.date}> Plats: {screenings.location}</p>
       <button onClick={handleClick} className={style.confirmButton} formAction="Submit">Till kassan</button>
       <button className={style.cancelButton} formAction="Cancel">Avbryt</button>  
     </div>
   );
 }
-
-
-/*
-export default function BuyTickets({ movieData }: { movieData: ScreeningType }) {
-    const link = `/movie/${movieData.id}/booking?screening=${movieData.screeningId}`;
-  
-    return (
-      <Link style={{ textDecoration: "none" }} href={link} className={style.card}>
-        <h2 className={`${style.title} ${style.cardItem}`}>{movieData.title}</h2>
-        <small className={`${style.date} ${style.cardItem}`}>
-          {movieData.spokenLang}
-        </small>
-        <small className={`${style.location} ${style.cardItem}`}>
-          {movieData.location+movieData.date}
-        </small>
-      </Link>
-    );
-  }
-  */

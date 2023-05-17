@@ -1,6 +1,4 @@
 import Head from "next/head";
-import AllMovies from "@/components/AllMovies";
-import ScreeningsHome from "../components/ScreeningsHome";
 import Saloon from "@/components/Saloon";
 import BuyTickets from "@/components/BuyTickets";
 import { ScreeningType, MovieType } from "@/util/types";
