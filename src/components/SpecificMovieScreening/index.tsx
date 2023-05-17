@@ -24,7 +24,6 @@ export default function SpecificMovieScreening({
 }: {
   time: string, hrefLink: string;
 }) {
-  console.log('timecheck ' + Date.parse(time))
   const screeningLink = `/movie/${hrefLink}/booking?screening=${Date.parse(time)}`;
   return (
     <li className={style.screeningListItem}>

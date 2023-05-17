@@ -3,7 +3,6 @@ import style from "./style.module.scss";
 import { ScreeningType } from "@/util/types";
 
 export default function MovieDetails({ movieData } :{movieData: ScreeningType}) {
-    console.log('MovieDetails', movieData);
   return (
     <div className={style.container}>
       <Image
