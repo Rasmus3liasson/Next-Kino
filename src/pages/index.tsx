@@ -24,9 +24,8 @@ export default function Home({ screenings, movies }: { screenings: ScreeningType
         <meta name="description" content="Kino project in next.js" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <AllSpecificMovieScreenings movie={screenings} />
-      {/* <AllMovies movieData={movies}/>
-      <ScreeningsHome screenings={screenings} /> */}
+      <AllMovies movieData={movies}/>
+      <ScreeningsHome screenings={screenings} />
     </>
   );
 }

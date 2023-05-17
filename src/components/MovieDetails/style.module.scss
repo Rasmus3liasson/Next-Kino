@@ -1,0 +1,28 @@
+@import "../../styles/variables.scss";
+
+.container {
+  color: $text-light;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $main-bg;
+  padding-top: 50px;
+}
+  .text {
+    text-align: center;
+    font-weight: 600;
+    font-size: 23px;
+  }
+
+  .img{
+    max-width: 90%;
+  }
+  .title{
+ 
+      text-align: center;
+      font-weight: 600;
+      font-size: 23px;
+      color: $text-light;
+
+  }

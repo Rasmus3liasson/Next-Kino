@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { MovieType } from "@/util/types";
-import  mockMovies  from "@/util/mockMovies";
-
+import  mockMovies from "@/util/mockMovies";
+import { movieData } from "@/util/mockMovieData";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<MovieType[]>
@@ -16,4 +16,7 @@ export async function getMovies(){
   // finds 10 upcoming screenings regardless
   // of movie.
   return mockMovies;
+}
+export async function getMovieData() {
+  return movieData;
 }
