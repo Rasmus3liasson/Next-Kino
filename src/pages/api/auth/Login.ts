@@ -1,30 +1,23 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { UserType } from "@/util/types";
 import { serialize } from "cookie";
 import connectMongo from "@/util/connectMongo";
 import User from "../../../../models/user";
-import { IUser } from "../../../../models/user";
 
 type ResType = {
   authenticated: boolean;
   message?: string;
-};
-type LoginParams = {
-  userName: string;
-  password: string;
 };
 
 export default async function login(
   req: NextApiRequest,
   res: NextApiResponse<ResType>
 ) {
-  const { userName, password }: LoginParams = req.body;
+  const { userName, password } = req.body;
 
   try {
     await connectMongo();
-
     const user = await User.findOne({ userName: userName }).exec();
 
     if (user) {
