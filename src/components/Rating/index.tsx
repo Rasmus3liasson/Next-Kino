@@ -88,9 +88,9 @@ const Rating: React.FC<RatingProps> = ({ movieData, rating }) => {
 
   return (
     <Link href={link} passHref>
-      <a className={style.card}>
+      <div className={style.card}>
         <div className={style.rating}>Rating: {rating || "N/A"}</div>
-      </a>
+      </div>
     </Link>
   );
 };

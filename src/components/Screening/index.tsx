@@ -2,11 +2,11 @@ import style from "./style.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import { ScreeningType } from "@/util/types";
-
+import Rating from "../Rating";
 /*
  * Component renders a Link component with elements with data
  * from the given prop movieData.
- * TODO: Fix image src to an URL matching the movie. 
+ * TODO: Fix image src to an URL matching the movie.
  */
 export default function Screening({ movieData }: { movieData: ScreeningType }) {
   const link = `/movie/${movieData.id}/booking?screening=${movieData.screeningId}`;
@@ -21,6 +21,7 @@ export default function Screening({ movieData }: { movieData: ScreeningType }) {
         alt={`The poster for ${movieData.title}`}
       />
       <h3 className={`${style.title} ${style.cardItem}`}>{movieData.title}</h3>
+      <Rating movieData={movieData} rating={movieData.rating} />
       <small className={`${style.date} ${style.cardItem}`}>
         {movieData.date}
       </small>
