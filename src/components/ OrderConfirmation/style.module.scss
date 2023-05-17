@@ -3,16 +3,22 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 50px;
 }
 .Headline{
     color:white;
     font-size: xx-large;
 }
 
-.cancelButton{
+.returnButton{
     border-radius: 10px;
     background-color:deepskyblue;
     padding: 10px;
     width: 70%;
 }
 
+.userInfo{
+    color: white;
+}

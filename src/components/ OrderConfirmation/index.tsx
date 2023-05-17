@@ -1,5 +1,5 @@
-import { rawListeners } from "process";
 import style from "./style.module.scss";
+import React from "react";
 
 export default function OrderConfirmation() {
     return (
@@ -16,7 +16,7 @@ export default function OrderConfirmation() {
                 <p>Ordernummer</p>
                 <p>UserName</p>
             </div>
-            <button className={style.cancelButton} formAction="Cancel">Avbryt</button>    
+            <button className={style.returnButton} formAction="">Tillbaka till startsida</button>    
         </section>
     )
 }
