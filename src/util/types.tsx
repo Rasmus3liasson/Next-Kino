@@ -18,5 +18,6 @@ export type MovieType = {
 };
 export type SortedScreenings = {
   movieId: string;
+  location: string;
   dayScreenings: string[][];
 };

@@ -8,15 +8,17 @@ import { SortedScreenings } from "@/util/types";
 function ScreeningDay({
   screeningDay,
   movieId,
+  location
 }: {
   screeningDay: string[];
   movieId: string;
+  location: string;
 }) {
   const dayList = screeningDay;
   return (
     <ul className={style.day}>
       {dayList.map((time) => {
-        return <SpecificMovieScreening time={time} hrefLink={movieId} />;
+        return <SpecificMovieScreening location={location} time={time} hrefLink={movieId} />;
       })}
     </ul>
   );
@@ -62,6 +64,7 @@ export default function AllSpecificMovieScreenings({
             <ScreeningDay
               movieId={screenings.movieId}
               screeningDay={screeningDay}
+              location={screenings.location}
             />
           </div>
         );

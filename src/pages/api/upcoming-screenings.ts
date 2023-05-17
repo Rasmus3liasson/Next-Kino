@@ -33,6 +33,7 @@ export async function getMovieScreenings(
   if (screeningData !== undefined) {
     const responseData: SortedScreenings = {
       movieId: screeningData.id,
+      location: screeningData.location, 
       dayScreenings: sortByDayAndTime(screeningData.screenings),
     };
     return responseData;
