@@ -16,7 +16,7 @@
 
     @media screen and (min-width: $large-screen) {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 1rem;
       max-height: 400px;
     }
@@ -38,7 +38,6 @@
       border: 3px solid $text-light;
       border-radius: 1rem;
       display: flex;
-      align-items: center;
       max-height: 500px;
       @media screen and (min-width: $large-screen) {
         display: flex;
