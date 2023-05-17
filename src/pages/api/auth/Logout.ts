@@ -13,4 +13,6 @@ export default function logout(
       path: "/",
     })
   );
+  
+  res.status(200).redirect("/").end()
 }
