@@ -1,21 +1,30 @@
 
 @import '../../styles/variables.scss';
 
-.seat{
-width: 20px;
-height: 20px;
-border-radius: 0 5px 5px 0px;
-background-color: gray;
-margin: 5px 15px;
-cursor: pointer;
-    
-    .selected{
-        background-color: green;
+.selectedSeat{
+    width: 20px;
+    height: 20px;
+    border-radius: 0 5px 5px 0px;
+    margin: 5px 15px;
+    cursor: pointer;
+    background-color: green;   
+    :hover{
+        background-color: royalblue;
     }
-    
-    .unavailable{
-        background-color: red;
-    }
+}
+
+.noRotation{
+    position: absolute;
+    transform: rotateY(0deg) rotate(-90deg);
+} 
+
+.availableSeat{
+    width: 20px;
+    height: 20px;
+    border-radius: 0 5px 5px 0px;
+    background-color: gray;
+    margin: 5px 15px;
+    cursor: pointer; 
     :hover{
         background-color: royalblue;
     }

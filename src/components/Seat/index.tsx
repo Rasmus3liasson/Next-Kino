@@ -1,15 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import style from "./style.module.scss";
 import React from "react";
 
 export default function Seat() {
     const [selected, setSelected] = useState(false);  
 
-
-    function handleClick() {
-        selected ? setSelected(false) : setSelected(true);
+    const handleClick = () => {
+        setSelected(!selected)
       }
+
     return (
-        <div onClick={handleClick} className={style.seat}><span className={style.noRotation}></span></div>
+        <div
+            className = {selected ? style.selectedSeat : style.availableSeat} onClick={handleClick} ><span className={style.noRotation}></span>    
+        </div>
     );
   }
