@@ -2,10 +2,35 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: left;
+    align-items: center;
 }
 
 .title{
     color: white;
     font-size: x-large;
+}
+
+.confirmButton{
+    border-radius: 10px;
+    background-color: red;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 70%;
+}
+
+.cancelButton{
+    border-radius: 10px;
+    background-color:deepskyblue;
+    padding: 10px;
+    width: 70%;
+}
+
+.divider{
+    margin: 20px;
+    color:white;
+    padding: 10px;
+}
+
+.date{
+    color: white;
 }

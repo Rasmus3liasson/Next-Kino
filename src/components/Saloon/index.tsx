@@ -4,15 +4,12 @@ import Seat from "../Seat";
 import React from "react";
 import Link from "next/link";
 import { MovieType, ScreeningType } from "@/util/types";
-import { SaloonProps } from "@/pages";
 
-
-
-export default function Saloon({movieProps, screeningProps}:SaloonProps ) {
+export default function Saloon({ screenings }: { screenings: ScreeningType }) {
     return (
         <div className={style.saloon}>
             <div className={style.screen}>Bioduk</div>
-            <PickSeat movieData={screeningProps}/> 
+            <PickSeat movieData={screenings}/> 
             <div className={style.legend}>
                 <div className={style.seat_legend_free}><Seat></Seat></div>
                 <p className={style.legendText_free}>Tillgänglig</p>

@@ -6,11 +6,6 @@ import { ScreeningType, MovieType } from "@/util/types";
 import { getData } from "./api/screenings";
 import { getMovies } from "./api/movies";
 
-export type SaloonProps = {
-  movieProps: MovieType
-  screeningProps: ScreeningType
-}
-
 // TODO: Add database functions here.
 export async function getServerSideProps() {
   return {
@@ -21,7 +16,7 @@ export async function getServerSideProps() {
   };
 }
 
-export default function Home({ screenings, movies, saloonPropps }: { screenings: ScreeningType[], movies: MovieType[] , saloonPropps: SaloonProps}) {
+export default function Home({ screenings, movies}: { screenings: ScreeningType[], movies: MovieType[]}) {
   return (
     <>
       <Head>
