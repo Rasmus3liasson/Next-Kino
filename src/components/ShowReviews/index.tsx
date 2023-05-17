@@ -60,8 +60,8 @@ export default function ShowReviews({ reviewData }: ReviewProps) {
                   Finns inga recensioner för denna film!
                 </p>
               )}
-              <SendReview />
             </ul>
+            <SendReview />
           </section>
         </>
       )}
