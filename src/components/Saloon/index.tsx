@@ -14,8 +14,7 @@ export default function Saloon() {
                 <div className={style.seat_legend_unavailable}><Seat></Seat></div>
                 <p className={style.legendText_unavailable}>Ej tillgänglig</p>
                 <div className={style.seat_legend_selected}><Seat></Seat></div>
-                <p className={style.legendText_selected}>Vald</p>
-               
+aa                <p className={style.legendText_selected}>Vald</p>
             </div>
         </div>
     );

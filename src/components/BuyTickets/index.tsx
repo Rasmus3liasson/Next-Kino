@@ -8,17 +8,17 @@ import Router from "next/router";
 export default function BuyTickets({ movieData }: { movieData: ScreeningType }) {
   const Link = `/api/movies/${movieData.id}/payment`;
   
-
+                                              
   function handleClick() {
     Router.push(Link);
   }
   return (
     <div className={style.container}>
       <h2 className={style.title}> {movieData.title}</h2>
+      <p>`Datum ${movieData.date}`</p>
       <button onClick={handleClick} className={style.confirmButton} formAction="Submit">Till kassan</button>
       <button className={style.cancelButton} formAction="Cancel">Avbryt</button>  
     </div>
-      
   );
 }
 
