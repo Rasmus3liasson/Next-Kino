@@ -1,7 +1,14 @@
 import style from "./style.module.scss";
 import React from "react";
+import Router from "next/router";
 
 export default function OrderConfirmation() {
+    const link = `/`;
+
+    function handleClick() {
+        Router.push(link);
+      }
+
     return (
         <section className={style.container}>
             <img src="/order-confirmed.png" alt="Big green circle with a checkmark inside" />
@@ -16,7 +23,7 @@ export default function OrderConfirmation() {
                 <p>Ordernummer</p>
                 <p>UserName</p>
             </div>
-            <button className={style.returnButton} formAction="">Tillbaka till startsida</button>    
+            <button onClick={handleClick} className={style.returnButton} formAction="">Tillbaka till startsida</button>    
         </section>
     )
 }
