@@ -1,7 +1,8 @@
-import type { NextApiResponse } from "next";
+import type { NextApiRequest ,NextApiResponse } from "next";
 import { serialize } from "cookie";
 
 export default function logout(
+  req: NextApiRequest, 
   res: NextApiResponse
 ) {
   res.setHeader(
