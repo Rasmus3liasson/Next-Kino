@@ -7,11 +7,13 @@ import Router from "next/router";
 
 export default function BuyTickets({ screenings }: { screenings: ScreeningType }) {
   const Link = `/api/movies/${screenings.id}/payment`;
+  
 
   function handleClick() {
     Router.push(Link);
   }
   return (
+
     <div className={style.container}>
       <hr className={style.divider}/>
       <h2 className={style.title }>{screenings.title}</h2>

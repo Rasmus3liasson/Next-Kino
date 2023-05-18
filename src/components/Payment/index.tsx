@@ -6,7 +6,7 @@ import { ScreeningType } from "@/util/types";
 import createBooking from "@/pages/api/bookings/POST";
 
 export default function Payment({ screenings }: { screenings: ScreeningType }) {
-    const link = `/orderConfirmation/orderConfirmation`;
+    const link = `/orderConfirmation`;
     const cancelLink = `/`;
     function handleClick() {
         Router.push(link);

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Saloon from "@/components/Saloon";
 import BuyTickets from "@/components/BuyTickets";
-import { ScreeningType, MovieType } from "@/util/types";
+import { ScreeningType } from "@/util/types";
 import { getData } from "../api/screenings";
 import { getMovies } from "../api/movies";
   
