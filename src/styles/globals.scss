@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "./sections/header/header.scss";
 @import "./sections/footer.scss";
 @import "./variables.scss";
