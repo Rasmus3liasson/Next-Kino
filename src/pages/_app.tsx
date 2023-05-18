@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
 import "@/styles/globals.scss";
 import type { AppProps } from "next/app";
 import React, { createContext, useContext, useState } from "react";
