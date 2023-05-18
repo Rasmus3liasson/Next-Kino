@@ -17,7 +17,8 @@ export default function Screening({ movieData }: { movieData: ScreeningType }) {
         className={style.img}
         height={120}
         width={90}
-        src={"/dummy.jpg"}
+        priority
+        src={movieData.poster}
         alt={`The poster for ${movieData.title}`}
       />
       <h3 className={`${style.title} ${style.cardItem}`}>{movieData.title}</h3>

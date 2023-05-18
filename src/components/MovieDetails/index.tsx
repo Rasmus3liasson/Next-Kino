@@ -11,6 +11,7 @@ export default function MovieDetails({
     <div className={style.container}>
       <Image
         className={style.img}
+        priority
         src={movieData.poster}
         alt="Poster of Image"
         width={400}

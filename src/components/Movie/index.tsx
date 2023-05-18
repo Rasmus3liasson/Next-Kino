@@ -12,7 +12,7 @@ import { MovieType } from "@/util/types";
  *  clickable and routes to /movies/:id
  */
 export default function Movie({ movieData }: { movieData: MovieType }) {
-  const link = `/movies/${movieData.id}`;
+  const link = `/movies/${movieData.title}`;
   return (
     <figure className={style.card}>
       <Link
@@ -24,7 +24,8 @@ export default function Movie({ movieData }: { movieData: MovieType }) {
           className={style.img}
           height={120}
           width={90}
-          src={"/dummy.jpg"}
+          priority
+          src={movieData.poster}
           alt={`The poster for ${movieData.title}`}
         />
       </Link>
