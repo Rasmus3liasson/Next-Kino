@@ -2,7 +2,7 @@ import Head from "next/head";
 import connectMongo from "@/util/connectMongo";
 import Movie from "../../../../models/movie";
 import ShowReviews from "@/components/ShowReviews";
-import { ReviewData, ReviewProps } from "../../../../types/reviewTypes";
+import { ReviewData, ReviewProps } from "../../../types/reviewTypes";
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
   const { id } = params;

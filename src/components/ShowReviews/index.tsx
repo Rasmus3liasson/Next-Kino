@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import style from "./style.module.scss";
 import Image from "next/image";
 import SendReview from "../SendReview";
-import { ReviewProps } from "../../../types/reviewTypes";
+import { ReviewProps } from "../../types/reviewTypes";
 
 export default function ShowReviews({ reviewData }: ReviewProps) {
   const [isOpen, setIsOpen] = useState(true);
