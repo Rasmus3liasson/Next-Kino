@@ -53,10 +53,10 @@ export default function SearchInput() {
         <div className={style.dropdownMenu}>
           <ul>
             {searchResult.map((movieTitle) => {
-              const index = movieTitleArr.indexOf(movieTitle);
+              const movieIndex = movieTitleArr.indexOf(movieTitle);
 
               // Retrieve image using the index of title
-              const imageUrl = movieImageArr[index];
+              const imageUrl = movieImageArr[movieIndex];
               return (
                 <li key={movieTitle}>
                   <Link

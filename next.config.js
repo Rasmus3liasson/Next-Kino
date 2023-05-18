@@ -7,7 +7,6 @@ const nextConfig = {
       "i-viaplay-com.akamaized.net",
       "themoviedb.org",
       "www.themoviedb.org",
-      "themoviedb.org/t/p/original/ssc6Q0zNQ9ZleahSWY1QMVR9hl5.jpg",
     ],
   },
 };
