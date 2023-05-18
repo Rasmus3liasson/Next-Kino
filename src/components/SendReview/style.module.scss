@@ -1,0 +1,140 @@
+@import "../../styles/variables.scss";
+
+.sendReviewContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .toggleBtn {
+    background-color: $button-primary-shade;
+    border-radius: 12px;
+    border: none;
+    color: $text-dark;
+    padding: 1rem;
+    font-size: 18px;
+    height: 50px;
+
+    text-align: center;
+    transition: 0.3s;
+    transition-timing-function: ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 15px 40px -15px $text-dark;
+    @media screen and (max-width: $large-screen) {
+      scale: 0.7;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+    &:active {
+      scale: 1.02;
+    }
+  }
+  .sendReviewForm {
+    background-color: $site-bg;
+    color: $text-light;
+    border-radius: 2.5rem;
+    padding: 2rem;
+    max-width: 20rem;
+    margin: 0 auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+
+    @media screen and (min-width: $large-screen) {
+      scale: 1.2;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      p {
+        font-family: sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        margin-top: 1rem;
+      }
+      input {
+        background-color: #303245;
+        border-radius: 12px;
+        border: 0;
+        box-sizing: border-box;
+        color: $text-light;
+        font-size: 18px;
+
+        outline: 0;
+        padding: 5px 17px 4px;
+        width: 100%;
+        box-shadow: 0px 15px 40px -15px $text-dark;
+
+        &:nth-child(2) {
+          margin-top: 1rem;
+          margin-bottom: 2rem;
+        }
+        &[type="number"] {
+          background-image: url(../../../public/red-star.svg);
+          background-repeat: no-repeat;
+          background-size: 1.5rem;
+          background-position: 5rem center;
+
+          font-size: larger;
+          font-weight: 800;
+          text-align: center;
+        }
+        &:nth-last-of-type(1) {
+          max-width: 9rem;
+        }
+      }
+      .errorBorder {
+        border: 1px solid $button-secondary-shade;
+      }
+      button {
+        background-color: $button-primary-shade;
+        border-radius: 12px;
+        border: none;
+        color: $text-dark;
+        padding: 1rem;
+        font-size: 18px;
+        height: 50px;
+        margin-top: 38px;
+        text-align: center;
+        width: 100%;
+        transition: 0.3s;
+        transition-timing-function: ease-in-out;
+        display: flex;
+        align-items: center;
+        box-shadow: 0px 15px 40px -15px $text-dark;
+
+        &:hover {
+          opacity: 0.8;
+        }
+        &:active {
+          scale: 1.02;
+        }
+      }
+    }
+  }
+  .buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    @media screen and (min-width: $large-screen) {
+      flex-direction: row;
+      gap: 1.2rem;
+      width: 100%;
+    }
+    button:last-child {
+      display: flex;
+      justify-content: center;
+      background-color: $button-secondary-shade;
+      color: $text-light;
+    }
+  }
+}
