@@ -2,6 +2,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { movieDataArray } from "@/util/mockMovieData";
 import sortByDayAndTime from "@/util/datehandler";
 import { SortedScreenings } from "@/util/types";
+import connectMongo from "@/util/connectMongo";
+import Movie from "../../../models/movie";
+
 
 interface idQuery extends NextApiRequest {
     query: {
@@ -11,33 +14,40 @@ interface idQuery extends NextApiRequest {
 
 export default async function GET(
   req: idQuery,
-  res: NextApiResponse<SortedScreenings | string>
+  res: NextApiResponse<SortedScreenings | {error: string} | string>
 ) {
   // Pass params to function below to
-  const data = await getMovieScreenings(req.query.id);
+  try {
+    const data = await getMovieScreenings(req.query.id);
 
-  res.status(200).json(data);
+    if(data === undefined){
+      res.status(500).json({error: data});
+    } else {
+      res.status(200).json(data);
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function getMovieScreenings(
   idQuery: string
 ): Promise<SortedScreenings | string > {
-  //TODO: Add database util function that
-  // finds 10 upcoming screenings of movie.
-
+ 
+  await connectMongo();
+  
   // @rasmus-eliasson
-  const screeningData = movieDataArray.find(
-    (movieObj: { id: string | string[] | undefined | number }) =>
-      movieObj.id === idQuery
-  );
-  if (screeningData !== undefined) {
+  const screeningData = await Movie.findOne({title: idQuery});
+  console.log(await screeningData);
+
+  if (screeningData === null) {
+    return "No Screenings found for provided id";
+  } else {
     const responseData: SortedScreenings = {
-      movieId: screeningData.id,
-      location: screeningData.location, 
+      movieId: screeningData.title,
+      //location: screeningData.location, Not implemented
       dayScreenings: JSON.stringify(sortByDayAndTime(screeningData.screenings)),
     };
     return responseData;
-  } else {
-    return "No Screenings found for provided id";
   }
 }

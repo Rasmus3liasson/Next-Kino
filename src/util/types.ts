@@ -14,7 +14,7 @@ export type ScreeningType = {
 
 export type SortedScreenings = {
   movieId: string;
-  location: string;
+  // location: string; Not implemented
   dayScreenings: string[][] | string;
 };
 

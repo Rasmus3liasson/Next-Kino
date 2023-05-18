@@ -30,6 +30,7 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
       reviewData,
       movie: await getMovieData(),
       movieScreenings: await getMovieScreenings(id),
+      revalidate: 60, // In seconds
     },
   };
 }
