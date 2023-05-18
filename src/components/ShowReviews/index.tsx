@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import style from "./style.module.scss";
 import Image from "next/image";
 import SendReview from "../SendReview";
-import { ReviewProps } from "@/pages/movies/[id]";
+import { ReviewProps } from "../../../types/reviewTypes";
 
 export default function ShowReviews({ reviewData }: ReviewProps) {
   const [isOpen, setIsOpen] = useState(true);
@@ -29,7 +29,7 @@ export default function ShowReviews({ reviewData }: ReviewProps) {
                         {review.rating}
                         <Image
                           src="/red-star.svg"
-                          alt="hej"
+                          alt="red star"
                           width={15}
                           height={15}
                         />
