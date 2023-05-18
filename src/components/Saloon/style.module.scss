@@ -1,51 +1,31 @@
 @import '../../styles/variables.scss';
 
 .saloon{
-    margin-bottom: 50px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 }
 
 .legend{
-    position: absolute;
     display: flex;  
     flex-direction: column;
-    align-items: right;
     justify-content: center;
     transform: rotateY(0deg) rotate(90deg);
-    left: 240px;
-    margin-top: -100px;
+    margin-top: -90px;
     gap: 70px;
-    @media screen and (min-width: $medium-screen) {
-        margin-top: 250px;
-    }
-    @media screen and (min-width: $large-screen) {
-        margin-top: 350px;
-    }
-    @media screen and (min-width: $xl-screen) {
-        margin-top: 450px;
-    }
-    
 }
 
 .screen{
     width: 150px;
     height: 30px;
-    margin-left: 200px;
+    margin-left: 10px;
     margin-top: 40px;
     align-items: center;
     justify-content: center;
     background-color: gray;
     text-align: center;
     font-weight: $font-weight-medium;
-    @media screen and (min-width: $medium-screen) {
-        margin-left: 100px;
-    }
-    @media screen and (min-width: $large-screen) {
-        margin-left: 300px;
-    }
-    @media screen and (min-width: $xl-screen) {
-        margin-left: 500px;
-    }
-    
 }
 
 .seat_legend_unavailable{
