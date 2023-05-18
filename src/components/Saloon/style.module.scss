@@ -1,5 +1,9 @@
 @import '../../styles/variables.scss';
 
+.saloon{
+    margin-bottom: 50px;
+}
+
 .legend{
     position: absolute;
     width: 100%;
@@ -8,17 +12,17 @@
     align-items: right;
     justify-content: center;
     transform: rotateY(0deg) rotate(90deg);
-    left: -3em;
-    margin-top: 10em;
-    gap: 5em;
+    left: 5px;
+    margin-top: 150px;
+    gap: 70px;
     @media screen and (min-width: $medium-screen) {
-        margin-top: 22em;
+        margin-top: 250px;
     }
     @media screen and (min-width: $large-screen) {
-        margin-top: 32em;
+        margin-top: 350px;
     }
     @media screen and (min-width: $xl-screen) {
-        margin-top: 46em;
+        margin-top: 450px;
     }
     
 }
@@ -26,21 +30,21 @@
 .screen{
     width: 150px;
     height: 30px;
-    margin-left: 200px;
-    margin-top: 5em;
+    margin-left: 250px;
+    margin-top: 40px;
     align-items: center;
     justify-content: center;
     background-color: gray;
     text-align: center;
     font-weight: $font-weight-medium;
     @media screen and (min-width: $medium-screen) {
-        margin-left: 20em;
+        margin-left: 100px;
     }
     @media screen and (min-width: $large-screen) {
-        margin-left: 29em;
+        margin-left: 300px;
     }
     @media screen and (min-width: $xl-screen) {
-        margin-left: 50em;
+        margin-left: 500px;
     }
     
 }
@@ -49,41 +53,48 @@
     width: 20px;
     height: 20px;
     border-radius: 0 5px 5px 0px;
-    margin-left: 1em;
-    margin-top: 0em;
+    background-color: red;
+    margin: 5px 15px;
+    cursor: not-allowed; 
+    :hover{
+        background-color: royalblue;
+    }
+}
+
+.seat_legend_selected{
+    width: 20px;
+    height: 20px;
+    border-radius: 0 5px 5px 0px;
+    margin: 5px 15px;
+    cursor: not-allowed;
+    background-color: gray;   
 }
 .seat_legend_free{
     width: 20px;
     height: 20px;
     border-radius: 0 5px 5px 0px;
-    margin-left: 1em;
-    margin-top: -1.5em;
-}
-.seat_legend_selected{
-    width: 20px;
-    height: 20px;
-    border-radius: 0 5px 5px 0px;
-    margin-left: 1em;
-    margin-top: -2em;
+    margin: 5px 15px;
+    cursor: not-allowed;
+    background-color: green;   
 }
 .legendText_free{
     position: absolute;
     transform: rotateY(0deg) rotate(-90deg);
     color: $text-light;
-    margin-left: 2em;
-    margin-top: 12em;
+    margin-left: 32px;
+    margin-top: 210px;
 }
 .legendText_unavailable{
     position: absolute;
     transform: rotateY(0deg) rotate(-90deg);
     color: $text-light;
-    margin-left: 1.7em;
-    margin-top: 1em;
+    margin-left: 27px;
+    margin-top: 15px;
 }
 .legendText_selected{
     position: absolute;
     transform: rotateY(0deg) rotate(-90deg);
     color: $text-light;
-    margin-left: 3.5em;
-    margin-top: -10.5em;
+    margin-left: 56px;
+    margin-top: -160px;
 }
