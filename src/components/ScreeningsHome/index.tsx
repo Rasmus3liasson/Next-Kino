@@ -5,6 +5,12 @@ import style from "./style.module.scss";
 
 const howManyScreeningsToShowAtStart = 3;
 
+/*
+* Component accepts an array of screenings and render a 
+* Screening component for each index. It renders an amount
+* at start given in the variable above and then fills the rest
+* when the button is clicked at the bottom.
+*/
 export default function ScreeningsHome({
   screenings,
 }: {

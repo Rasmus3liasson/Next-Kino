@@ -6,7 +6,8 @@ import { ScreeningType, MovieType } from "@/util/types";
 import { getData } from "./api/screenings";
 import { getMovies } from "./api/movies";
 
-// This gets called on every request
+
+// TODO: Add database functions here. 
 export async function getServerSideProps() {
   return {
     props: {
