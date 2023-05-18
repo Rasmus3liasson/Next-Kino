@@ -12,6 +12,12 @@ export type ScreeningType = {
   rating: number;
 };
 
+export type SortedScreenings = {
+  movieId: string;
+  location: string;
+  dayScreenings: string[][] | string;
+};
+
 export type SubmitedUserResponse = {
   userCreated: boolean;
   errors: string[];

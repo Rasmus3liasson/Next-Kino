@@ -34,7 +34,7 @@ export async function getMovieScreenings(
     const responseData: SortedScreenings = {
       movieId: screeningData.id,
       location: screeningData.location, 
-      dayScreenings: sortByDayAndTime(screeningData.screenings),
+      dayScreenings: JSON.stringify(sortByDayAndTime(screeningData.screenings)),
     };
     return responseData;
   } else {

@@ -1,6 +1,7 @@
 import style from "./style.module.scss";
 import Link from "next/link";
 import Image from "next/image";
+import { DateTime } from 'luxon'
 
 // Helper component to render language flags
 function LangComponent({
@@ -18,7 +19,7 @@ function LangComponent({
   );
 }
 function formatTime(time: string) {
-  return `${new Date(time).getHours()}:${new Date(time).getMinutes()}`;
+  return `${DateTime.fromISO(time).toFormat('HH:mm')}`;
 }
 
 export default function SpecificMovieScreening({

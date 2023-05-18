@@ -1,3 +1,4 @@
+import { DateTime } from 'luxon';
 /*
    Takes an array of date objects and groups them in an array.
    returns an an array in this format:
@@ -7,20 +8,23 @@
      ],
    ]
 */
-export default function sortByDayAndTime(arrayOfDates: string[]): string[][] {
+export default function sortByDayAndTime(arrayOfDates: string[]): DateTime[][] {
 
-    const sortedDates: { [key: string]: string[] } = arrayOfDates.reduce((acc, date) => {
-        const day = new Date(date).toDateString(); // Turns date into string
-        const time = new Date(date).toLocaleString(); // Gets time string
+    const sortedDates = arrayOfDates.reduce((acc, date) => {
+      
+        const luxonDate = DateTime.fromISO(date);
+        const day = luxonDate.toISODate(); 
+        const time = luxonDate;
 
         if(!acc[day]) {
-            acc[day] = []; // Creates an empty array if the date doesnt exist
+            acc[day] = [];
         }
-        acc[day].push(time); // Pushes time to array.
+        acc[day].push(time);
         return acc;
     }, {});
 
     // Convert the object into an array of arrays
-    const resultArray: string[][] = Object.values(sortedDates);
+    const resultArray: DateTime[][] = Object.values(sortedDates);
     return resultArray;
+    
 }
