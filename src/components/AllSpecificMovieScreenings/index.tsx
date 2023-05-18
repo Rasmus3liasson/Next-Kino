@@ -1,7 +1,12 @@
 import { useState } from "react";
 import SpecificMovieScreening from "../SpecificMovieScreening";
 import style from "./style.module.scss";
-import { SortedScreenings } from "@/util/types";
+
+type SortedScreenings = {
+  movieId: string;
+  location: string;
+  dayScreenings: string[][];
+};
 
 function ScreeningDay({
   screeningDay,

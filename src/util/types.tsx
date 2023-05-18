@@ -16,8 +16,3 @@ export type MovieType = {
   title: string;
   poster: string;
 };
-export type SortedScreenings = {
-  movieId: string;
-  location: string;
-  dayScreenings: string[][];
-};
