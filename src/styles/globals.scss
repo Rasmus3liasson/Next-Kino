@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "./sections/header/header.scss";
 @import "./sections/contactForm.scss";
 @import "./sections/404.scss";
