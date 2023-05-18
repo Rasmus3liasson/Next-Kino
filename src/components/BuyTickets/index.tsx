@@ -6,7 +6,7 @@ import Router from "next/router";
 
 
 export default function BuyTickets({ screenings }: { screenings: ScreeningType }) {
-  const Link = `/api/movies/${screenings.id}/payment`;
+  const Link = `/payment`;
   
 
   function handleClick() {
