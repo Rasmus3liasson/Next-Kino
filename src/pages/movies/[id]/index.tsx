@@ -3,7 +3,6 @@ import MovieDetails from "@/components/MovieDetails";
 import AllSpecificMovieScreenings from "@/components/AllSpecificMovieScreenings";
 import { ScreeningType, SortedScreenings } from "@/util/types";
 import { getMovieScreenings } from "@/pages/api/upcoming-screenings";
-import { getMovieData } from "@/pages/api/movies";
 import connectMongo from "@/util/connectMongo";
 import Movie from "../../../../models/movie";
 import ShowReviews from "@/components/ShowReviews";

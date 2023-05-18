@@ -41,7 +41,6 @@ export type StrengthMeterStyles = {
 };
 
 export type MovieType = {
-  id: number;
   title: string;
   poster: string;
 };
