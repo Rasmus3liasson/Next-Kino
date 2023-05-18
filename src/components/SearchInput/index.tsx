@@ -8,12 +8,15 @@ export default function SearchInput() {
   const [searchResult, setSearchResult] = useState<string[]>([]);
   const [movieTitleArr, setMovieTitleArr] = useState<string[]>([]);
   const [movieImageArr, setMovieImageArr] = useState<string[]>([]);
+
   useEffect(() => {
     async function fetchMovieData() {
       const res = await fetch("/api/movies/GET");
       const data = await res.json();
-      const titles = data.movies.map((title) => title.title);
-      const images = data.movies.map((images) => images.imgUrl);
+      const titles = data.movies.map((title: { title: string }) => title.title);
+      const images = data.movies.map(
+        (images: { imgUrl: string; images: string }) => images.imgUrl
+      );
       setMovieTitleArr(titles);
       setMovieImageArr(images);
     }
@@ -35,8 +38,6 @@ export default function SearchInput() {
     }
   };
 
-  console.log(movieImageArr);
-
   return (
     <form className="d-flex p-2 my-2 my-lg-0">
       <input
@@ -47,33 +48,37 @@ export default function SearchInput() {
         value={searchInput}
         onChange={manageInput}
       />
-      {/* condition so not show dropdown */}
+      {/* Condition to show dropdown */}
       {searchResult.length > 0 && (
         <div className={style.dropdownMenu}>
           <ul>
-            {searchResult.map((movieDetails) => (
-              <li key={movieDetails}>
-                <Link
-                  className="dropdown-item"
-                  /* need to add correct id from database movieTitle variable */
-                  href="/movies/id"
-                  onClick={() => setSearchInput(movieDetails)}
-                >
-                  <p>{movieDetails}</p>
-                  {/* temporarly image waiting on poster from database */}
-                  <Image
-                    src={"/dummy.jpg"} //movieImage varaible
-                    alt="poster of movie"
-                    width={150}
-                    height={150}
-                  ></Image>
-                </Link>
-              </li>
-            ))}
+            {searchResult.map((movieTitle) => {
+              const index = movieTitleArr.indexOf(movieTitle);
+
+              // Retrieve image using the index of title
+              const imageUrl = movieImageArr[index];
+              return (
+                <li key={movieTitle}>
+                  <Link
+                    className="dropdown-item"
+                    href={`/movies/${movieTitle}`}
+                    onClick={() => setSearchInput(movieTitle)}
+                  >
+                    <p>{movieTitle}</p>
+                    <Image
+                      src={imageUrl}
+                      alt="poster of movie"
+                      width={120}
+                      height={130}
+                    />
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}
-      {/* if no matching results */}
+      {/* If no matching results */}
       {searchInput.length > 1 && searchResult.length === 0 && (
         <div className={`${style.dropdownMenu} ${style.noMatch}`}>
           <ul>
