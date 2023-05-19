@@ -13,7 +13,7 @@ export interface IMovie {
       postDate: Date;
       rating: number;
     }
-  ];
+  ] | [];
 }
 
 const movieSchema = new Schema<IMovie>({

@@ -15,15 +15,16 @@ async function populate() {
         imgUrl: movieData[i].poster,
         duration: randMins(),
         screenings: [],
-        reviews: [],
+        reviews: []
       };
 
-      await fetch("http://localhost:3000/api/movies/POST", {
+      const res = await fetch("http://localhost:3000/api/movies/POST", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ newMov }),
+        body: JSON.stringify(newMov),
       });
       console.log(`movie "${movieData[i].title}" was created`);
+      console.log(res);
     }
   } catch (err) {
     console.log("Failed to create movies.");
