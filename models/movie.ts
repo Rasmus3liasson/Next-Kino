@@ -3,9 +3,20 @@ import { Schema, model, models } from "mongoose";
 export interface IMovie {
   title: string;
   description: string;
-  imgUrl: string;
+  releaseYear: number;
+  genre: string;
   duration: number;
-  screenings: Date[];
+  imgUrl: string;
+
+  screenings: [
+    {
+      displayDate: Date;
+      saloon: string;
+      spokenLang: "en-GB" | "se-SV";
+      subtitLang: "en-GB" | "se-SV" | null;
+    }
+  ];
+
   reviews: [
     {
       reviewerName: string;
@@ -16,12 +27,24 @@ export interface IMovie {
   ];
 }
 
+
 const movieSchema = new Schema<IMovie>({
   title: { type: String, required: true },
   description: { type: String, required: true },
-  imgUrl: { type: String, required: true },
+  releaseYear: { type: Number, required: true },
+  genre: { type: String, required: true },
   duration: { type: Number, required: true },
-  screenings: [Date],
+  imgUrl: { type: String, required: true },
+
+  screenings: [
+    {
+      displayDate: { type: Date, required: true },
+      saloon: { type: String, required: true },
+      spokenLang: { type: Schema.Types.Mixed, required: true },
+      subtitLang: { type: Schema.Types.Mixed, required: true },
+    },
+  ],
+
   reviews: [
     {
       reviewerName: { type: String, required: true },
