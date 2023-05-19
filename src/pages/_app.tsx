@@ -1,25 +1,28 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "@/styles/globals.scss";
-import type { AppProps } from "next/app";
-import React, { createContext, useContext, useState } from "react";
+import { AppProps } from "next/app";
+import React, { createContext, useEffect, useState } from "react";
+import { IUser } from "../../models/user";
+import validateAuthToken from "@/util/validateAuthToken";
 
+// Create context
 export const accountStateContext = createContext<{
-  accountState: boolean;
-  setAccountState: React.Dispatch<React.SetStateAction<boolean>>;
+  accountState: IUser | null;
 }>({
-  accountState: false,
-  setAccountState: () => {},
+  accountState: null,
 });
 
-export default function App({ Component, pageProps }: AppProps) {
-  const [userDetails, setUserDetails] = useState(false);
+function App({
+  Component,
+  pageProps,
+  token,
+}: AppProps & { token: IUser | null }) {
+  const [accountState, setAccountState] = useState<IUser | null>(token);
 
   return (
     <>
-      <accountStateContext.Provider
-        value={{ accountState: userDetails, setAccountState: setUserDetails }}
-      >
+      <accountStateContext.Provider value={{ accountState }}>
         <Header />
         <main>
           <Component {...pageProps} />
@@ -29,3 +32,12 @@ export default function App({ Component, pageProps }: AppProps) {
     </>
   );
 }
+
+App.getInitialProps = ({ ctx }) => {
+  const token = validateAuthToken(ctx.req?.cookies.AuthToken!);
+  return {
+    token,
+  };
+};
+
+export default App;

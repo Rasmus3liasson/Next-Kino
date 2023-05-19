@@ -1,22 +1,36 @@
-import React, { useState } from "react";
+import { accountStateContext } from "@/pages/_app";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 
 const LoginForm = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [statusCode, setStatusCode] = useState<number>();
+  const router = useRouter();
+
+  const handleSubmitLogin = async (ev: { preventDefault: () => void }) => {
+    ev.preventDefault();
+    const res = await fetch("/api/auth/Login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userName: userName, password: password }),
+    });
+    setStatusCode(res.status);
+  };
+
+  useEffect(() => {
+    if (statusCode === 201) {
+      router.push("/");
+    }
+  }, [router, statusCode]);
 
   return (
     <form
       className="my-5 max-w-md mx-auto self-center px-5 rounded-2xl shadow-lg flex flex-col flex-grow justify-center bg-cblue"
-      onSubmit={(ev) => {
-        ev.preventDefault();
-        fetch("/api/auth/Login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ userName: userName, password: password }),
-        });
-      }}
+      onSubmit={handleSubmitLogin}
     >
       <h1 className="py-2 mx-auto text-4xl text-white font-bold">Logga in</h1>
 

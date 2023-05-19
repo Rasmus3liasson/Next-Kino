@@ -1,40 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import SearchInput from "./SearchInput";
 import { accountStateContext } from "@/pages/_app";
-
-/* async function retriveMovieData() {
-  const res = await fetch("/api/movies");
-  const data = await res.json();
-
-  return data;
-} */
 
 export default function Header() {
   const router = useRouter();
 
-  const { accountState, setAccountState } = useContext(accountStateContext);
-  console.log(accountState);
-
-  const handleAccountState = () => {
-    setAccountState(true);
-  };
-
-  /*   const [movieTitle, setMovieTitle] = useState<string[]>([]);
-  const [movieImage, setMovieImage] = useState<string[]>([]);
-
-  async function setMovieContent() {
-    const data = await retriveMovieData();
-
-    setMovieTitle(data);
-    setMovieImage(data);
-  }
-
-  useEffect(() => {
-    setMovieContent();
-  }, [searchResult]); */
+  //retrives the context
+  const { accountState } = useContext(accountStateContext);
 
   const toggleNav = () => {
     const nav = document.querySelector("#navbarSupportedContent");
@@ -55,9 +30,6 @@ export default function Header() {
 
   return (
     <>
-      <button onClick={handleAccountState}>
-        Test knapp för att ändra state
-      </button>
       <header className="sticky-top">
         <nav className="navbar navbar-expand-lg sticky-top">
           <Link href={"/"}>
@@ -88,12 +60,12 @@ export default function Header() {
                 {!accountState ? (
                   <>
                     <li className="nav-item">
-                      <Link className="nav-link" href={"#"}>
+                      <Link className="nav-link" href={"/account"}>
                         Logga in
                       </Link>
                     </li>
                     <li className="nav-item">
-                      <Link className="nav-link" href={"#"}>
+                      <Link className="nav-link" href={"/account"}>
                         Skapa Konto
                       </Link>
                     </li>
@@ -166,8 +138,7 @@ export default function Header() {
               width={50}
             />
 
-            {/* implement name from database */}
-            {accountState && <p>FirstName</p>}
+            {accountState && <p>{accountState.name.first}</p>}
           </div>
         </nav>
       </header>
