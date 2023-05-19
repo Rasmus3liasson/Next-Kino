@@ -27,7 +27,7 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
   return {
     props: {
       reviewData,
-      movie: await getMovieData(),
+      // movie: await getMovieData(),
       movieScreenings: await getMovieScreenings(id),
       revalidate: 60, // In seconds
     },
