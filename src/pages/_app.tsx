@@ -33,7 +33,7 @@ function App({
   );
 }
 
-App.getInitialProps = ({ ctx }) => {
+App.getInitialProps = async ({ ctx }) => {
   const token = validateAuthToken(ctx.req?.cookies.AuthToken!);
   return {
     token,
