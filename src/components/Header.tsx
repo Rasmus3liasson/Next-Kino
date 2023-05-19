@@ -72,7 +72,10 @@ export default function Header() {
                   </>
                 ) : (
                   <li className="nav-item">
-                    <Link className="nav-link sign-out-text" href={"/"}>
+                    <Link
+                      className="nav-link sign-out-text"
+                      href={"/api/auth/Logout"}
+                    >
                       Logga ut
                     </Link>
                   </li>
