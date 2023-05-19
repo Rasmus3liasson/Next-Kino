@@ -4,13 +4,17 @@ import BuyTickets from "@/components/BuyTickets";
 import { ScreeningType } from "@/util/types";
 import { getData } from "../api/screenings";
 import { getMovies } from "../api/movies";
+import getBookings from "../api/bookings/GET";
   
   // TODO: Add database functions here.
+  const req = 1;
+  const res = "";
   export async function getServerSideProps() {
     return {
       props: {
         screenings: (await getData()).at(0),
         movies: await getMovies(),
+        bookings: await getBookings(req,res)                                  
       },
     };
   }
