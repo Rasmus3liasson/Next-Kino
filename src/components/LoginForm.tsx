@@ -1,5 +1,3 @@
-import { accountStateContext } from "@/pages/_app";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
