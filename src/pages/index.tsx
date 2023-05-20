@@ -1,7 +1,6 @@
 import Head from "next/head";
 import AllMovies from "@/components/AllMovies";
 import ScreeningsHome from "../components/ScreeningsHome";
-import AllSpecificMovieScreenings from "@/components/AllSpecificMovieScreenings";
 import { ScreeningType, MovieType } from "@/util/types";
 import { getTenScreenings } from "./api/screenings";
 import { getTenMovies } from "./api/movies";
@@ -29,7 +28,6 @@ export default function Home({
   movies: MovieType[];
   token: IUser | null;
 }) {
-  console.log(screenings)
   return (
     <>
       <Head>

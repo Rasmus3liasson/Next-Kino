@@ -10,7 +10,7 @@ import { ScreeningType } from "@/util/types";
  */
 export default function Screening({ movieData }: { movieData: ScreeningType }) {
   const link = `/movie/${movieData.id}/booking?screening=${movieData.screeningId}`;
-
+console.log(movieData)
   return (
     <Link style={{ textDecoration: "none" }} href={link} className={style.card}>
       <Image
@@ -23,7 +23,7 @@ export default function Screening({ movieData }: { movieData: ScreeningType }) {
       />
       <h3 className={`${style.title} ${style.cardItem}`}>{movieData.title}</h3>
       <small className={`${style.date} ${style.cardItem}`}>
-        {movieData.date}
+        {movieData.screening}
       </small>
       <small className={`${style.location} ${style.cardItem}`}>
         {movieData.location}

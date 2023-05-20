@@ -7,6 +7,7 @@ import connectMongo from "@/util/connectMongo";
 import Movie from "../../../../models/movie";
 import ShowReviews from "@/components/ShowReviews";
 import { ReviewData, ReviewProps } from "../../../../types/reviewTypes";
+import { getMovie } from "@/util/dbAggregations";
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -27,7 +28,7 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
   return {
     props: {
       reviewData,
-      // movie: await getMovieData(),
+      movie: await getMovie(id),
       movieScreenings: await getMovieScreenings(id),
       revalidate: 60, // In seconds
     },

@@ -13,7 +13,7 @@ export default function MovieDetails({
         className={style.img}
         priority
         src={movieData.poster}
-        alt="Poster of Image"
+        alt={`Poster of ${movieData.title}`}
         width={400}
         height={500}
       />
