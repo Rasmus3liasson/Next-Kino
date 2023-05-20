@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { movieDataArray } from "@/util/mockMovieData";
 import sortByDayAndTime from "@/util/datehandler";
 import { SortedScreenings } from "@/util/types";
 import connectMongo from "@/util/connectMongo";
@@ -38,7 +37,6 @@ export async function getMovieScreenings(
   
   // @rasmus-eliasson
   const screeningData = await Movie.findOne({title: idQuery});
-  console.log(await screeningData);
 
   if (screeningData === null) {
     return "No Screenings found for provided id";

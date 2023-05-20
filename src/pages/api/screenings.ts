@@ -13,48 +13,51 @@ interface MovieLink extends NextApiResponse {
   screeningDate: Date;
 }
 export async function getTenScreenings() {
-  //TODO: Add database util function that
-  // finds 10 upcoming screenings regardless
-  // of movie.
-
   await connectMongo();
 
   const currentDate = new Date();
 
-  const tenRandomScreenings = await Movie.aggregate(
-   [{
-      $unwind: '$screenings'
+  const tenRandomScreenings = await Movie.aggregate([
+    {
+      $unwind: "$screenings",
     },
     {
       $match: {
-        screenings: { $gte: currentDate }
-      }
+        screenings: { $gte: currentDate },
+      },
     },
     {
       $sort: {
-        screenings: 1
-      }
+        screenings: 1,
+      },
     },
-    { 
+    {
       $lookup: {
-        from: 'Movies',
-        localField: '_id',
-        foreignField: '_id',
-        as: 'movie'
-      }
+        from: "Movies",
+        localField: "_id",
+        foreignField: "_id",
+        as: "movie",
+      },
     },
     {
-      $limit: 10
+      $limit: 10,
     },
     {
+      // TODO: adding location and language perhaps
       $project: {
         _id: 0,
         title: 1,
-        screening: '$screenings'
-        // TODO: adding location and language perhaps
-      } 
-    }
-  ])
-  console.log(tenRandomScreenings) 
-  return tenRandomScreenings;
+        poster: '$imgUrl',
+        location: '$location',
+        screening: {
+          $dateToString: {
+            date: "$screenings",
+          },
+        },
+      },
+    },
+  ]);
+  const data = tenRandomScreenings;
+  console.log(data);
+  return data;
 }

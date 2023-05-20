@@ -12,20 +12,13 @@ export default async function handler(
   res.status(200).json(data);
 }
 export async function getTenMovies() {
-  //TODO: Add database util function that
-  // finds 10 upcoming screenings regardless
-  // of movie.
 
   await connectMongo();
 
-  const tenRandomMovies = Movie.aggregate([{ $sample: { size: 10 } }]);
+  const tenRandomMovies = Movie.aggregate([
+    { $sample: { size: 10 } },
+    { $project: { _id: 0, title: "$title", poster: "$imgUrl" } },
+  ]);
 
-  const data = (await tenRandomMovies).map((movie) => {
-    return {
-      title: movie.title,
-      poster: movie.imgUrl,
-    };
-  });
-
-  return data;
+  return tenRandomMovies;
 }

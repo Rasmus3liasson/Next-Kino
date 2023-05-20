@@ -3,7 +3,7 @@ import AllMovies from "@/components/AllMovies";
 import ScreeningsHome from "../components/ScreeningsHome";
 import AllSpecificMovieScreenings from "@/components/AllSpecificMovieScreenings";
 import { ScreeningType, MovieType } from "@/util/types";
-import { getData } from "./api/screenings";
+import { getTenScreenings } from "./api/screenings";
 import { getTenMovies } from "./api/movies";
 import { GetServerSidePropsContext } from "next";
 import validateAuthToken from "@/util/validateAuthToken";
@@ -14,7 +14,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   return {
     props: {
       token: validateAuthToken(context.req.cookies.AuthToken!) /* TEST */,
-      // screenings: await getData(),
+      screenings: await getTenScreenings(),
       movies: await getTenMovies(),
     },
   };
@@ -29,6 +29,7 @@ export default function Home({
   movies: MovieType[];
   token: IUser | null;
 }) {
+  console.log(screenings)
   return (
     <>
       <Head>
