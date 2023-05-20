@@ -5,7 +5,6 @@ const LoginForm = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [statusCode, setStatusCode] = useState<number>();
-  const router = useRouter();
 
   const handleSubmitLogin = async (ev: { preventDefault: () => void }) => {
     ev.preventDefault();
@@ -21,9 +20,9 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (statusCode === 201) {
-      router.push("/");
+      window.location.reload();
     }
-  }, [router, statusCode]);
+  }, [statusCode]);
 
   return (
     <form
