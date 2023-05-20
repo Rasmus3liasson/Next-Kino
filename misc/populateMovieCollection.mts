@@ -35,11 +35,6 @@ async function createScreenings() {
   return screenings;
 }
 
-(async function () {
-  const response = await createScreenings();
-  console.log(response);
-})();
-
 const minScreening = 0;
 const maxScreening = 15;
 
