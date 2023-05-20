@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import { IMovie } from "../models/movie";
+import { randMins } from "./helperFuncs.mjs";
 
 // Command to run this file in CMD:
 // ts-node --esm populateMovieCollection.mts
@@ -42,7 +43,3 @@ async function populate() {
 }
 
 populate();
-
-function randMins() {
-  return Math.floor(Math.random() * 61) + 60;
-}
