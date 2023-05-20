@@ -1,11 +1,47 @@
+import { screening } from "./../models/movie";
 import fs from "fs/promises";
 import { IMovie } from "../models/movie";
-import { randMins } from "./helperFuncs.mjs";
+import { review } from "../models/movie";
+import randReview from "./randReview.mjs";
+import randScreening from "./randScreening.mjs";
+
+// Link to the movie file: https://www.meilisearch.com/movies.json
 
 // Command to run this file in CMD:
 // ts-node --esm populateMovieCollection.mts
 
-const movieCount = 1;
+const movieCount = 10;
+
+const maxRevsPerMovie = 15;
+const maxScreensPerMovie = 15;
+
+async function createReviews() {
+  const count = Math.floor(Math.random() * maxRevsPerMovie);
+  const reviews: review[] = [];
+  for (let i = 0; i < count; i++) {
+    const review = await randReview();
+    reviews.push(review);
+  }
+  return reviews;
+}
+
+async function createScreenings() {
+  const count = Math.floor(Math.random() * maxScreensPerMovie);
+  const screenings: screening[] = [];
+  for (let i = 0; i < count; i++) {
+    const screening = await randScreening();
+    screenings.push(screening);
+  }
+  return screenings;
+}
+
+(async function () {
+  const response = await createScreenings();
+  console.log(response);
+})();
+
+const minScreening = 0;
+const maxScreening = 15;
 
 async function populate() {
   const movies = [];
@@ -15,15 +51,18 @@ async function populate() {
     console.log(movieData[1]);
 
     for (let i = 0; i < movieCount; i++) {
+      const randScreenings = await createScreenings();
+      const randReviews = await createReviews();
+
       const newMov: IMovie = {
         title: movieData[i].title,
         description: movieData[i].overview,
         releaseDate: new Date(movieData[i].release_date * 1000),
         genres: movieData[i].genres,
-        duration: randMins(),
+        duration: randMovieDuration(),
         imgUrl: movieData[i].poster,
-        screenings: [],
-        reviews: [],
+        screenings: randScreenings,
+        reviews: randReviews,
       };
 
       const res = await fetch("http://localhost:3000/api/movies/POST", {
@@ -43,3 +82,7 @@ async function populate() {
 }
 
 populate();
+
+function randMovieDuration() {
+  return Math.floor(Math.random() * 61) + 60;
+}
