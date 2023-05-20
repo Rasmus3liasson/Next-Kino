@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "@/styles/globals.scss";
 import { AppProps } from "next/app";
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 import { IUser } from "../../models/user";
 import validateAuthToken from "@/util/validateAuthToken";
 
