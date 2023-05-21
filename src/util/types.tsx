@@ -7,5 +7,5 @@ export type ScreeningType = {
   subLang: string;
   poster: string;
   screeningId: string;
-  rating: string;
+  rating: number;
 };

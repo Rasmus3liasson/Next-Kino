@@ -1,0 +1,10 @@
+.star {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  color: red;
+}
+
+.star::before {
+  content: "\2605";
+}

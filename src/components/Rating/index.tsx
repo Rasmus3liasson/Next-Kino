@@ -67,7 +67,7 @@ const Rating: React.FC<RatingProps> = ({ movieData, rating }) => {
 export default Rating;
  */
 
-import { useState, useEffect } from "react";
+/* import { useState, useEffect } from "react";
 import style from "./style.module.scss";
 import Link from "next/link";
 import { ScreeningType } from "@/util/types";
@@ -92,6 +92,93 @@ const Rating: React.FC<RatingProps> = ({ movieData, rating }) => {
         <div className={style.rating}>Rating: {rating || "N/A"}</div>
       </div>
     </Link>
+  );
+};
+
+export default Rating;
+ */
+
+/* import React, { useState } from "react";
+import style from "./style.module.scss";
+import { ScreeningType } from "@/util/types";
+
+interface RatingProps {
+  movieData: ScreeningType;
+}
+
+const Rating: React.FC<RatingProps> = ({ movieData }) => {
+  const [selectedRating, setSelectedRating] = useState(0);
+
+  const handleRatingSelect = (rating: number) => {
+    setSelectedRating(rating);
+  };
+
+  const generateStars = () => {
+    const stars = [];
+
+    for (let i = 1; i <= 5; i++) {
+      const starClass = i <= selectedRating ? "selected" : "";
+
+      stars.push(
+        <span
+          key={i}
+          className={`star ${starClass}`}
+          onClick={() => handleRatingSelect(i)}
+        >
+          &#9733;
+        </span>
+      );
+    }
+
+    return stars;
+  };
+
+  const handleSubmit = () => {
+    console.log("Rating:", selectedRating);
+  };
+
+  return (
+    <div className={style.card}>
+      <div className={style.rating}>{generateStars()}</div>
+      <button onClick={handleSubmit}>Submit</button>
+    </div>
+  );
+};
+
+export default Rating; */
+
+import React from "react";
+import style from "./style.module.scss";
+import { ScreeningType } from "@/util/types";
+import Link from "next/link";
+
+interface RatingProps {
+  movieData: ScreeningType;
+  rating: number;
+}
+
+const Rating: React.FC<RatingProps> = ({ movieData, rating }) => {
+  const generateStars = () => {
+    const stars = [];
+
+    for (let i = 1; i <= rating; i++) {
+      stars.push(
+        <span key={i} className={`star selected`}>
+          &#9733;
+        </span>
+      );
+    }
+
+    return stars;
+  };
+
+  return (
+    <div className={style.card}>
+      <div className={style.rating}>{generateStars()}</div>
+      <Link href={`/movie/${movieData.id}/reviews`} passHref>
+        <button className={style.link}>Visa recensioner</button>
+      </Link>
+    </div>
   );
 };
 
