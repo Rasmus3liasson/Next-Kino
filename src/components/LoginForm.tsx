@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useContext } from "react";
+import { accountStateContext } from "@/pages/_app";
+import Router from "next/router";
 
 const LoginForm = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [statusCode, setStatusCode] = useState<number>();
+  const [error, setError] = useState(false);
+  const { setAccountState } = useContext(accountStateContext);
 
   const handleSubmitLogin = async (ev: { preventDefault: () => void }) => {
     ev.preventDefault();
@@ -14,14 +17,12 @@ const LoginForm = () => {
       },
       body: JSON.stringify({ userName: userName, password: password }),
     });
-    setStatusCode(res.status);
-  };
 
-  useEffect(() => {
-    if (statusCode === 201) {
-      window.location.reload();
-    }
-  }, [statusCode]);
+    if (res.ok) {
+      setAccountState(await res.json());
+      Router.push("/");
+    } else setError(true);
+  };
 
   return (
     <form
@@ -55,6 +56,12 @@ const LoginForm = () => {
           onChange={(ev) => setPassword(ev.target.value)}
         />
       </div>
+
+      {error && (
+        <p className="flex-wrap text-1xl font-bold text-red-600">
+          Användarnamn eller lösenord matchar inte
+        </p>
+      )}
 
       <button
         className="rounded-md w-1/2 self-center my-4 bg-clightblue font-semibold  border-2 border-transparent hover:border-white"

@@ -3,26 +3,28 @@ import Footer from "@/components/Footer";
 import "@/styles/globals.scss";
 import { AppProps } from "next/app";
 import React, { createContext, useState } from "react";
-import { IUser } from "../../models/user";
 import validateAuthToken from "@/util/validateAuthToken";
+import {userData} from "@/util/types"
+import { NextPageContext } from "next";
+import { parse } from "cookie"
 
-// Create context
 export const accountStateContext = createContext<{
-  accountState: IUser | null;
+  accountState: userData | null;
+  setAccountState: React.Dispatch<React.SetStateAction<userData | null>>;
 }>({
   accountState: null,
+  setAccountState: () => {},
 });
 
 function App({
   Component,
   pageProps,
-  token,
-}: AppProps & { token: IUser | null }) {
-  const [accountState, setAccountState] = useState<IUser | null>(token);
+}: AppProps & { user: userData | null }) {
+  const [accountState, setAccountState] = useState<userData | null>(null);
 
   return (
     <>
-      <accountStateContext.Provider value={{ accountState }}>
+      <accountStateContext.Provider value={{ accountState, setAccountState }}>
         <Header />
         <main>
           <Component {...pageProps} />
@@ -33,11 +35,19 @@ function App({
   );
 }
 
-App.getInitialProps = async ({ ctx }) => {
-  const token = validateAuthToken(ctx.req?.cookies.AuthToken!);
-  return {
-    token,
-  };
+App.getInitialProps = async ({ ctx }: { ctx: NextPageContext }) => {
+  const cookie = parse(ctx.req?.headers.cookie || '');
+  const token = await validateAuthToken(cookie.value);
+  if (token) {
+    const { name, email, userName } = token
+    return {
+      user: {
+        name,
+        email,
+        userName,
+      }
+    };
+  } else return {}
 };
 
 export default App;

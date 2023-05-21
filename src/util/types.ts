@@ -36,3 +36,12 @@ export type MovieType = {
   title: string;
   poster: string;
 };
+
+export type userData = {
+  name: { 
+    first: string; 
+    last: string 
+  };
+  email: string;
+  userName: string;
+}
