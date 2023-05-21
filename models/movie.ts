@@ -37,7 +37,7 @@ const movieSchema = new Schema<IMovie>({
       displayDate: { type: Date, required: true },
       saloon: { type: String, required: true },
       spokenLang: { type: Schema.Types.Mixed, required: true },
-      subtitLang: { type: Schema.Types.Mixed, required: true },
+      subtitLang: { type: Schema.Types.Mixed},
     },
   ],
 
