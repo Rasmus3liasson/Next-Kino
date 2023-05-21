@@ -35,9 +35,6 @@ async function createScreenings() {
   return screenings;
 }
 
-const minScreening = 0;
-const maxScreening = 15;
-
 async function populate() {
   const movies = [];
   try {
