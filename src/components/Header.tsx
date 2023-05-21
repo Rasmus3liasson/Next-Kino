@@ -1,15 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { useContext, createContext } from "react";
 import SearchInput from "./SearchInput";
 import { accountStateContext } from "@/pages/_app";
+import LoginForm from "./LoginForm";
+import { loginModalContext } from "@/util/loginModalContext";
 
 export default function Header() {
   const router = useRouter();
 
-  //retrives the context
   const { accountState } = useContext(accountStateContext);
+  const { loginModalOpen, setLoginModalOpen } = useContext(loginModalContext);
 
   const toggleNav = () => {
     const nav = document.querySelector("#navbarSupportedContent");
@@ -22,6 +24,7 @@ export default function Header() {
 
   return (
     <>
+      {loginModalOpen && <LoginForm />}
       <header className="sticky-top">
         <nav className="navbar navbar-expand-lg sticky-top">
           <Link href={"/"}>
@@ -106,7 +109,13 @@ export default function Header() {
             {accountState ? (
               <DropDown username={accountState.name.first} />
             ) : (
-              <Link href="/account">Logga in</Link>
+              <button
+                onClick={() => {
+                  setLoginModalOpen(!loginModalOpen);
+                }}
+              >
+                Logga in
+              </button>
             )}
           </div>
         </nav>
@@ -116,11 +125,12 @@ export default function Header() {
 }
 
 function DropDown({ username }: { username: string }) {
-
   return (
     <div className="group inline-block relative">
       <div className="relative">
-        <button className="text-2xl font-semibold after:content-['\25BE']">{username}</button>
+        <button className="text-2xl font-semibold after:content-['\25BE']">
+          {username}
+        </button>
         <ul className="hidden absolute group-hover:block group-hover:bg-blue-400 ">
           <li className="pt-2 px-2 hover:bg-blue-600">
             <Link className="text-1xl font-semibold hover:text-white" href="#">
@@ -128,7 +138,10 @@ function DropDown({ username }: { username: string }) {
             </Link>
           </li>
           <li className="py-2 px-2 hover:bg-blue-600">
-            <Link className="text-1xl font-semibold hover:text-white" href="/api/auth/Logout">
+            <Link
+              className="text-1xl font-semibold hover:text-white"
+              href="/api/auth/Logout"
+            >
               Logga ut
             </Link>
           </li>
