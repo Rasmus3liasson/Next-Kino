@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { accountStateContext } from "@/pages/_app";
 import Router from "next/router";
 import { loginModalContext } from "@/util/loginModalContext";
+import Link from "next/link";
 
 const LoginForm = () => {
   const [userName, setUserName] = useState("");
@@ -74,11 +75,19 @@ const LoginForm = () => {
         )}
 
         <button
-          className="rounded-md w-1/2 self-center my-4 bg-clightblue font-semibold  border-2 border-transparent hover:border-white"
+          className="rounded-md w-1/2 self-center my-4 bg-clightblue font-medium  border-2 border-transparent hover:border-white"
           type="submit"
         >
           Logga in
         </button>
+        <button 
+        className="text-white font-semibold text-1xl mb-3"
+        onClick={() => {
+          setLoginModalOpen(false)
+          Router.push("/account")
+        }}>
+          Registrera användare?
+          </button>
       </form>
     </div>
   );

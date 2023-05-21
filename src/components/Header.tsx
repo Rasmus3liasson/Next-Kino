@@ -111,7 +111,7 @@ export default function Header() {
             ) : (
               <button
                 onClick={() => {
-                  setLoginModalOpen(!loginModalOpen);
+                  setLoginModalOpen(true);
                 }}
               >
                 Logga in

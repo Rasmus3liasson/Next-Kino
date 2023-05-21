@@ -3,9 +3,6 @@ import CreateUserForm from "@/components/CreateUserForm";
 
 export default function loginTest() {
     return (
-      <>
-        <LoginForm/>
         <CreateUserForm/>
-      </>
     );
   }
