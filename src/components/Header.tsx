@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import SearchInput from "./SearchInput";
 import { accountStateContext } from "@/pages/_app";
 
@@ -18,14 +18,6 @@ export default function Header() {
     nav?.classList.toggle("animation-nav");
     menuIcon?.classList.toggle("cross-icon");
     menuIcon?.classList.toggle("navbar-toggler-icon");
-  };
-
-  const toggleAccountNav = () => {
-    const accountIcon = document.querySelector(".dropdown-account");
-    const nameText = document.querySelector(".name-text");
-
-    accountIcon?.classList.toggle("dropdown-account-show");
-    nameText?.classList.toggle("hide-name");
   };
 
   return (
@@ -52,35 +44,6 @@ export default function Header() {
                 className="navbar-toggler-icon navbar-toggler hamburger-icon border-0 text-white"
                 id="menu-icon"
               ></span>
-            </div>
-
-            {/* Dropdown for account with condition based on state */}
-            <div className="dropdown-account">
-              <ul className="navbar-nav mr-auto d-flex flex-row gap-2">
-                {!accountState ? (
-                  <>
-                    <li className="nav-item">
-                      <Link className="nav-link" href={"/account"}>
-                        Logga in
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link className="nav-link" href={"/account"}>
-                        Skapa Konto
-                      </Link>
-                    </li>
-                  </>
-                ) : (
-                  <li className="nav-item">
-                    <Link
-                      className="nav-link sign-out-text"
-                      href={"/api/auth/Logout"}
-                    >
-                      Logga ut
-                    </Link>
-                  </li>
-                )}
-              </ul>
             </div>
           </div>
 
@@ -134,17 +97,43 @@ export default function Header() {
           <div className="account-icon">
             <Image
               className="logo-image"
-              onClick={toggleAccountNav}
               src={"/account-icon.png"}
               alt="accout logo"
               height={50}
               width={50}
             />
 
-            {accountState && <p>{accountState.name.first}</p>}
+            {accountState ? (
+              <DropDown username={accountState.name.first} />
+            ) : (
+              <Link href="/account">Logga in</Link>
+            )}
           </div>
         </nav>
       </header>
     </>
+  );
+}
+
+function DropDown({ username }: { username: string }) {
+
+  return (
+    <div className="group inline-block relative">
+      <div className="relative">
+        <button className="text-2xl font-semibold after:content-['\25BE']">{username}</button>
+        <ul className="hidden absolute group-hover:block group-hover:bg-blue-400 ">
+          <li className="pt-2 px-2 hover:bg-blue-600">
+            <Link className="text-1xl font-semibold hover:text-white" href="#">
+              Profil
+            </Link>
+          </li>
+          <li className="py-2 px-2 hover:bg-blue-600">
+            <Link className="text-1xl font-semibold hover:text-white" href="/api/auth/Logout">
+              Logga ut
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </div>
   );
 }
