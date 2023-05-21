@@ -1,16 +1,15 @@
 import style from "./style.module.scss";
 import Image from "next/image";
 import Link from "next/link";
-import { ScreeningType } from "@/util/types";
+import { ScreeningProps } from "@/util/types";
 
 /*
  * Component renders a Link component with elements with data
- * from the given prop movieData.
+ * from the given prop screeningData.
  * TODO: Fix image src to an URL matching the movie. 
  */
-export default function Screening({ movieData }: { movieData: ScreeningType }) {
-  const link = `/movie/${movieData.id}/booking?screening=${movieData.screeningId}`;
-console.log(movieData)
+export default function Screening({ screeningData }: { screeningData: ScreeningProps }) {
+  const link = `/movie/${screeningData.title}/booking?screening=${Date.parse(screeningData.screening)}`;
   return (
     <Link style={{ textDecoration: "none" }} href={link} className={style.card}>
       <Image
@@ -18,15 +17,15 @@ console.log(movieData)
         height={120}
         width={90}
         priority
-        src={movieData.poster}
-        alt={`The poster for ${movieData.title}`}
+        src={screeningData.poster}
+        alt={`The poster for ${screeningData.title}`}
       />
-      <h3 className={`${style.title} ${style.cardItem}`}>{movieData.title}</h3>
+      <h3 className={`${style.title} ${style.cardItem}`}>{screeningData.title}</h3>
       <small className={`${style.date} ${style.cardItem}`}>
-        {movieData.screening}
+        {screeningData.screening}
       </small>
       <small className={`${style.location} ${style.cardItem}`}>
-        {movieData.location}
+        {screeningData.location}
       </small>
     </Link>
   );

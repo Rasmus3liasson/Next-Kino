@@ -57,7 +57,6 @@ export async function getTenScreenings() {
       },
     },
   ]);
-  const data = tenRandomScreenings;
-  console.log(data);
-  return data;
+
+  return tenRandomScreenings;
 }

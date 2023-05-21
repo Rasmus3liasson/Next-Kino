@@ -1,5 +1,5 @@
 import Screening from "../Screening/index";
-import { ScreeningType } from "@/util/types";
+import { ScreeningProps } from "@/util/types";
 import { useState } from "react";
 import style from "./style.module.scss";
 
@@ -14,7 +14,7 @@ const howManyScreeningsToShowAtStart = 3;
 export default function ScreeningsHome({
   screenings,
 }: {
-  screenings: ScreeningType[];
+  screenings: ScreeningProps[];
 }) {
   if(screenings == undefined){ // Temporary disable because there are no screenings in database
     return;
@@ -32,8 +32,8 @@ export default function ScreeningsHome({
   return (
     <section className={style.container}>
       <h1 className={style.title}>Kommande visningar</h1>
-      {list.map((screening: ScreeningType) => (
-        <Screening key={screening.id} movieData={screening} />
+      {list.map((screening: ScreeningProps, index:number) => (
+        <Screening key={index} screeningData={screening} />
       ))}
       <button onClick={handleClick} className={style.button}>
         {expanded ? "Dölj visningar" : "Se fler visningar"}

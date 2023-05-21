@@ -1,7 +1,7 @@
 import Head from "next/head";
 import AllMovies from "@/components/AllMovies";
 import ScreeningsHome from "../components/ScreeningsHome";
-import { ScreeningType, MovieType } from "@/util/types";
+import { ScreeningProps, MovieProps } from "@/util/types";
 import { getTenScreenings } from "./api/screenings";
 import { getTenMovies } from "./api/movies";
 import { GetServerSidePropsContext } from "next";
@@ -24,8 +24,8 @@ export default function Home({
   movies,
   token,
 }: {
-  screenings: ScreeningType[];
-  movies: MovieType[];
+  screenings: ScreeningProps[];
+  movies: MovieProps[];
   token: IUser | null;
 }) {
   return (

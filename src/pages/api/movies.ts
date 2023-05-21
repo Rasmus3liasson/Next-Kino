@@ -1,11 +1,11 @@
-import { MovieType } from "@/util/types";
+import { MovieProps } from "@/util/types";
 import type { NextApiRequest, NextApiResponse } from "next";
 import connectMongo from "@/util/connectMongo";
 import Movie from "../../../models/movie";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<MovieType[]>
+  res: NextApiResponse<MovieProps[]>
 ) {
   const data = await getTenMovies();
 
@@ -19,6 +19,6 @@ export async function getTenMovies() {
     { $sample: { size: 10 } },
     { $project: { _id: 0, title: "$title", poster: "$imgUrl" } },
   ]);
-
-  return tenRandomMovies;
+  const result = await tenRandomMovies.exec();
+  return result;
 }

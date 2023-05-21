@@ -40,7 +40,14 @@ export type StrengthMeterStyles = {
   100: { style: string; text: string };
 };
 
-export type MovieType = {
+export type MovieProps = {
   title: string;
   poster: string;
 };
+export type ScreeningProps = {
+  _id: number;
+  title: string;
+  poster: string;
+  screening: string;
+  location?: string;
+}

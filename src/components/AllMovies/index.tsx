@@ -1,7 +1,7 @@
 import style from "./style.module.scss";
 import { useState } from "react";
 import Movie from "../Movie";
-import { MovieType } from "@/util/types";
+import { MovieProps } from "@/util/types";
 
 //Global variable that decided how many movies to show at start
 const howManyMoviesToShowAtStart = 6;
@@ -10,7 +10,7 @@ const howManyMoviesToShowAtStart = 6;
 * Recieves an array of movie objects as props and renders a 
 * Movie Component for each one.
 */
-export default function AllMovies({ movieData }: { movieData: MovieType[] }) {
+export default function AllMovies({ movieData }: { movieData: MovieProps[] }) {
   const [expanded, setExpanded] = useState(false);
   const list = expanded
     ? movieData
@@ -23,8 +23,8 @@ export default function AllMovies({ movieData }: { movieData: MovieType[] }) {
     <>
       <h1 className={style.title}>På Bio just nu</h1>
       <section className={style.container}>
-        {list.map((movie: MovieType) => (
-          <Movie key={movie.id} movieData={movie} />
+        {list.map((movie: MovieProps, index: number) => (
+          <Movie key={index} movieData={movie} />
         ))}
       </section>
       <button onClick={handleClick} className={style.button}>
