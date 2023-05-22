@@ -1,21 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import una
 
+type Data = {
+  kino: string;
+};
 
-export default async function handler(
+export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<[]>
+  res: NextApiResponse<Data>
 ) {
-  export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse<unavailableSeats[]>
-  ) {
-    const data = await getData();
-    
-    res.status(200).json(data);
-  }
-  
-  export async function getData(){
-    
-    return unavailableSeats;
-  }
+  res.status(200).json({ kino: "our kino project" });
+}

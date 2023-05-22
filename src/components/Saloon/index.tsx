@@ -6,6 +6,9 @@ import Link from "next/link";
 import { MovieType, ScreeningType } from "@/util/types";
 
 export default function Saloon({ screenings }: { screenings: ScreeningType }) {
+
+    
+
     return (
         <div className={style.saloon}>
             <div className={style.screen}>Bioduk</div>

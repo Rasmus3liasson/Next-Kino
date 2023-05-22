@@ -11,7 +11,7 @@ export default async function getBookings(req: any, res: any) {
     await connectMongo();
     const bookings = await Booking.find();
     res.json({ bookings: bookings });
-    
+
   } catch (error) {
     console.log(error);
     res.json({ error });
