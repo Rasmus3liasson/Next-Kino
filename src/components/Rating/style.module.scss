@@ -1,10 +1,17 @@
-.star {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
+@import "../../styles/variables.scss";
+
+.rating {
   color: red;
+  font-size: 1.2rem;
+  display: inline-flex;
 }
 
-.star::before {
-  content: "\2605";
+.link {
+  background: $button-primary;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  width: 10vw;
+  font-size: 16px;
 }
