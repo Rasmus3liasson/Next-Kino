@@ -10,7 +10,7 @@ import randScreening from "./randScreening.mjs";
 // Command to run this file in CMD:
 // ts-node --esm populateMovieCollection.mts
 
-const movieCount = 10;
+const movieCount = 50;
 
 const maxRevsPerMovie = 15;
 const maxScreensPerMovie = 15;

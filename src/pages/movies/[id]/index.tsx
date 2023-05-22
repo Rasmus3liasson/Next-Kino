@@ -6,7 +6,7 @@ import { getMovieScreenings } from "@/pages/api/upcoming-screenings";
 import connectMongo from "@/util/connectMongo";
 import Movie from "../../../../models/movie";
 import ShowReviews from "@/components/ShowReviews";
-import { ReviewData, ReviewProps } from "../../../../types/reviewTypes";
+import { ReviewData, ReviewProps } from "../../../types/reviewTypes";
 import { getMovie } from "@/util/dbAggregations";
 import { MovieProps } from "@/util/types";
 
