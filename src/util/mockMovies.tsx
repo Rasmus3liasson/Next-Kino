@@ -1,4 +1,4 @@
-export default [
+const mockMovies = [
   {
     id: 341235,
     title: "Scent of a woman",
@@ -65,3 +65,5 @@ export default [
     poster: "placeholder url",
   },
 ];
+
+export default mockMovies;
