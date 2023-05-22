@@ -29,9 +29,9 @@ Returns a list of upcoming screenings for a specific movie, specified by its id.
 
 ## Booking
 
-`GET /api/movies/:id/booking`
+`GET /api/movies/:id/booking/:displayDate`
 
-Returns the available seats for a specific movie screening, specified by its id.
+Returns the available seats for a specific movie screening, specified by its date.
 
 ## Sending Reviews
 
