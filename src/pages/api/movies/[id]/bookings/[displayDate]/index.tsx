@@ -11,7 +11,6 @@ export default async function getBookings(req: any, res: any) {
     const filteredBookings = bookings.filter(
       ({ date }) => new Date(date).getTime() === new Date(displayDate).getTime()
     );
-    console.log(filteredBookings);
 
     const occupiedSeats = filteredBookings
       .flatMap((item) => {
