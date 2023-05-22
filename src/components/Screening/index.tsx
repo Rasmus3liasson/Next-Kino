@@ -2,6 +2,7 @@ import style from "./style.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import { ScreeningProps } from "../../../types/screeningTypes";
+import { DateTime } from 'luxon';
 
 /*
  * Component renders a Link component with elements with data
@@ -9,7 +10,8 @@ import { ScreeningProps } from "../../../types/screeningTypes";
  * TODO: Fix image src to an URL matching the movie. 
  */
 export default function Screening({ screeningData }: { screeningData: ScreeningProps }) {
-  const link = `/movie/${screeningData.title}/booking?screening=${Date.parse(screeningData.screening)}`;
+  const screeningId = DateTime.fromISO(screeningData.screening).toMillis();
+  const link = `/movie/${screeningData.title}/booking?screening=${screeningId}`;
   return (
     <Link style={{ textDecoration: "none" }} href={link} className={style.card}>
       <Image
@@ -22,7 +24,7 @@ export default function Screening({ screeningData }: { screeningData: ScreeningP
       />
       <h3 className={`${style.title} ${style.cardItem}`}>{screeningData.title}</h3>
       <small className={`${style.date} ${style.cardItem}`}>
-        {screeningData.screening}
+        {DateTime.fromISO(screeningData.screening).toFormat('dd LLL HH:mm')}
       </small>
       <small className={`${style.location} ${style.cardItem}`}>
         {screeningData.location}

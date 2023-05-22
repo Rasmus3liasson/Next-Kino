@@ -1,7 +1,8 @@
 import Head from "next/head";
 import AllMovies from "@/components/AllMovies";
 import ScreeningsHome from "../components/ScreeningsHome";
-import { ScreeningProps, MovieProps } from "@/util/types";
+import { MovieProps } from "@/util/types";
+import { ScreeningProps } from "../../types/screeningTypes";
 import { getTenScreenings } from "./api/screenings";
 import { getTenMovies } from "./api/movies";
 import { GetServerSidePropsContext } from "next";
@@ -28,6 +29,10 @@ export default function Home({
   movies: MovieProps[];
   token: IUser | null;
 }) {
+
+  const parsedScreenings = JSON.parse(screenings);
+  console.log(parsedScreenings)
+
   return (
     <>
       <Head>
@@ -41,7 +46,7 @@ export default function Home({
         </h1>
       }
       <AllMovies movieData={movies} />
-      <ScreeningsHome screenings={screenings} />
+      <ScreeningsHome screenings={parsedScreenings} />
     </>
   );
 }

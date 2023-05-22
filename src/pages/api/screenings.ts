@@ -15,26 +15,25 @@ interface MovieLink extends NextApiResponse {
 export async function getTenScreenings() {
   await connectMongo();
 
-  const currentDate = new Date();
-  console.log(currentDate)
-
-  const tenRandomScreenings = await Movie.aggregate([
+  const tenScreenings = await Movie.aggregate([
     {
       $unwind: "$screenings",
     },
     {
-      $sort: { 'screenings.displayDate': -1 }
+      $sort: { 'screenings.displayDate': 1 }
     },
     {
       $limit: 10,
     },
     {
       $project: { 
-        'screenings.displayDate': 1,
+        'screening': '$screenings.displayDate',
+        'location': '$screenings.saloon',      
         'title': 1,
-        'imgUrl': 1,       
+        'poster' : '$imgUrl',
       }
     }
   ]).exec();
-  return tenRandomScreenings;
+  const result = JSON.stringify(tenScreenings)
+  return result;
 }

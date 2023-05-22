@@ -39,7 +39,7 @@ export default function AllSpecificMovieScreenings({
                 : tomorrow === dayOfScreening
                 ? "Imorgon"
                 : dayOfScreening !== null && ( 
-                  DateTime.fromISO(dayOfScreening).toFormat('dd/MM')
+                  DateTime.fromISO(dayOfScreening).toFormat('dd LLL')
                 )}
             </h6>
             <ScreeningDay

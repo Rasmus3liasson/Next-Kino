@@ -16,9 +16,7 @@ export default function ScreeningsHome({
 }: {
   screenings: ScreeningProps[];
 }) {
-  if(screenings == undefined){ // Temporary disable because there are no screenings in database
-    return;
-  }
+ 
   const [expanded, setExpanded] = useState(false);
   const list = expanded
     ? screenings
