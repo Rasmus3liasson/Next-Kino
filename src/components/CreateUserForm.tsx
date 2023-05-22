@@ -168,9 +168,9 @@ const CreateUserForm = () => {
         )}
 
         <ul className="!p-0 mt-2 flex flex-col">
-          {errors.map((errorMessage) => {
+          {errors.map((errorMessage, index: number) => {
             return (
-              <li className="text-black rounded-md my-1 pl-2 border-2 border-red-500 bg-white text-lg">
+              <li key={index} className="text-black rounded-md my-1 pl-2 border-2 border-red-500 bg-white text-lg">
                 {errorMessage}
               </li>
             );
