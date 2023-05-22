@@ -29,10 +29,10 @@ export default function AllSpecificMovieScreenings({
   return (
     <section className={style.screeningList}>
       <h3>Kommande visningar</h3>
-      {list.map((screeningsByDay) => {
+      {list.map((screeningsByDay, index: number) => {
         const dayOfScreening = DateTime.fromISO(screeningsByDay.date).toISODate();
         return (
-          <div className={style.dayContainer}>
+          <div key={index} className={style.dayContainer}>
             <h6 className={style.dateHeader}>
               {today === dayOfScreening
                 ? "Idag"
@@ -67,9 +67,10 @@ function ScreeningDay({
   const dayList = screeningDay.screenings;
   return (
     <ul className={style.day}>
-      {dayList.map((screening) => {
+      {dayList.map((screening, index: number) => {
         return (
           <SpecificMovieScreening
+            key={index}
             screening={screening}
             hrefLink={movieId}
           />
