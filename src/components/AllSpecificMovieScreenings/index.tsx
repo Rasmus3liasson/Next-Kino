@@ -4,23 +4,21 @@ import style from "./style.module.scss";
 import { DateTime } from 'luxon';
 import { SortedScreenings } from "@/util/types";
 
+// Helper Component
 function ScreeningDay({
   screeningDay,
   movieId,
-  location,
 }: {
-  screeningDay: string[];
+  screeningDay: null;
   movieId: string;
-  location: string;
 }) {
-  const dayList = screeningDay;
+  const dayList = screeningDay.screenings;
   return (
     <ul className={style.day}>
-      {dayList.map((time) => {
+      {dayList.map((screening) => {
         return (
           <SpecificMovieScreening
-            location={location}
-            time={time}
+            screening={screening}
             hrefLink={movieId}
           />
         );
@@ -38,23 +36,24 @@ export default function AllSpecificMovieScreenings({
   screenings: SortedScreenings;
 }) {
   const [expanded, setExpanded] = useState(false);
-  const parsedScreenings: string[][] = JSON.parse(screenings.dayScreenings);
+  const parsedProps: SortedScreenings = JSON.parse(screenings)[0];
   
   const today = DateTime.now().toISODate();
   const tomorrow = DateTime.now().plus({days: 1}).toISODate();
 
   //TODO: This is static at the moment, needs to be changed into a result
   const list = expanded
-    ? parsedScreenings
-    : parsedScreenings.slice(0, 2);
+  ? parsedProps.screeningsByDay
+  : parsedProps.screeningsByDay.slice(0, 2);
   function handleClick() {
     expanded ? setExpanded(false) : setExpanded(true);
   }
+  console.log(list)
   return (
     <section className={style.screeningList}>
       <h3>Kommande visningar</h3>
-      {list.map((screeningDay) => {
-        const dayOfScreening = DateTime.fromISO(screeningDay[0]).toISODate();
+      {list.map((screeningsByDay) => {
+        const dayOfScreening = DateTime.fromISO(screeningsByDay.date).toISODate();
         return (
           <div className={style.dayContainer}>
             <h6 className={style.dateHeader}>
@@ -65,9 +64,8 @@ export default function AllSpecificMovieScreenings({
                 : DateTime.fromISO(dayOfScreening).toFormat('dd/MM')}
             </h6>
             <ScreeningDay
-              movieId={screenings.movieId}
-              screeningDay={screeningDay}
-              location={screenings.location}
+              movieId={parsedProps.title}
+              screeningDay={screeningsByDay}
             />
           </div>
         );

@@ -1,7 +1,7 @@
 import style from "./style.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import { DateTime } from 'luxon'
+import { DateTime } from "luxon";
 
 // Helper component to render language flags
 function LangComponent({
@@ -11,6 +11,9 @@ function LangComponent({
   language: string;
   form: string;
 }) {
+  if (form === "Utan Text") {
+    return <>{form}</>;
+  }
   return (
     <>
       {form}
@@ -19,29 +22,35 @@ function LangComponent({
   );
 }
 function formatTime(time: string) {
-  return `${DateTime.fromISO(time).toFormat('HH:mm')}`;
+  return `${DateTime.fromISO(time).toFormat("HH:mm")}`;
 }
 
 export default function SpecificMovieScreening({
-  time,
+  screening,
   hrefLink,
-  location,
 }: {
-  time: string;
+  screening: null;
   hrefLink: string;
-  location: string;
 }) {
   const screeningLink = `/movies/${hrefLink}/booking?screening=${Date.parse(
-    time
+    screening.displayDate
   )}`;
+  const spokenLang = screening.spokenLang;
+  const subtitLang = screening.subtitLang;
   return (
     <li className={style.screeningListItem}>
       <h4 className={style.screeningText}>
-        {formatTime(time)} {location}
+        {formatTime(screening.displayDate)} {screening.saloon}
       </h4>
       <span className={style.languageFlags}>
-        <LangComponent language="gb" form="ENG Tal" />
-        <LangComponent language="se" form="SV Text" />
+        <LangComponent
+          language={spokenLang ? spokenLang.slice(0, 2) : ""}
+          form={spokenLang ? spokenLang.slice(3) + " Tal" : "Utan Tal"}
+        />
+        <LangComponent
+          language={subtitLang ? subtitLang.slice(0, 2) : ""}
+          form={subtitLang ? subtitLang.slice(3) + " Text" : "Utan Text"}
+        />
       </span>
       <Link className={style.ticketButton} href={screeningLink}>
         <button>Biljetter</button>
