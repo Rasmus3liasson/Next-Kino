@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import style from "./style.module.scss";
 import React from "react";
+import { ScreeningType } from "@/util/types";
 
-export default function Seat() {
+
+export default function Seat({ movieData }: { movieData: ScreeningType }) {
     const [selected, setIsSelected] = useState(false);
     const [counter, setSeatCount] = useState(0);  
 
@@ -15,21 +17,13 @@ export default function Seat() {
         }
     }
 
-    //post new review
-  async function updateReview() {
+  
+  async function updateUnavailableSeats() {
     event?.preventDefault();
 
-    const newBooking = {
-        email: User
-        movieTitle: " ",//title supposed to be here, cant use scer
-        date: new Date(),
-        seats: [6,7,8,9]
-      };
-    await fetch(`/api/reviews/${id}/sendReview`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedReviews),
-    });
+    const occupiedSeats = await fetch(`/api/movies/${movieData.title}/bookings/${movieData.date}`);
+    
+    
 
     setIsSelected(false);
   }
