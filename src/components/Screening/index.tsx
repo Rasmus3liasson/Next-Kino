@@ -1,7 +1,7 @@
 import style from "./style.module.scss";
 import Image from "next/image";
 import Link from "next/link";
-import { ScreeningProps } from "@/util/types";
+import { ScreeningProps } from "../../../types/screeningTypes";
 
 /*
  * Component renders a Link component with elements with data

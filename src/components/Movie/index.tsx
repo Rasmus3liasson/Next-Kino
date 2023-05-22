@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import style from "./style.module.scss";
-import { MovieType } from "@/util/types";
+import { MovieProps } from "@/util/types";
 
 //TODO: Change src on line :21 to correct property for images.
 
@@ -11,7 +11,7 @@ import { MovieType } from "@/util/types";
  *  or a link to an external source. Each instance of this component is
  *  clickable and routes to /movies/:id
  */
-export default function Movie({ movieData }: { movieData: MovieType }) {
+export default function Movie({ movieData }: { movieData: MovieProps }) {
   const link = `/movies/${movieData.title}`;
   return (
     <figure className={style.card}>

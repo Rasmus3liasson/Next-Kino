@@ -2,8 +2,7 @@ import { useState } from "react";
 import SpecificMovieScreening from "../SpecificMovieScreening";
 import style from "./style.module.scss";
 import { DateTime } from 'luxon';
-import { SortedScreenings } from "@/util/types";
-import { SortedScreeningsByDay, SpecificScreening } from "../../../types/screeningTypes";
+import { SortedScreeningsByDay, SortedScreenings } from "../../../types/screeningTypes";
 
 /*
 *  Renders a list of screenings for each day with the help
