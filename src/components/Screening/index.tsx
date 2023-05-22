@@ -1,7 +1,7 @@
 import style from "./style.module.scss";
 import Image from "next/image";
 import Link from "next/link";
-import { ScreeningProps } from "../../../types/screeningTypes";
+import { ScreeningProps } from "../../types/screeningTypes";
 import { DateTime } from "luxon";
 
 /*

@@ -5,7 +5,7 @@ import { DateTime } from "luxon";
 import {
   SortedScreeningsByDay,
   SortedScreenings,
-} from "../../../types/screeningTypes";
+} from "../../types/screeningTypes";
 
 /*
  *  Renders a list of screenings for each day with the help

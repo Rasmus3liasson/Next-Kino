@@ -2,7 +2,7 @@ import style from "./style.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { DateTime } from "luxon";
-import { SpecificScreening } from "../../../types/screeningTypes";
+import { SpecificScreening } from "../../types/screeningTypes";
 
 export default function SpecificMovieScreening({
   screening,

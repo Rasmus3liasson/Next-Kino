@@ -1,5 +1,5 @@
 import Screening from "../Screening/index";
-import { ScreeningProps } from "../../../types/screeningTypes";
+import { ScreeningProps } from "../../types/screeningTypes";
 import { useState } from "react";
 import style from "./style.module.scss";
 
