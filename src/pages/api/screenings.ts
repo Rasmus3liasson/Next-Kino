@@ -16,47 +16,25 @@ export async function getTenScreenings() {
   await connectMongo();
 
   const currentDate = new Date();
+  console.log(currentDate)
 
   const tenRandomScreenings = await Movie.aggregate([
     {
       $unwind: "$screenings",
     },
     {
-      $match: {
-        screenings: { $gte: currentDate },
-      },
-    },
-    {
-      $sort: {
-        screenings: 1,
-      },
-    },
-    {
-      $lookup: {
-        from: "Movies",
-        localField: "_id",
-        foreignField: "_id",
-        as: "movie",
-      },
+      $sort: { 'screenings.displayDate': -1 }
     },
     {
       $limit: 10,
     },
     {
-      // TODO: adding location and language perhaps
-      $project: {
-        _id: 0,
-        title: 1,
-        poster: '$imgUrl',
-        location: '$location',
-        screening: {
-          $dateToString: {
-            date: "$screenings",
-          },
-        },
-      },
-    },
-  ]);
-
+      $project: { 
+        'screenings.displayDate': 1,
+        'title': 1,
+        'imgUrl': 1,       
+      }
+    }
+  ]).exec();
   return tenRandomScreenings;
 }
