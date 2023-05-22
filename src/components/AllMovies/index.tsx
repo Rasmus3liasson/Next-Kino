@@ -7,9 +7,9 @@ import { MovieProps } from "@/util/types";
 const howManyMoviesToShowAtStart = 6;
 
 /*
-* Recieves an array of movie objects as props and renders a 
-* Movie Component for each one.
-*/
+ * Receives an array of movie objects as props and renders a
+ * Movie Component for each one.
+ */
 export default function AllMovies({ movieData }: { movieData: MovieProps[] }) {
   const [expanded, setExpanded] = useState(false);
   const list = expanded

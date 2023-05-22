@@ -4,7 +4,6 @@ import Image from "next/image";
 import { DateTime } from "luxon";
 import { SpecificScreening } from "../../../types/screeningTypes";
 
-
 export default function SpecificMovieScreening({
   screening,
   hrefLink,
@@ -57,7 +56,7 @@ function LangComponent({
     </>
   );
 }
-// Helper to format time 
+// Helper to format time
 function formatTime(time: string) {
   return `${DateTime.fromISO(time).toFormat("HH:mm")}`;
 }

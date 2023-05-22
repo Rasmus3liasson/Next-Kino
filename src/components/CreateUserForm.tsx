@@ -1,6 +1,10 @@
 import React, { useState, useEffect, FormEvent } from "react";
 import strongPasswordCheck from "@/util/strongPasswordCheck";
-import { StrengthMeterStyles, SubmitedUserResponse, UserType } from "@/util/types";
+import {
+  StrengthMeterStyles,
+  SubmitedUserResponse,
+  UserType,
+} from "@/util/types";
 
 const CreateUserForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -15,7 +19,7 @@ const CreateUserForm = () => {
   useEffect(() => {
     setPwStrength(strongPasswordCheck(password));
   }, [password]);
-  
+
   //keyvalues acts as percentage
   const strengthMeter: StrengthMeterStyles = {
     25: { style: "w-[25%] bg-red-500 ", text: "Too weak" },
@@ -31,7 +35,7 @@ const CreateUserForm = () => {
     const newUser: UserType = {
       name: {
         first: firstName,
-        last: lastName
+        last: lastName,
       },
       userName: userName,
       email: eMail,
@@ -170,7 +174,10 @@ const CreateUserForm = () => {
         <ul className="!p-0 mt-2 flex flex-col">
           {errors.map((errorMessage, index: number) => {
             return (
-              <li key={index} className="text-black rounded-md my-1 pl-2 border-2 border-red-500 bg-white text-lg">
+              <li
+                key={index}
+                className="text-black rounded-md my-1 pl-2 border-2 border-red-500 bg-white text-lg"
+              >
                 {errorMessage}
               </li>
             );

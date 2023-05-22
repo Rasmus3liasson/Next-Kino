@@ -15,11 +15,7 @@ export default function Movie({ movieData }: { movieData: MovieProps }) {
   const link = `/movies/${movieData.title}`;
   return (
     <figure className={style.card}>
-      <Link
-        style={{ textDecoration: "none" }}
-        passHref
-        href={link}
-      >
+      <Link style={{ textDecoration: "none" }} passHref href={link}>
         <Image
           className={style.img}
           height={120}

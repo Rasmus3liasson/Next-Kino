@@ -2,11 +2,7 @@ import Image from "next/image";
 import style from "./style.module.scss";
 import { MovieProps } from "@/util/types";
 
-export default function MovieDetails({
-  movieData,
-}: {
-  movieData: MovieProps;
-}) {
+export default function MovieDetails({ movieData }: { movieData: MovieProps }) {
   return (
     <div className={style.container}>
       <Image
