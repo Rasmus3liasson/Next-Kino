@@ -21,7 +21,7 @@ export default async function GET(
     if (data === undefined) {
       res.status(500).json({ error: data });
     } else {
-      res.status(200).json(data);
+      res.status(200).send(data);
     }
   } catch (error) {
     console.log(error);
@@ -30,7 +30,7 @@ export default async function GET(
 
 export async function getMovieScreenings(
   idQuery: string
-): Promise<SortedScreenings> {
+): Promise<SortedScreenings | string> {
   await connectMongo();
 
   // @rasmus-eliasson
@@ -45,7 +45,6 @@ export async function getMovieScreenings(
       $group: {
         _id: {
           $dateToString: {
-            format: '%Y-%m-%d',
             date: '$screenings.displayDate'
           }
         },
@@ -83,14 +82,6 @@ export async function getMovieScreenings(
     }
   ]).exec();
 
-  
-  // if (screeningData === null) {
-  //   return "No Screenings found for provided id";
-  // } else {
-  //   const responseData: SortedScreenings = {
-  //     movieId: screeningData.title,
-  //     //location: screeningData.location, Not implemented
-  //     dayScreenings: JSON.stringify(sortByDayAndTime(screeningData.screenings)),
-  //   };
-  return movieScreenings;
+  const result = JSON.stringify(movieScreenings);
+  return result;
 }
