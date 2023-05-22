@@ -21,11 +21,9 @@ export default function Seat({ movieData }: { movieData: ScreeningType }) {
   async function updateUnavailableSeats() {
     event?.preventDefault();
 
-    const occupiedSeats = await fetch(`/api/movies/${movieData.title}/bookings/${movieData.date}`);
-    occupiedSeats.map
-      
-    });
     
+const occupiedSeats = await fetch("api/movies/Ariel/bookings/2023-08-16T12:16:21.856+00:00");
+    console.log(occupiedSeats);
 
     setIsSelected(true);
   }

@@ -6,9 +6,6 @@ import { getData } from "../api/screenings";
 import { getMovies } from "../api/movies";
 import getBookings from "../api/bookings/GET";
 import Link from "next/link";
-import getUser from "../api/auth/GetUser";
-import User from "../../../models/user";
-
   
   // TODO: Add database functions here.
   const req = 1;
@@ -18,15 +15,9 @@ import User from "../../../models/user";
     return {
       props: {
         screenings: (await getData()).at(0),
-        movies: await getMovies(),
-        bookings: await getBookings(req,res),
-        User: (await getUser)                            
+        movies: await getMovies()                        
       },
     };
-  }
-
-  const fetchUnavailableSeats = () => {
-    fetch 
   }
 
 export default function SelectSeats({ screenings}: { screenings: ScreeningType[]}) {
@@ -37,8 +28,8 @@ export default function SelectSeats({ screenings}: { screenings: ScreeningType[]
           <meta name="description" content="Kino project in next.js" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
-        <Saloon props={getServerSideProps}/>
-        <BuyTickets props={getServerSideProps} />
+        <Saloon screenings/>
+        <BuyTickets screenings/>
       </>
     );
   }
