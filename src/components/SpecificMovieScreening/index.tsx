@@ -2,36 +2,17 @@ import style from "./style.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { DateTime } from "luxon";
+import { SpecificScreening } from "../../../types/screeningTypes";
 
-// Helper component to render language flags
-function LangComponent({
-  language,
-  form = "",
-}: {
-  language: string;
-  form: string;
-}) {
-  if (form === "Utan Text") {
-    return <>{form}</>;
-  }
-  return (
-    <>
-      {form}
-      <Image alt={language} src={`/${language}.svg`} width={40} height={15} />
-    </>
-  );
-}
-function formatTime(time: string) {
-  return `${DateTime.fromISO(time).toFormat("HH:mm")}`;
-}
 
 export default function SpecificMovieScreening({
   screening,
   hrefLink,
 }: {
-  screening: null;
+  screening: SpecificScreening;
   hrefLink: string;
 }) {
+  console.log(screening)
   const screeningLink = `/movies/${hrefLink}/booking?screening=${Date.parse(
     screening.displayDate
   )}`;
@@ -57,4 +38,27 @@ export default function SpecificMovieScreening({
       </Link>
     </li>
   );
+}
+
+// Helper component to render language flags
+function LangComponent({
+  language,
+  form = "",
+}: {
+  language: string;
+  form: string;
+}) {
+  if (form === "Utan Text") {
+    return <>{form}</>;
+  }
+  return (
+    <>
+      {form}
+      <Image alt={language} src={`/${language}.svg`} width={40} height={15} />
+    </>
+  );
+}
+// Helper to format time 
+function formatTime(time: string) {
+  return `${DateTime.fromISO(time).toFormat("HH:mm")}`;
 }

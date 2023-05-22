@@ -1,13 +1,14 @@
 import Head from "next/head";
 import MovieDetails from "@/components/MovieDetails";
 import AllSpecificMovieScreenings from "@/components/AllSpecificMovieScreenings";
-import { ScreeningType, SortedScreenings } from "@/util/types";
+import { SortedScreenings } from "../../../../types/screeningTypes";
 import { getMovieScreenings } from "@/pages/api/upcoming-screenings";
 import connectMongo from "@/util/connectMongo";
 import Movie from "../../../../models/movie";
 import ShowReviews from "@/components/ShowReviews";
 import { ReviewData, ReviewProps } from "../../../../types/reviewTypes";
 import { getMovie } from "@/util/dbAggregations";
+import { MovieProps } from "@/util/types";
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -57,7 +58,7 @@ export default function MovieDetailsPage({
   movieScreenings,
 }: {
   reviewData: ReviewProps;
-  movie: ScreeningType;
+  movie: MovieProps;
   movieScreenings: SortedScreenings;
 }) {
   return (

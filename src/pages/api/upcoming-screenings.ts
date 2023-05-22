@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import sortByDayAndTime from "@/util/datehandler";
-import { SortedScreenings } from "@/util/types";
+import { SortedScreenings } from "../../../types/screeningTypes";
 import connectMongo from "@/util/connectMongo";
 import Movie from "../../../models/movie";
 

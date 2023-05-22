@@ -1,11 +1,11 @@
 import Image from "next/image";
 import style from "./style.module.scss";
-import { ScreeningType } from "@/util/types";
+import { MovieProps } from "@/util/types";
 
 export default function MovieDetails({
   movieData,
 }: {
-  movieData: ScreeningType;
+  movieData: MovieProps;
 }) {
   return (
     <div className={style.container}>

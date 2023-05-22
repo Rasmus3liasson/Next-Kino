@@ -1,4 +1,3 @@
-import { screening } from "../../models/movie";
 
 export type ScreeningType = {
   id: string;
@@ -12,14 +11,6 @@ export type ScreeningType = {
   screenings: string[];
   description: string;
   rating: number;
-};
-
-export type SortedScreenings = {
-  title: string;
-  screeningsByDay: {
-    displayDate: string;
-    screenings: screening[]
-  }[]
 };
 
 export type SubmitedUserResponse = {
@@ -47,11 +38,5 @@ export type StrengthMeterStyles = {
 export type MovieProps = {
   title: string;
   poster: string;
+  description?: string;
 };
-export type ScreeningProps = {
-  _id: number;
-  title: string;
-  poster: string;
-  screening: string;
-  location?: string;
-}
