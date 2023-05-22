@@ -22,10 +22,12 @@ export default function Seat({ movieData }: { movieData: ScreeningType }) {
     event?.preventDefault();
 
     const occupiedSeats = await fetch(`/api/movies/${movieData.title}/bookings/${movieData.date}`);
-    
+    occupiedSeats.map
+      
+    });
     
 
-    setIsSelected(false);
+    setIsSelected(true);
   }
 
     return (
