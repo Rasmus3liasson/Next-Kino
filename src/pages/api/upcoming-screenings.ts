@@ -30,7 +30,7 @@ export default async function GET(
 
 export async function getMovieScreenings(
   idQuery: string
-): Promise<SortedScreenings | string> {
+): Promise<SortedScreenings> {
   await connectMongo();
 
   // @rasmus-eliasson
@@ -38,57 +38,52 @@ export async function getMovieScreenings(
     {
       $match: { title: idQuery },
     },
-    // {
-    //   $unwind: "$screenings",
-    // },
-    // {
-    //   $addFields: {
-    //     luxonDate: {
-    //       $dateFromParts: {
-    //         year: { $year: "$displayDate" },
-    //         month: { $month: "$displayDate" },
-    //         day: { $day: "$displayDate" },
-    //         hour: { $hour: "$displayDate" },
-    //         minute: { $minute: "$displayDate" },
-    //       },
-    //     },
-    //   },
-    // },
-    // {
-    //   $addFields: {
-    //     day: { $dateToString: { format: "%Y-%m-%d", date: "$luxonDate" } },
-    //     time: "$luxonDate",
-    //   },
-    // },
-    // {
-    //   $group: { _id: "$day", screenings: { $push: "$$ROOT" } },
-    // },
-    // {
-    //   $group: { 
-    //     _id: null,
-    //     sortedScreenings: { $push: { k: '$_id', v: '$screenings'}}
-    //   }
-    // },
-    // {
-    //   $replaceRoot: {
-    //     newRoot: { $arrayToObject: '$sortedScreenings' }
-    //   }
-    // }
-    // {
+    {
+      $unwind: "$screenings",
+    },
+    {
+      $group: {
+        _id: {
+          $dateToString: {
+            format: '%Y-%m-%d',
+            date: '$screenings.displayDate'
+          }
+        },
+        screenings: {
+          $push: '$screenings'
+        },
+          title: {
+            $first: '$title',
+        }
+      }
+    },
+    {
+      $sort: {
+        '_id': 1
+      }
+    },
+    {
+      $group: {
+        _id: null,
+        title: {
+          $first: '$title'
+        },
+        screeningsByDay: {
+          $push: {
+            date: '$_id',
+            screenings: '$screenings'
+          }
+        }
+      }
+    },
+    {
+      $project: {
+        _id: 0,
+      }
+    }
+  ]).exec();
 
-    // }
-    // {
-    //   $project:
-    //   {
-    //     _id: 0,
-    //     title: '$title',
-    //     subLang: '$subtitLang',
-    //     spokLang: '$spokenLang',
-    //   }
-    // }
-  ]);
-  console.log(movieScreenings);
-
+  
   // if (screeningData === null) {
   //   return "No Screenings found for provided id";
   // } else {

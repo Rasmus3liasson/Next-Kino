@@ -1,3 +1,5 @@
+import { screening } from "../../models/movie";
+
 export type ScreeningType = {
   id: string;
   date: string;
@@ -13,9 +15,11 @@ export type ScreeningType = {
 };
 
 export type SortedScreenings = {
-  movieId: string;
-  // location: string; Not implemented
-  dayScreenings: string[][] | string;
+  title: string;
+  screeningsByDay: {
+    displayDate: string;
+    screenings: screening[]
+  }[]
 };
 
 export type SubmitedUserResponse = {

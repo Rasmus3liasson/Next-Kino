@@ -31,7 +31,7 @@ export default function SpecificMovieScreening({
   hrefLink: string;
   location: string;
 }) {
-  const screeningLink = `/movie/${hrefLink}/booking?screening=${Date.parse(
+  const screeningLink = `/movies/${hrefLink}/booking?screening=${Date.parse(
     time
   )}`;
   return (
