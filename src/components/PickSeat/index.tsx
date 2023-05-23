@@ -45,5 +45,34 @@ export default function PickSeat() {
     return seats;
   };
 
+  async function postNewSeats() {
+    const { occupiedSeats } = await bookedSeats();
+    const newSeatsAdded = [...occupiedSeats, ...selectedSeats];
+    const newSeatsAddedSort = newSeatsAdded.sort((a, b) => a - b);
+
+    try {
+      await fetch("api/movies/Ariel/bookings/2023-08-16T12:16:21.856+00:00", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ occupiedSeats: newSeatsAddedSort }),
+      });
+      console.log("Seats updated");
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+  postNewSeats();
+
   return <section className={style.container}>{seatBoard()}</section>;
 }
+
+async function bookedSeats() {
+  const res = await fetch(
+    "api/movies/Ariel/bookings/2023-08-16T12:16:21.856+00:00"
+  );
+  const dataSeats = await res.json();
+  return dataSeats;
+}
+bookedSeats();
