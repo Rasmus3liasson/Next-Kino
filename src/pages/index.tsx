@@ -29,6 +29,8 @@ export default function Home({
   movies: MovieType[];
   token: IUser | null;
 }) {
+  console.log("Movies:", movies); // Log the movies data to the console
+
   return (
     <>
       <Head>

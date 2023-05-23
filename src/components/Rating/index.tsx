@@ -12,27 +12,30 @@ const Rating: React.FC<RatingProps> = ({ movieData }) => {
   useEffect(() => {
     const fetchRating = async () => {
       try {
-        const response = await fetch("/api/movies/ratings");
+        const response = await fetch("/api/rating/get");
         const data = await response.json();
 
+        console.log("API response:", data);
+
         if (response.ok) {
-          // Assuming the ratings data is returned as an array of objects
-          // with each object containing the movie title and rating
           const movie = data.movies.find(
             (m: { title: string; reviews: { rating: number }[] }) =>
               m.title === movieData.title
           );
 
+          console.log("Movie:", movie);
+
           if (movie) {
             setRating(movie.reviews.rating);
             return;
           }
+        } else {
+          console.log("Error response:", response.status, response.statusText);
         }
       } catch (error) {
         console.log("Error fetching movie rating:", error);
       }
 
-      // If rating is not found in the ratings data, set it to a default value
       setRating(null);
     };
 
