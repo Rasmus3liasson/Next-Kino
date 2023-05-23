@@ -7,6 +7,7 @@ export type ScreeningType = {
   subLang: string;
   poster: string;
   screeningId: string;
+  rating: number;
 };
 
 export type SubmitedUserResponse = {
@@ -35,4 +36,5 @@ export type MovieType = {
   id: number;
   title: string;
   poster: string;
+  rating: number;
 };
