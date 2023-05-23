@@ -11,12 +11,12 @@ export default function Seat({ movieData }: { movieData: ScreeningType }) {
 
     const handleClick = () => {
         setIsSelected(!selected)
-        const test = fetch("api/movies/Ariel/bookings/2023-08-16T12:16:21.856+00:00");
-        console.log(test)
+        updateUnavailableSeats()
+        
         if (selected){
             counter + 1
         }else{
-            counter-1
+            counter - 1
         }
     }
 
@@ -25,20 +25,23 @@ async function updateUnavailableSeats() {
     event?.preventDefault();
 
     
-const occupiedSeats = await fetch("api/movies/Ariel/bookings/2023-08-16T12:16:21.856+00:00");                                                                                            
+const dbResponse = await fetch("api/movies/Ariel/bookings/2023-08-16T12:16:21.856+00:00");                                                                                            
 
-const arr = occupiedSeats.map(function(element){
-
-})
-
+    console.log(dbResponse);
+    const data = dbResponse.json();
+    data.then((data) => {
+        const occupiedSeats = data.occupiedSeats;
+        console.log(occupiedSeats);
+    //setIsSelected(true);
+    })
 
     
-    setIsSelected(true);
-  }
+}
+return (
+    <div
+        className = {selected ? style.selectedSeat : style.availableSeat} onClick={handleClick} ><span className={style.noRotation}></span>    
+    </div>
+)
 
-    return (
-        <div
-            className = {selected ? style.selectedSeat : style.availableSeat} onClick={handleClick} ><span className={style.noRotation}></span>    
-        </div>
-    );
-  }
+};
+  

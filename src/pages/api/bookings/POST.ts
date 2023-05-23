@@ -26,3 +26,4 @@ export default async function createBooking(req: any, res: any) {
     res.json({ error });
   }
 }
+
