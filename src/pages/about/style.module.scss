@@ -1,0 +1,28 @@
+@import "../../styles/variables.scss";
+.aboutUs {
+  color: $text-light;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 7rem;
+  margin-bottom: 2rem;
+  h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 4em;
+    letter-spacing: 0.3em;
+    padding-bottom: 0.1em;
+    padding-top: 0.6em;
+  }
+  h2 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+    padding-top: 0.4em;
+  }
+  p {
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+  }
+}

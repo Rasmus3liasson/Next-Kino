@@ -1,0 +1,39 @@
+@import "../variables.scss";
+.section {
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section .error {
+  font-size: 150px;
+  color: $button-primary;
+  text-shadow: 1px 1px 1px $button-primary-shade,
+    2px 2px 1px $button-primary-shade, 3px 3px 1px $button-primary-shade,
+    4px 4px 1px $button-primary-shade, 5px 5px 1px $button-primary-shade,
+    6px 6px 1px $button-primary-shade, 7px 7px 1px $button-primary-shade,
+    8px 8px 1px $button-primary-shade, 25px 25px 8px rgba(0, 0, 0, 0.2);
+}
+
+.page {
+  margin: 2rem 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #444;
+}
+
+.back-home {
+  display: inline-block;
+  border: 2px solid $button-primary;
+  color: $button-primary;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0.75rem 1rem 0.6rem;
+  transition: all 0.2s linear;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+.back-home:hover {
+  background: $button-primary-shade;
+  color: $text-light;
+}

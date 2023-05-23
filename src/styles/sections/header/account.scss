@@ -1,0 +1,69 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+.account-icon {
+  margin-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  right: 0;
+  top: -1rem;
+
+  @media screen and (min-width: $large-screen) {
+    margin-left: 1.5rem;
+    margin-top: 2rem;
+  }
+  .logo-image {
+    z-index: 2;
+  }
+}
+
+@media screen and (max-width: $large-screen) {
+  .account-icon {
+    position: absolute;
+    top: 2rem;
+    right: 3.5rem;
+  }
+}
+
+.dropdown-account {
+  color: $text-light;
+  display: none;
+
+  &-show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    position: absolute;
+    right: 1.4rem;
+    top: 5.3rem;
+
+    @media screen and (min-width: $large-screen) {
+      position: absolute;
+      top: 5.3rem;
+      right: 0.5rem;
+    }
+  }
+  .sign-out-text {
+    position: relative;
+    margin-top: -0.6rem;
+    margin-right: 2.3rem;
+    background-color: $site-bg;
+    z-index: 1;
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    @media screen and (min-width: $large-screen) {
+      margin-right: -0.1rem;
+      margin-top: -0.9rem;
+      padding-left: 2rem !important;
+      padding-right: 2rem !important;
+    }
+  }
+  .hide-name {
+    display: none;
+  }
+}

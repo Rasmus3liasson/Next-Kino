@@ -1,20 +1,35 @@
 import Head from "next/head";
+import AllMovies from "@/components/AllMovies";
 import ScreeningsHome from "../components/ScreeningsHome";
-import { ScreeningType } from "@/util/types";
+import { ScreeningType, MovieType } from "@/util/types";
 import { getData } from "./api/screenings";
-import Rating from "../components/Rating/index";
+import { getMovies } from "./api/movies";
+import { GetServerSidePropsContext } from "next";
+import validateAuthToken from "@/util/validateAuthToken";
+import { IUser } from "../../models/user";
+import Rating from "@/components/Rating";
 
 // TODO: Add database functions here.
-export async function getServerSideProps() {
-  const data = await getData();
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   return {
     props: {
-      screenings: data,
+      token: validateAuthToken(context.req.cookies.AuthToken!) /* TEST */,
+      screenings: await getData(),
+      movies: await getMovies(),
     },
   };
 }
 
-export default function Home({ screenings }: { screenings: ScreeningType[] }) {
+// TODO: Remove testcode, don't forget props.
+export default function Home({
+  screenings,
+  movies,
+  token,
+}: {
+  screenings: ScreeningType[];
+  movies: MovieType[];
+  token: IUser | null;
+}) {
   return (
     <>
       <Head>
@@ -22,7 +37,10 @@ export default function Home({ screenings }: { screenings: ScreeningType[] }) {
         <meta name="description" content="Kino project in next.js" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      {/* <Rating movieData={screenings[0]} rating="9.5" /> */}
+      {/* TEST */}
+      <h1 className="text-center text-white text-6xl">{token?.name.first}</h1>
+      <AllMovies movieData={movies} />
+      <Rating movieData={movies[0]} />
       <ScreeningsHome screenings={screenings} />
     </>
   );
