@@ -1,0 +1,22 @@
+@import '../../styles/variables.scss';
+
+.purchase{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.headline{
+    margin-top: 20px;
+    font-size: 48px;
+}
+
+.poster{
+    width: 150px;
+}
+
+.movieTitle{
+    font-size: x-large;
+}
