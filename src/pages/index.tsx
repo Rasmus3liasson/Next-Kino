@@ -4,33 +4,23 @@ import ScreeningsHome from "../components/ScreeningsHome";
 import { MovieProps } from "@/util/types";
 import { getTenScreenings } from "./api/screenings";
 import { getTenMovies } from "./api/movies";
-import { GetServerSidePropsContext } from "next";
-import validateAuthToken from "@/util/validateAuthToken";
-import { IUser } from "../../models/user";
-import { useContext, useEffect } from "react";
-import { accountStateContext } from "./_app";
 
-// TODO: Add database functions here.
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export async function getServerSideProps() {
   return {
     props: {
-      token: validateAuthToken(context.req.cookies.AuthToken!) /* TEST */,
       screenings: await getTenScreenings(),
       movies: await getTenMovies(),
     },
   };
 }
-//TODO: Remove testcode, dont forget props.
+
 export default function Home({
   screenings,
   movies,
-  token,
 }: {
   screenings: string;
   movies: MovieProps[];
-  token: IUser | null;
 }) {
-
   const parsedScreenings = JSON.parse(screenings);
 
   return (
@@ -40,11 +30,7 @@ export default function Home({
         <meta name="description" content="Kino project in next.js" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      {
-        /* TEST */ <h1 className="text-center text-white text-6xl">
-          {token?.name.first}
-        </h1>
-      }
+
       <AllMovies movieData={movies} />
       <ScreeningsHome screenings={parsedScreenings} />
     </>

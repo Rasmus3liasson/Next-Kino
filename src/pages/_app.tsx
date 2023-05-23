@@ -17,7 +17,7 @@ export const accountStateContext = createContext<{
   setAccountState: () => {},
 });
 
-function App({ Component, pageProps }: AppProps & { user: userData | null }) {
+function App({ Component, pageProps }: AppProps) {
   const [accountState, setAccountState] = useState<userData | null>(null);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
 
