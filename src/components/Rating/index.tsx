@@ -10,7 +10,7 @@ const Rating: React.FC<RatingProps> = ({ movieData }) => {
   const [rating, setRating] = useState<number | null>(null);
 
   useEffect(() => {
-    const fetchRating = async () => {
+    const fetchMovieData = async () => {
       try {
         const response = await fetch("/api/rating/get");
         const data = await response.json();
@@ -18,15 +18,28 @@ const Rating: React.FC<RatingProps> = ({ movieData }) => {
         console.log("API response:", data);
 
         if (response.ok) {
-          const movie = data.movies.find(
-            (m: { title: string; reviews: { rating: number }[] }) =>
-              m.title === movieData.title
+          const movieData = data.movies.map((movie: any) => {
+            const ratings =
+              movie.reviews?.map((review: any) => review.rating) ?? [];
+            const averageRating = calculateAverageRating(ratings);
+            const roundedRating = Math.round(averageRating);
+            return {
+              title: movie.title,
+              rating: roundedRating,
+            };
+          });
+
+          console.log("Movie Data:", movieData);
+
+          const movie = movieData.find(
+            (m: { title: string }) => m.title === movieData.title
           );
 
           console.log("Movie:", movie);
 
           if (movie) {
-            setRating(movie.reviews.rating);
+            setRating(movie.rating);
+            console.log("Average Rating:", movie.rating);
             return;
           }
         } else {
@@ -39,8 +52,16 @@ const Rating: React.FC<RatingProps> = ({ movieData }) => {
       setRating(null);
     };
 
-    fetchRating();
+    fetchMovieData();
   }, [movieData.title]);
+
+  const calculateAverageRating = (ratings: number[]) => {
+    if (ratings.length === 0) {
+      return 0;
+    }
+    const sum = ratings.reduce((total, rating) => total + rating, 0);
+    return sum / ratings.length;
+  };
 
   const generateStars = () => {
     if (rating === null) {
