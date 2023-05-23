@@ -16,14 +16,6 @@ import User from "../../../models/user";
     };
   }
 
-  // New booking object
-  const newBooking = {
-    email: User.,
-    movieTitle: " ",//title supposed to be here, cant use scer
-    date: new Date(),
-    seats: [6,7,8,9]
-  };
-
 export default function SelectSeats({ screenings}: { screenings: ScreeningType[]}) {
     return(
       <>

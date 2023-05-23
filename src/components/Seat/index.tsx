@@ -10,6 +10,8 @@ export default function Seat({ movieData }: { movieData: ScreeningType }) {
 
     const handleClick = () => {
         setIsSelected(!selected)
+        const test = fetch("api/movies/Ariel/bookings/2023-08-16T12:16:21.856+00:00");
+        console.log(test)
         if (selected){
             counter + 1
         }else{
