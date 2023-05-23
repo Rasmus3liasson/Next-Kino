@@ -1,19 +1,24 @@
+import { MovieProps } from "@/util/types";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { MovieType } from "@/util/types";
-import  mockMovies  from "@/util/mockMovies";
+import connectMongo from "@/util/connectMongo";
+import Movie from "../../../models/movie";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<MovieType[]>
+  res: NextApiResponse<MovieProps[]>
 ) {
-  const data = await getMovies();
-  
+  const data = await getTenMovies();
+
   res.status(200).json(data);
 }
+export async function getTenMovies() {
 
-export async function getMovies(){
-  //TODO: Add database util function that
-  // finds 10 upcoming screenings regardless
-  // of movie.
-  return mockMovies;
+  await connectMongo();
+
+  const tenRandomMovies = Movie.aggregate([
+    { $sample: { size: 10 } },
+    { $project: { _id: 0, title: "$title", poster: "$imgUrl" } },
+  ]);
+  const result = await tenRandomMovies.exec();
+  return result;
 }

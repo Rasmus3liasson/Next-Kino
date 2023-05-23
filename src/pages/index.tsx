@@ -1,9 +1,9 @@
 import Head from "next/head";
 import AllMovies from "@/components/AllMovies";
 import ScreeningsHome from "../components/ScreeningsHome";
-import { ScreeningType, MovieType } from "@/util/types";
-import { getData } from "./api/screenings";
-import { getMovies } from "./api/movies";
+import { MovieProps } from "@/util/types";
+import { getTenScreenings } from "./api/screenings";
+import { getTenMovies } from "./api/movies";
 import { GetServerSidePropsContext } from "next";
 import validateAuthToken from "@/util/validateAuthToken";
 import { IUser } from "../../models/user";
@@ -15,8 +15,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   return {
     props: {
       token: validateAuthToken(context.req.cookies.AuthToken!) /* TEST */,
-      screenings: await getData(),
-      movies: await getMovies(),
+      screenings: await getTenScreenings(),
+      movies: await getTenMovies(),
     },
   };
 }
@@ -26,10 +26,13 @@ export default function Home({
   movies,
   token,
 }: {
-  screenings: ScreeningType[];
-  movies: MovieType[];
+  screenings: string;
+  movies: MovieProps[];
   token: IUser | null;
 }) {
+
+  const parsedScreenings = JSON.parse(screenings);
+
   return (
     <>
       <Head>
@@ -43,7 +46,7 @@ export default function Home({
         </h1>
       }
       <AllMovies movieData={movies} />
-      <ScreeningsHome screenings={screenings} />
+      <ScreeningsHome screenings={parsedScreenings} />
     </>
   );
 }

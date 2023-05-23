@@ -2,13 +2,25 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [
-      "image.tmdb.org",
-      "i-viaplay-com.akamaized.net",
-      "themoviedb.org",
-      "www.themoviedb.org",
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'm.media-amazon.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'image.tmdb.org'
+      },
+      {
+        protocol: 'https',
+        hostname: 'i-viaplay-com.akamaized.net'
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.themoviedb.org'
+      }
     ],
   },
-};
+}
 
 module.exports = nextConfig;

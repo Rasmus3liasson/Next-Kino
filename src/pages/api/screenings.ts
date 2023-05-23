@@ -1,19 +1,39 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { ScreeningType } from "@/util/types";
-import { movieDataArray } from "@/util/mockMovieData";
+import connectMongo from "@/util/connectMongo";
+import Movie from "../../../models/movie";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<ScreeningType[]>
-) {
-  const data = await getData();
-  
+export default async function handler(req: NextApiRequest, res: MovieLink) {
+  const data = await getTenScreenings();
+
   res.status(200).json(data);
 }
+interface MovieLink extends NextApiResponse {
+  title: string;
+  poster: string;
+  screeningDate: Date;
+}
+export async function getTenScreenings() {
+  await connectMongo();
 
-export async function getData(){
-  //TODO: Add database util function that
-  // finds 10 upcoming screenings regardless
-  // of movie.
-  return movieDataArray;
+  const tenScreenings = await Movie.aggregate([
+    {
+      $unwind: "$screenings",
+    },
+    {
+      $sort: { 'screenings.displayDate': 1 }
+    },
+    {
+      $limit: 10,
+    },
+    {
+      $project: { 
+        'screening': '$screenings.displayDate',
+        'location': '$screenings.saloon',      
+        'title': 1,
+        'poster' : '$imgUrl',
+      }
+    }
+  ]).exec();
+  const result = JSON.stringify(tenScreenings)
+  return result;
 }
