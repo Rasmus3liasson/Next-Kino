@@ -32,7 +32,6 @@ export default function AllSpecificMovieScreenings({
     <section className={style.screeningList}>
       <h3>Kommande visningar</h3>
       {list.map((screeningsByDay, index: number) => {
-        console.log(screeningsByDay.date)
         const dayOfScreening = DateTime.fromISO(
           screeningsByDay.date
         ).toISODate();
