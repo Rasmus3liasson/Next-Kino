@@ -172,7 +172,8 @@ const CreateUserForm = () => {
         )}
 
         <ul className="!p-0 mt-2 flex flex-col">
-          {errors.map((errorMessage, index: number) => {
+         {errors.map((errorMessage, index: number) => {
+
             return (
               <li
                 key={index}

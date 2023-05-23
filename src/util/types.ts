@@ -40,3 +40,12 @@ export type MovieProps = {
   poster: string;
   description?: string;
 };
+
+export type userData = {
+  name: { 
+    first: string; 
+    last: string 
+  };
+  email: string;
+  userName: string;
+}
