@@ -68,9 +68,11 @@ const Rating: React.FC<RatingProps> = ({ movieData }) => {
       return null;
     }
 
+    const fullStars = Math.floor(rating);
+
     const stars = [];
 
-    for (let i = 1; i <= rating; i++) {
+    for (let i = 1; i <= fullStars; i++) {
       stars.push(
         <span key={i} className={`star selected`}>
           &#9733;
