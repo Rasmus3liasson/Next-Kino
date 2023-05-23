@@ -3,15 +3,12 @@ import Payment from "@/components/Payment";
 import ConfirmPurchase from "@/components/ConfirmPurchase";
 import { ScreeningType } from "@/util/types";
 import { getData } from "../api/screenings";
-import getUser from "../api/auth/GetUser";
-import User from "../../../models/user";
 
   
   export async function getServerSideProps() {
     return {
       props: {
         screenings: (await getData()).at(0),
-        User: (await getUser)
       },
     };
   }
