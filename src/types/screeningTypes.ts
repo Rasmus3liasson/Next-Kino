@@ -17,6 +17,6 @@ export type ScreeningProps = {
     subtitLang: "en-GB" | "se-SV" | null;
   };
   export type SortedScreeningsByDay = {
-        displayDate: string;
+        date: string;
         screenings: SpecificScreening[]
   }

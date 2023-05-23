@@ -17,14 +17,13 @@ export default function AllSpecificMovieScreenings({
   screenings: SortedScreenings;
 }) {
   const [expanded, setExpanded] = useState(false);
-  const parsedProps = JSON.parse(screenings)[0];
 
   const today = DateTime.now().toISODate();
   const tomorrow = DateTime.now().plus({ days: 1 }).toISODate();
 
   const list = expanded
-    ? parsedProps.screeningsByDay
-    : parsedProps.screeningsByDay.slice(0, 2);
+    ? screenings.screeningsByDay
+    : screenings.screeningsByDay.slice(0, 2);
 
   function handleClick() {
     expanded ? setExpanded(false) : setExpanded(true);
@@ -33,6 +32,7 @@ export default function AllSpecificMovieScreenings({
     <section className={style.screeningList}>
       <h3>Kommande visningar</h3>
       {list.map((screeningsByDay, index: number) => {
+        console.log(screeningsByDay.date)
         const dayOfScreening = DateTime.fromISO(
           screeningsByDay.date
         ).toISODate();
@@ -47,7 +47,7 @@ export default function AllSpecificMovieScreenings({
                   DateTime.fromISO(dayOfScreening).toFormat("dd LLL")}
             </h6>
             <ScreeningDay
-              movieId={parsedProps.title}
+              movieId={screenings.title}
               screeningDay={screeningsByDay}
             />
           </div>

@@ -1,7 +1,6 @@
 import Head from "next/head";
 import MovieDetails from "@/components/MovieDetails";
 import AllSpecificMovieScreenings from "@/components/AllSpecificMovieScreenings";
-import { SortedScreenings } from "../../../../types/screeningTypes";
 import { getMovieScreenings } from "@/pages/api/upcoming-screenings";
 import connectMongo from "@/util/connectMongo";
 import Movie from "../../../../models/movie";
@@ -59,8 +58,9 @@ export default function MovieDetailsPage({
 }: {
   reviewData: ReviewProps;
   movie: MovieProps;
-  movieScreenings: SortedScreenings;
+  movieScreenings: string;
 }) {
+  const parsedProps = JSON.parse(movieScreenings)[0];
   return (
     <>
       <Head>
@@ -74,7 +74,7 @@ export default function MovieDetailsPage({
       <MovieDetails movieData={movie} />
       {/* Rating - component goes here! */}
       <ShowReviews reviewData={reviewData} />
-      <AllSpecificMovieScreenings screenings={movieScreenings} />
+      <AllSpecificMovieScreenings screenings={parsedProps} />
     </>
   );
 }
