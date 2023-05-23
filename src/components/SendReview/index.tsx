@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import style from "./style.module.scss";
+import { accountStateContext } from "@/pages/_app";
 
 export default function SendReview() {
   //gets id from url
   const router = useRouter();
   const { id } = router.query;
+
+  //retrives the context
+  const { accountState } = useContext(accountStateContext);
 
   const [rating, setRating] = useState<number>(1);
   const [comment, setComment] = useState<string>("");
@@ -42,7 +46,7 @@ export default function SendReview() {
   return (
     <>
       <div className={style.sendReviewContainer}>
-        {!isActive && !toggleBtn && (
+        {!isActive && !toggleBtn && accountState && (
           <button className={style.toggleBtn} onClick={toggleSendReviewForm}>
             Lämna Recension
           </button>

@@ -7,6 +7,8 @@ import { getMovies } from "./api/movies";
 import { GetServerSidePropsContext } from "next";
 import validateAuthToken from "@/util/validateAuthToken";
 import { IUser } from "../../models/user";
+import { useContext, useEffect } from "react";
+import { accountStateContext } from "./_app";
 
 // TODO: Add database functions here.
 export async function getServerSideProps(context: GetServerSidePropsContext) {

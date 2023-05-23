@@ -1,35 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useContext, createContext } from "react";
 import SearchInput from "./SearchInput";
-
-/* async function retriveMovieData() {
-  const res = await fetch("/api/screenings");
-  const data = await res.json();
-
-  return data;
-} */
+import { accountStateContext } from "@/pages/_app";
+import LoginForm from "./LoginForm";
+import { loginModalContext } from "@/util/loginModalContext";
 
 export default function Header() {
   const router = useRouter();
 
-  //Just an example path
-  const [path, setPath] = useState<string>("/login");
-
-  /*   const [movieTitle, setMovieTitle] = useState<string[]>([]);
-  const [movieImage, setMovieImage] = useState<string[]>([]);
-
-  async function setMovieContent() {
-    const data = await retriveMovieData();
-
-    setMovieTitle(data);
-    setMovieImage(data);
-  }
-
-  useEffect(() => {
-    setMovieContent();
-  }, [searchResult]); */
+  const { accountState } = useContext(accountStateContext);
+  const { loginModalOpen, setLoginModalOpen } = useContext(loginModalContext);
 
   const toggleNav = () => {
     const nav = document.querySelector("#navbarSupportedContent");
@@ -40,139 +22,131 @@ export default function Header() {
     menuIcon?.classList.toggle("navbar-toggler-icon");
   };
 
-  const toggleAccountNav = () => {
-    const accountIcon = document.querySelector(".dropdown-account");
-    const nameText = document.querySelector(".name-text");
-
-    accountIcon?.classList.toggle("dropdown-account-show");
-    nameText?.classList.toggle("hide-name");
-  };
-
-  //sets underline to link based on current route
-  const currentPage = (path: string[]) => {
-    return path.includes(router.asPath) ? "current-page" : "";
-  };
-
   return (
-    <header className="sticky-top">
-      <nav className="navbar navbar-expand-lg sticky-top">
-        <Link href={router.asPath.includes(path) ? path + "/" : "/"}>
-          <Image
-            src={"/logo-cinema.png"}
-            alt="logotype of our cinema"
-            height={100}
-            width={200}
-          />
-        </Link>
-        <div>
+    <>
+      {loginModalOpen && <LoginForm />}
+      <header className="sticky-top">
+        <nav className="navbar navbar-expand-lg sticky-top">
+          <Link href={"/"}>
+            <Image
+              src={"/logo-cinema.png"}
+              alt="logotype of our cinema"
+              height={100}
+              width={200}
+            />
+          </Link>
           <div>
-            <span
-              onClick={toggleNav}
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-              className="navbar-toggler-icon navbar-toggler hamburger-icon border-0 text-white"
-              id="menu-icon"
-            ></span>
+            <div>
+              <span
+                onClick={toggleNav}
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                className="navbar-toggler-icon navbar-toggler hamburger-icon border-0 text-white"
+                id="menu-icon"
+              ></span>
+            </div>
           </div>
 
-          {/* Dropdown for account with condition based on route */}
-          <div className="dropdown-account">
-            <ul className="navbar-nav mr-auto d-flex flex-row gap-2">
-              {!router.asPath.includes(path) ? (
-                <>
-                  <li className="nav-item">
-                    <Link className="nav-link" href={"#"}>
-                      Logga in
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" href={"#"}>
-                      Skapa Konto
-                    </Link>
-                  </li>
-                </>
-              ) : (
-                <li className="nav-item">
-                  <Link className="nav-link sign-out-text" href={"/"}>
-                    Logga ut
-                  </Link>
-                </li>
-              )}
+          <div className="navbar-collapse sidebar" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${
+                    router.asPath === "/" && "current-page"
+                  }`}
+                  href={"/"}
+                >
+                  Startsida
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${
+                    router.asPath === "/about" && "current-page"
+                  }`}
+                  href={"/about"}
+                >
+                  Om oss
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${
+                    router.asPath === "/contact" && "current-page"
+                  }`}
+                  href={"/contact"}
+                >
+                  Kontakt
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${
+                    router.asPath === "/openinghours" && "current-page"
+                  }`}
+                  href={"/openinghours"}
+                >
+                  Öppetider
+                </Link>
+              </li>
             </ul>
+            <SearchInput />
           </div>
-        </div>
 
-        <div className="navbar-collapse sidebar" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link
-                className={`nav-link ${currentPage(["/", path])}`}
-                href={router.asPath.includes(path) ? path + "/" : "/"}
-              >
-                Startsida
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className={`nav-link ${currentPage([
-                  "/about",
-                  path + "/about",
-                ])}`}
-                href={router.asPath.includes(path) ? path + "/about" : "/about"}
-              >
-                Om oss
-              </Link>
-            </li>
+          <div className="account-icon">
+            <Image
+              className="logo-image"
+              src={"/account-icon.png"}
+              alt="accout logo"
+              height={50}
+              width={50}
+            />
 
-            <li className="nav-item">
-              <Link
-                className={`nav-link ${currentPage([
-                  "/contact",
-                  path + "/contact",
-                ])}`}
-                href={
-                  router.asPath.includes(path) ? path + "/contact" : "/contact"
-                }
+            {accountState ? (
+              <DropDown username={accountState.name.first} />
+            ) : (
+              <button
+                onClick={() => {
+                  setLoginModalOpen(true);
+                }}
               >
-                Kontakt
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className={`nav-link ${currentPage([
-                  "/openinghours",
-                  path + "/openinghours",
-                ])}`}
-                href={
-                  router.asPath.includes(path)
-                    ? path + "/openinghours"
-                    : "/openinghours"
-                }
-              >
-                Öppetider
-              </Link>
-            </li>
-          </ul>
-          <SearchInput />
-        </div>
+                Logga in
+              </button>
+            )}
+          </div>
+        </nav>
+      </header>
+    </>
+  );
+}
 
-        <div className="account-icon">
-          <Image
-            className="logo-image"
-            onClick={toggleAccountNav}
-            src={"/account-icon.png"}
-            alt="accout logo"
-            height={50}
-            width={50}
-          />
-
-          {/* implement name from database */}
-          {router.asPath.includes(path) && <p>FirstName</p>}
-        </div>
-      </nav>
-    </header>
+function DropDown({ username }: { username: string }) {
+  return (
+    <div className="group inline-block relative">
+      <div className="relative">
+        <button className="text-2xl font-semibold after:content-['\25BE']">
+          {username}
+        </button>
+        <ul className="hidden absolute group-hover:block group-hover:bg-blue-400 ">
+          <li className="pt-2 px-2 hover:bg-blue-600">
+            <Link className="text-1xl font-semibold hover:text-white" href="#">
+              Profil
+            </Link>
+          </li>
+          <li className="py-2 px-2 hover:bg-blue-600">
+            <Link
+              className="text-1xl font-semibold hover:text-white"
+              href="/api/auth/Logout"
+            >
+              Logga ut
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </div>
   );
 }

@@ -3,22 +3,18 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { serialize } from "cookie";
 import connectMongo from "@/util/connectMongo";
-import User from "../../../../models/user";
+import User, { IUser } from "../../../../models/user";
 
-type ResType = {
-  authenticated: boolean;
-  message?: string;
-};
 
 export default async function login(
   req: NextApiRequest,
-  res: NextApiResponse<ResType>
+  res: NextApiResponse
 ) {
   const { userName, password } = req.body;
 
   try {
     await connectMongo();
-    const user = await User.findOne({ userName: userName }).exec();
+    const user = await User.findOne({ userName: userName }).exec() as IUser;
 
     if (user) {
       const match = await bcrypt.compare(password, user.passwordHash);
@@ -35,12 +31,11 @@ export default async function login(
             path: "/",
           })
         );
-
-        res.status(201).json({ authenticated: true });
+        res.status(200).json(user);
       }
-    }
+    } else res.status(401).end();
+
   } catch (error) {
     console.error(error);
-    res.status(401).json({ authenticated: false });
   }
 }
