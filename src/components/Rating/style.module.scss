@@ -1,0 +1,17 @@
+@import "../../styles/variables.scss";
+
+.rating {
+  color: red;
+  font-size: 1.8rem;
+  display: inline-flex;
+}
+
+.link {
+  background: $button-primary;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  width: 10vw;
+  font-size: 16px;
+}

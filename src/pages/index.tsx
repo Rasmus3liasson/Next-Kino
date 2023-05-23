@@ -2,6 +2,7 @@ import Head from "next/head";
 import AllMovies from "@/components/AllMovies";
 import ScreeningsHome from "../components/ScreeningsHome";
 import { MovieProps } from "@/util/types";
+import Rating from "@/components/Rating";
 import { getTenScreenings } from "./api/screenings";
 import { getTenMovies } from "./api/movies";
 
@@ -33,6 +34,9 @@ export default function Home({
 
       <AllMovies movieData={movies} />
       <ScreeningsHome screenings={parsedScreenings} />
+      {movies.map((movie) => (
+        <Rating key={movie.title} movieData={movie} />
+      ))}
     </>
   );
 }
