@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { SortedScreenings } from "../../../types/screeningTypes";
+import { SortedScreenings } from "../../types/screeningTypes";
 import connectMongo from "@/util/connectMongo";
 import Movie from "../../../models/movie";
 
@@ -13,7 +13,6 @@ export default async function GET(
   req: idQuery,
   res: NextApiResponse<SortedScreenings | { error: string } | string>
 ) {
-  // Pass params to function below to
   try {
     const data = await getMovieScreenings(req.query.id);
 
@@ -32,7 +31,6 @@ export async function getMovieScreenings(
 ): Promise<SortedScreenings | string> {
   await connectMongo();
 
-  // @rasmus-eliasson
   const movieScreenings = await Movie.aggregate([
     {
       $match: { title: idQuery },
