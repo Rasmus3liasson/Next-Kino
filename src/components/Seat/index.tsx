@@ -20,7 +20,7 @@ export default function Seat({ movieData }: { movieData: ScreeningType }) {
     }
 
   
-  async function updateUnavailableSeats() {
+async function updateUnavailableSeats() {
     event?.preventDefault();
 
     
