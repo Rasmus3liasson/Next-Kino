@@ -6,7 +6,7 @@ import { ScreeningType } from "@/util/types";
 /*
  * Component renders a Link component with elements with data
  * from the given prop movieData.
- * TODO: Fix image src to an URL matching the movie. 
+ * TODO: Fix image src to an URL matching the movie.
  */
 export default function Screening({ movieData }: { movieData: ScreeningType }) {
   const link = `/movie/${movieData.id}/booking?screening=${movieData.screeningId}`;
