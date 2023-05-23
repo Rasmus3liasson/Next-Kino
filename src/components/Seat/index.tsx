@@ -7,6 +7,7 @@ import { ScreeningType } from "@/util/types";
 export default function Seat({ movieData }: { movieData: ScreeningType }) {
     const [selected, setIsSelected] = useState(false);
     const [counter, setSeatCount] = useState(0);  
+    const [unavailable, setUnavailable] = useState(false)
 
     const handleClick = () => {
         setIsSelected(!selected)
@@ -24,9 +25,14 @@ async function updateUnavailableSeats() {
     event?.preventDefault();
 
     
-const occupiedSeats = await fetch("api/movies/Ariel/bookings/2023-08-16T12:16:21.856+00:00");
-    console.log(occupiedSeats);
+const occupiedSeats = await fetch("api/movies/Ariel/bookings/2023-08-16T12:16:21.856+00:00");                                                                                            
 
+const arr = occupiedSeats.map(function(element){
+
+})
+
+
+    
     setIsSelected(true);
   }
 

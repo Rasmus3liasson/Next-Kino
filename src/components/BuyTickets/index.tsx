@@ -16,9 +16,9 @@ export default function BuyTickets({ screenings }: { screenings: ScreeningType }
 
     <div className={style.container}>
       <hr className={style.divider}/>
-      <h2 className={style.title }>{"screenings.title"}</h2>
-      <p className={style.date}> Tid och datum: {"screenings.date"}</p>
-      <p className={style.date}> Plats: {"screenings.location"}</p>
+      <h2 className={style.title }>{screenings.title}</h2>
+      <p className={style.date}> Tid och datum: {screenings.date}</p>
+      <p className={style.date}> Plats: {screenings.location}</p>
       <button onClick={handleClick} className={style.confirmButton} formAction="Submit">Till kassan</button>
       <button className={style.cancelButton} formAction="Cancel">Avbryt</button>  
     </div>
