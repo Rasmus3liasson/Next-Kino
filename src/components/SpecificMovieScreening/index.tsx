@@ -1,7 +1,6 @@
 import style from "./style.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import { DateTime } from "luxon";
 import { SpecificScreening } from "../../types/screeningTypes";
 
 export default function SpecificMovieScreening({
@@ -14,6 +13,7 @@ export default function SpecificMovieScreening({
   const screeningLink = `/movies/${hrefLink}/selectSeats/${screening.displayDate}`;
   const spokenLang = screening.spokenLang;
   const subtitLang = screening.subtitLang;
+  console.log(screening);
   return (
     <li className={style.screeningListItem}>
       <h4 className={style.screeningText}>
@@ -56,5 +56,5 @@ function LangComponent({
 }
 // Helper to format time
 function formatTime(time: string) {
-  return `${DateTime.fromISO(time).toFormat("HH:mm")}`;
+  return time.slice(11, 16);
 }

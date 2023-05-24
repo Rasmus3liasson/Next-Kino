@@ -1,8 +1,6 @@
-import Link from "next/link";
 import style from "./style.module.scss";
-import { ScreeningType } from "@/util/types";
 import React from "react";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 
 export default function BuyTickets({
   movieData,
@@ -16,6 +14,17 @@ export default function BuyTickets({
   function handleClick() {
     Router.push(Link);
   }
+
+  const router = useRouter();
+  const { date } = router.query;
+
+  //dislpays the time that match url
+  const sameScreening = movieData.screenings.find(
+    (screening: { displayDate: string }) => {
+      return screening.displayDate === date;
+    }
+  );
+
   return (
     <div className={style.container}>
       <hr className={style.divider} />
@@ -23,7 +32,7 @@ export default function BuyTickets({
       <p className={style.date}>
         {" "}
         Tid och datum:{" "}
-        {movieData.screenings[0].displayDate.slice(0, 16).replace("T", " ")}
+        {sameScreening.displayDate.slice(0, 16).replace("T", " ")}
       </p>
       <p className={style.date}> Plats: {movieData.screenings[0].saloon}</p>
       <button
