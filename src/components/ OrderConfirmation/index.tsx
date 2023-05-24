@@ -17,10 +17,11 @@ export default function OrderConfirmation() {
   const max = 99999; // Maximum 5-digit number
   const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
 
-  //format date
+  //format date because index
   const date = new Date();
+  const month = date.getMonth() + 1;
   const year = date.getFullYear();
-  const orderDate = date.getDate() + "/" + date.getMonth() + "-" + year;
+  const orderDate = date.getDate() + "/" + month + "-" + year;
 
   return (
     <section className={style.container}>

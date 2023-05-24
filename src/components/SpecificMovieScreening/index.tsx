@@ -13,7 +13,7 @@ export default function SpecificMovieScreening({
   const screeningLink = `/movies/${hrefLink}/selectSeats/${screening.displayDate}`;
   const spokenLang = screening.spokenLang;
   const subtitLang = screening.subtitLang;
-  console.log(screening);
+
   return (
     <li className={style.screeningListItem}>
       <h4 className={style.screeningText}>

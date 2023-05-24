@@ -29,6 +29,7 @@ export default function Header() {
         <nav className="navbar navbar-expand-lg sticky-top">
           <Link href={"/"}>
             <Image
+              priority={true}
               src={"/logo-cinema.png"}
               alt="logotype of our cinema"
               height={100}
