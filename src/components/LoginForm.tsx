@@ -24,7 +24,6 @@ const LoginForm = () => {
     if (res.ok) {
       setAccountState(await res.json());
       setLoginModalOpen(false);
-      Router.push("/");
     } else setError(true);
   };
 
