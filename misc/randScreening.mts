@@ -2,8 +2,8 @@ import { screening } from "../models/movie";
 import { randArrElem, randDate } from "./utils.mjs";
 
 const saloons = ["Matsalen", "Stora Salongen", "Lilla Salongen"];
-const spokenLangs: any = ["en-GB", "en-SV"];
-const subtitLangs: any = ["en-GB", "en-SV", null];
+const spokenLangs: any = ["en-GB", "se-SV"];
+const subtitLangs: any = ["en-GB", "se-SV", null];
 
 export default function randScreening() {
   const randScreening: screening = {
