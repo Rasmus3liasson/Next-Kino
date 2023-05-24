@@ -2,49 +2,40 @@ import Head from "next/head";
 
 import ConfirmPurchase from "@/components/ConfirmPurchase";
 import Payment from "@/components/Payment";
-/* import Payment from "@/components/Payment";
-import ConfirmPurchase from "@/components/ConfirmPurchase";
-import { ScreeningType } from "@/util/types"; */
+import connectMongo from "@/util/connectMongo";
+import Movie from "../../../../../models/movie";
+import { MovieInterFace } from "@/types/movie";
 
-/* export async function getServerSideProps() {
+export async function getServerSideProps({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const { id } = params;
+
+  await connectMongo();
+
+  //finds correct movie based on id
+  const movie = await Movie.findOne({ title: id });
+
   return {
     props: {
-      screenings: (await getData()).at(0),
+      movie: JSON.parse(JSON.stringify(movie)), // Convert movie object to JSON serializable format
     },
   };
-} */
+}
 
-export default function SelectSeats({}) {
+export default function SelectSeats({ movie }: { movie: MovieInterFace }) {
+  console.log(movie);
   return (
     <>
-      <>
-        <Head>
-          <title>Lule Northern Light Cinema</title>
-          <meta name="description" content="Kino project in next.js" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-        </Head>
-        {/*  <ConfirmPurchase screenings={screenings}/>
-      <Payment screenings= {screenings}/> */}
-        <h1>hejsam</h1>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente,
-        sunt. Sunt exercitationem, nemo asperiores necessitatibus impedit
-        repellendus cupiditate harum accusantium omnis amet neque delectus
-        aliquid, repudiandae itaque quae sequi adipisci. Harum eaque eligendi
-        necessitatibus debitis culpa magnam accusamus iste, officia quibusdam
-        amet possimus impedit quia nobis earum tenetur deleniti voluptas
-        mollitia animi, et deserunt ipsa iusto consectetur vel in? Sunt. Laborum
-        rerum nam fugiat ut voluptates voluptas repellendus odio commodi at
-        neque nisi laboriosam adipisci eaque sequi provident, vel tenetur eum
-        animi optio praesentium temporibus illo tempore veritatis! Repellendus,
-        quaerat! Fuga quas vitae tempora rerum dolor aperiam unde harum nostrum
-        temporibus facilis incidunt eaque itaque soluta deleniti a modi animi
-        similique provident numquam odio, odit placeat distinctio vero? Rem,
-        fugit? Impedit ab dolorum, in rem ullam, voluptatem ratione expedita
-        architecto officia exercitationem enim optio dicta laboriosam labore
-        illum accusamus obcaecati eius blanditiis tempore ut iusto nesciunt.
-        Ipsam dicta eaque error!
-      </>
-      <ConfirmPurchase />
+      <Head>
+        <title>Lule Northern Light Cinema</title>
+        <meta name="description" content="Kino project in next.js" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+
+      <ConfirmPurchase movieData={movie} />
       <Payment />
     </>
   );

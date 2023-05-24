@@ -14,7 +14,7 @@ export default function BuyTickets({
   const router = useRouter();
   const { id, date } = router.query;
 
-  const Link = `/movies/${id}/payment/${date}`;
+  const Link = `/movies/${id}/payment`;
 
   function handleClick() {
     Router.push(Link);
