@@ -30,7 +30,7 @@ const LoginForm = () => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-50">
       <form
-        className=" right-1/2 mx-auto my-1 border-2 w-[90%] md:w-[50%] lg:w-[20%] border-black px-5 rounded-2xl shadow-lg flex flex-col justify-center bg-cblue"
+        className=" right-1/2 mx-auto my-1 border-2 w-[90%] md:w-[50%] lg:w-[30%] border-black px-5 rounded-2xl shadow-lg flex flex-col justify-center bg-cblue"
         onSubmit={handleSubmitLogin}
       >
         <button
