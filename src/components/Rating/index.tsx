@@ -16,14 +16,10 @@ const Rating: React.FC<RatingProps> = ({ movieData }) => {
         const response = await fetch("/api/rating/get");
         const data = await response.json();
 
-        /* console.log("API response:", data); */
-
         if (response.ok) {
           const movie = data.movies.find(
             (m: { title: string }) => m.title === movieData.title
           );
-
-          console.log("Movie:", movie);
 
           if (movie) {
             const averageRating =
@@ -34,7 +30,6 @@ const Rating: React.FC<RatingProps> = ({ movieData }) => {
               ) / movie.reviews?.length;
             const roundedRating = Math.round(averageRating);
             setRating(roundedRating);
-            console.log("Average Rating:", roundedRating);
           }
         } else {
           console.log("Error response:", response.status, response.statusText);
@@ -66,8 +61,6 @@ const Rating: React.FC<RatingProps> = ({ movieData }) => {
 
     return stars;
   };
-
-  /* console.log("Rating:", rating); */
 
   return (
     <div className={style.card}>
