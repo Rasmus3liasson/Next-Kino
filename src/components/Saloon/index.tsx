@@ -1,10 +1,11 @@
 import style from "./style.module.scss";
 import PickSeat from "../PickSeat";
 import Seat from "../Seat";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Booking } from "@/types/booking";
 import BuyTickets from "../BuyTickets";
 import { useRouter } from "next/router";
+import { accountStateContext } from "@/pages/_app";
 
 export default function Saloon({
   seatsData,
@@ -13,7 +14,8 @@ export default function Saloon({
   seatsData: number[];
   movieData: Booking & { postNewSeats: () => Promise<void> };
 }) {
-  console.log(seatsData);
+  //acces accountstate
+  const { accountState } = useContext(accountStateContext);
 
   const [unavailable, setUnavailable] = useState(false);
   const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
@@ -34,6 +36,12 @@ export default function Saloon({
   };
   //post new seat booking
   async function postNewSeats() {
+    if (!accountState) {
+      // if accountState is null
+      console.log("Cannot proceed");
+      return;
+    }
+
     try {
       await fetch(`/api/movies/${id}/bookings/${date}/update`, {
         method: "POST",
@@ -42,8 +50,8 @@ export default function Saloon({
         },
         body: JSON.stringify({
           occupiedSeats: {
-            userID: "nils",
-            email: "rse@hotmail.com",
+            userID: accountState.name.first,
+            email: accountState.email,
             movieTitle: id,
             date: date,
             seats: selectedSeats.sort((a: number, b: number) => a - b),
