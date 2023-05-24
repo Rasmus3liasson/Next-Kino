@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import style from "./style.module.scss";
 import Seat from "../Seat";
+import { useRouter } from "next/router";
 
-export default function PickSeat() {
+export default function PickSeat({ bookedSeats }: { bookedSeats: number[] }) {
   const [unavailable, setUnavailable] = useState(false);
   const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
+
+  const router = useRouter();
+  const { id, date } = router.query;
 
   const handleSeatClick = (seatValue: number) => {
     if (!unavailable) {
@@ -31,6 +35,7 @@ export default function PickSeat() {
       for (let seat = 1; seat <= seatsPerRow; seat++) {
         rowSeats.push(
           <Seat
+            bookedSeats={bookedSeats}
             key={seat}
             value={seatNumber}
             onSeatClick={handleSeatClick}
@@ -46,31 +51,31 @@ export default function PickSeat() {
     return seats;
   };
 
+  //post new seat booking
   async function postNewSeats() {
     try {
-      await fetch(
-        "api/movies/Forrest%20Gump/bookings/2023-08-17T12:16:21.856+00:00/update",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
+      await fetch(`/api/movies/${id}/bookings/${date}/update`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          occupiedSeats: {
+            userID: "nils",
+            email: "rse@hotmail.com",
+            movieTitle: id,
+            date: date,
+            seats: selectedSeats.sort((a: number, b: number) => a - b),
           },
-          body: JSON.stringify({
-            occupiedSeats: {
-              userID: "rasmus",
-              email: "ras.muse@jfslk.com",
-              movieTitle: "Forrest Gump",
-              date: "2023-08-17T12:16:21.856+00:00",
-              seats: selectedSeats.sort((a: number, b: number) => a - b),
-            },
-          }),
-        }
-      );
+        }),
+      });
       console.log("Seats updated");
     } catch (error) {
       console.error("Error:", error);
     }
   }
+
+  console.log(selectedSeats);
 
   return (
     <section className={style.container}>
@@ -79,12 +84,3 @@ export default function PickSeat() {
     </section>
   );
 }
-
-async function bookedSeats() {
-  const res = await fetch(
-    "api/movies/Ariel/bookings/2023-08-16T12:16:21.856+00:00"
-  );
-  const dataSeats = await res.json();
-  return dataSeats;
-}
-bookedSeats();

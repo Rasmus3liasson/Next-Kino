@@ -6,29 +6,19 @@ export default function Seat({
   value,
   onSeatClick,
   isSelected,
+  bookedSeats,
 }: {
   value: number;
   onSeatClick: (seatValue: number) => void;
   isSelected: boolean;
+  bookedSeats: number[];
 }) {
-  const [unavailable, setUnavailable] = useState(false); // to see if seat is already selected
+  const [unavailable, setUnavailable] = useState(false);
 
+  // to see if seat is already selected
   useEffect(() => {
-    const getBookedSeats = async () => {
-      try {
-        const res = await fetch(
-          "api/movies/Ariel/bookings/2023-08-16T12:16:21.856+00:00"
-        );
-        const { occupiedSeats } = await res.json();
-
-        setUnavailable(occupiedSeats.includes(value));
-      } catch (error) {
-        console.error("Error", error);
-      }
-    };
-
-    getBookedSeats();
-  }, [value]);
+    setUnavailable(bookedSeats.includes(value));
+  }, [bookedSeats, value]);
 
   //check that only free chair can be selected
   const handleClick = () => {

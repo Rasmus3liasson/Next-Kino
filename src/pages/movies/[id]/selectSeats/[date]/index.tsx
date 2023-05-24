@@ -1,30 +1,33 @@
 import Head from "next/head";
 import Saloon from "@/components/Saloon";
 import BuyTickets from "@/components/BuyTickets";
-import { ScreeningType } from "@/util/types";
-
-import getBookings from "../api/bookings/GET";
-import Link from "next/link";
 import connectMongo from "@/util/connectMongo";
-import Booking from "../../../models/booking";
+import Movie from "../../../../../../models/movie";
 
 // TODO: Add database functions here.
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const { id, date } = context.params;
   const res = await fetch(
-    "http://localhost:3000/api/movies/Ariel/bookings/2023-08-16T12:16:21.856+00:00"
+    `http://localhost:3000/api/movies/${id}/bookings/${date}`
   );
   const seats = await res.json();
   const seatsData = seats.occupiedSeats;
 
+  await connectMongo();
+
+  //finds correct movie based on id
+  const movie = await Movie.findOne({ title: id });
+
   return {
     props: {
       seatsData,
+      movie: JSON.parse(JSON.stringify(movie)), // Convert movie object to JSON serializable format
     },
   };
 }
 
-export default function SelectSeats({ seatsData }: { seatsData: any }) {
+export default function SelectSeats({ seatsData, movie }) {
   return (
     <>
       <Head>
@@ -33,7 +36,7 @@ export default function SelectSeats({ seatsData }: { seatsData: any }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Saloon seatsData={seatsData} />
-      <BuyTickets screenings />
+      <BuyTickets movieData={movie} />
     </>
   );
 }
