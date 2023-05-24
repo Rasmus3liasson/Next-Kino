@@ -20,6 +20,7 @@ export default function Seat({
           "api/movies/Ariel/bookings/2023-08-16T12:16:21.856+00:00"
         );
         const { occupiedSeats } = await res.json();
+
         setUnavailable(occupiedSeats.includes(value));
       } catch (error) {
         console.error("Error", error);

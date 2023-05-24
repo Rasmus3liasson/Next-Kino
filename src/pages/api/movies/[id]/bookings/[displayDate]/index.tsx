@@ -18,7 +18,7 @@ export default async function getBookings(req: any, res: any) {
       })
       .sort((a, b) => a - b);
 
-    res.status(200).json({ occupiedSeats });
+    res.status(200).json({ occupiedSeats: occupiedSeats });
   } catch (e) {
     console.log("Database error: ", e);
   }

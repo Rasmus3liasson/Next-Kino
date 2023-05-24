@@ -31,6 +31,7 @@ export default function PickSeat() {
       for (let seat = 1; seat <= seatsPerRow; seat++) {
         rowSeats.push(
           <Seat
+            key={seat}
             value={seatNumber}
             onSeatClick={handleSeatClick}
             isSelected={selectedSeats.includes(seatNumber)}
@@ -46,26 +47,37 @@ export default function PickSeat() {
   };
 
   async function postNewSeats() {
-    const { occupiedSeats } = await bookedSeats();
-    const newSeatsAdded = [...occupiedSeats, ...selectedSeats];
-    const newSeatsAddedSort = newSeatsAdded.sort((a, b) => a - b);
-
     try {
-      await fetch("api/movies/Ariel/bookings/2023-08-16T12:16:21.856+00:00", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ occupiedSeats: newSeatsAddedSort }),
-      });
+      await fetch(
+        "api/movies/Forrest%20Gump/bookings/2023-08-17T12:16:21.856+00:00/update",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            occupiedSeats: {
+              userID: "rasmus",
+              email: "ras.muse@jfslk.com",
+              movieTitle: "Forrest Gump",
+              date: "2023-08-17T12:16:21.856+00:00",
+              seats: selectedSeats.sort((a: number, b: number) => a - b),
+            },
+          }),
+        }
+      );
       console.log("Seats updated");
     } catch (error) {
       console.error("Error:", error);
     }
   }
-  postNewSeats();
 
-  return <section className={style.container}>{seatBoard()}</section>;
+  return (
+    <section className={style.container}>
+      {seatBoard()}
+      <button onClick={postNewSeats}>hejsan</button>
+    </section>
+  );
 }
 
 async function bookedSeats() {
