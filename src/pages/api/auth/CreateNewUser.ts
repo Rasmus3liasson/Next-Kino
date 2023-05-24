@@ -29,7 +29,7 @@ export default async function createNewUser(
         name: name,
         userName,
         email,
-        passwordHash: await bcrypt.hash(password, 2)
+        passwordHash: await bcrypt.hash(password, process.env.SALT)
       });
 
       await newUser.save()
