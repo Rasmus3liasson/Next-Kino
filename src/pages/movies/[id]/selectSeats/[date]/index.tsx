@@ -3,6 +3,7 @@ import Saloon from "@/components/Saloon";
 import BuyTickets from "@/components/BuyTickets";
 import connectMongo from "@/util/connectMongo";
 import Movie from "../../../../../../models/movie";
+import { Booking } from "@/types/booking";
 
 // TODO: Add database functions here.
 
@@ -27,7 +28,13 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function SelectSeats({ seatsData, movie }) {
+export default function SelectSeats({
+  seatsData,
+  movie,
+}: {
+  seatsData: number[];
+  movie: Booking;
+}) {
   return (
     <>
       <Head>
@@ -35,8 +42,7 @@ export default function SelectSeats({ seatsData, movie }) {
         <meta name="description" content="Kino project in next.js" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Saloon seatsData={seatsData} />
-      <BuyTickets movieData={movie} />
+      <Saloon seatsData={seatsData} movieData={movie} />
     </>
   );
 }

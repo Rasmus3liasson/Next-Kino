@@ -4,10 +4,14 @@ import { ScreeningType } from "@/util/types";
 import React from "react";
 import Router from "next/router";
 
-export default function BuyTickets({ movieData }: { movieData: any }) {
+export default function BuyTickets({
+  movieData,
+  postNewSeats,
+}: {
+  movieData: any;
+  postNewSeats: () => Promise<void>;
+}) {
   const Link = `/payment`;
-
-  console.log(movieData);
 
   function handleClick() {
     Router.push(Link);
@@ -23,7 +27,10 @@ export default function BuyTickets({ movieData }: { movieData: any }) {
       </p>
       <p className={style.date}> Plats: {movieData.screenings[0].saloon}</p>
       <button
-        onClick={handleClick}
+        onClick={() => {
+          postNewSeats();
+          handleClick();
+        }}
         className={style.confirmButton}
         formAction="Submit"
       >
