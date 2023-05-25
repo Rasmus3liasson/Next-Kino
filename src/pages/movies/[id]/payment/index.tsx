@@ -26,7 +26,6 @@ export async function getServerSideProps({
 }
 
 export default function SelectSeats({ movie }: { movie: MovieInterFace }) {
-  console.log(movie);
   return (
     <>
       <Head>
