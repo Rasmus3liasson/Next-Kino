@@ -1,8 +1,7 @@
 import style from "./style.module.scss";
 import PickSeat from "../PickSeat";
-import Seat from "../Seat";
 import React, { useContext, useState } from "react";
-import { Booking } from "@/types/booking";
+import { BookingInterface } from "@/types/booking";
 import BuyTickets from "../BuyTickets";
 import { useRouter } from "next/router";
 import { accountStateContext } from "@/pages/_app";
@@ -12,7 +11,7 @@ export default function Saloon({
   movieData,
 }: {
   seatsData: number[];
-  movieData: Booking & { postNewSeats: () => Promise<void> };
+  movieData: BookingInterface & { postNewSeats: () => Promise<void> };
 }) {
   //acces accountstate
   const { accountState } = useContext(accountStateContext);
