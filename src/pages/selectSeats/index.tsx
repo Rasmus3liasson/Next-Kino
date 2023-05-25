@@ -4,9 +4,9 @@ import BuyTickets from "@/components/BuyTickets";
 import { ScreeningType } from "@/util/types";
 import { getTenScreenings } from "../api/screenings";
 import Link from "next/link";
-  
-const handleDataFromSaloon = (data: Number[]) => {
-  console.log('Data received from Saloon:', data);
+
+const handleDataFromSaloon = (selectedSeatIds: Number[]) => {
+  console.log('Data received from Saloon:', selectedSeatIds);
 };
 
   export async function getServerSideProps() {
