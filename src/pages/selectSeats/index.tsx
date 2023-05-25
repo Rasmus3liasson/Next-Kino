@@ -7,9 +7,9 @@ import { getMovies } from "../api/movies";
 import getBookings from "../api/bookings/GET";
 import Link from "next/link";
   
-  // TODO: Add database functions here.
-  const req = 1;
-  const res = "";
+const handleDataFromSaloon = (data: Number[]) => {
+  console.log('Data received from Saloon:', data);
+};
 
   export async function getServerSideProps() {
     return {
@@ -21,7 +21,7 @@ import Link from "next/link";
   }
 
 
-export default function SelectSeats({ selectedSeatIds, screenings}: { selectedSeatIds: [Number], screenings: ScreeningType[]}) {
+export default function SelectSeats({ screenings}: { screenings: ScreeningType[]}) {
     return(
       <>
         <Head>
@@ -29,7 +29,7 @@ export default function SelectSeats({ selectedSeatIds, screenings}: { selectedSe
           <meta name="description" content="Kino project in next.js" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
-        <Saloon screenings selectedSeatIds/>
+        <Saloon screenings onData={handleDataFromSaloon}/>
         <BuyTickets screenings selectedSeatIds/>
       </>
     );

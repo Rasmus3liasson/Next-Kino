@@ -1,9 +1,16 @@
 import style from "./style.module.scss";
 import React from "react";
 import Seat from "../Seat";
-import { ScreeningType } from "@/util/types";
+    interface SaloonProps{
+        onData: (data: Number[]) => void;
+    }
+    
+    const Saloon: React.FC<SaloonProps> = ({ onData}) =>{
+        const sendDataToParent = () => {
+            const data = [1,6,8,9]
+            onData(data);
+        }
 
-export default function Saloon({ screenings }: { screenings: ScreeningType }) {
     return (
         <div className={style.saloon}>
             <div className={style.screen}>Bioduk</div>
@@ -23,7 +30,8 @@ export default function Saloon({ screenings }: { screenings: ScreeningType }) {
                 <p className={style.legendText_unavailable}>Ej tillgänglig</p>
                 <div className={style.seat_legend_selected}></div>
                 <p className={style.legendText_selected}>Vald</p>
+                <button onClick={sendDataToParent}>Send Data to Parent</button>
             </div>
         </div>
-    );
-  }
+    )};
+export default Saloon;
