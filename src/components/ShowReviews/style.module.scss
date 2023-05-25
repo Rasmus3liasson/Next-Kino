@@ -1,12 +1,23 @@
 @import "../../styles/variables.scss";
 
+.toggleBtn {
+  color: $text-light;
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+  font-size: 24px;
+  transition: 0.3s;
+  &:hover {
+    opacity: 0.8;
+  }
+}
 .reviewsContainer {
   background-color: $main-bg;
   color: $text-light;
   animation: appear 0.3s ease-in-out;
 
   ul {
-    padding: 0.2rem 0;
+    padding: 0.2rem 0 1rem 0rem;
     list-style: none;
     display: flex;
     flex-direction: column;
