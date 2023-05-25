@@ -1,6 +1,7 @@
 import Image from "next/image";
 import style from "./style.module.scss";
 import { MovieProps } from "@/util/types";
+import Rating from "@/components/Rating";
 
 export default function MovieDetails({ movieData }: { movieData: MovieProps }) {
   return (
@@ -14,6 +15,7 @@ export default function MovieDetails({ movieData }: { movieData: MovieProps }) {
         height={500}
       />
       <p className={style.title}>{movieData.title}</p>
+      <Rating movieData={movieData} />
       <p className={style.description}>{movieData.description}</p>
     </div>
   );
