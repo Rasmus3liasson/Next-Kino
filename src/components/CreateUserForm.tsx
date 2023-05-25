@@ -1,9 +1,17 @@
-import React, { useState, useEffect, FormEvent } from "react";
+import React, { useState, useEffect, FormEvent, useContext } from "react";
 import strongPasswordCheck from "@/util/strongPasswordCheck";
-import { StrengthMeterStyles, SubmitedUserResponse, UserType } from "@/util/types";
+import loadingSpinner from "../../public/loadingSpinner.svg";
+import Image from "next/image";
+import { loginModalContext } from "@/util/loginModalContext";
+import {
+  StrengthMeterStyles,
+  SubmitedUserResponse,
+  UserType,
+} from "@/util/types";
+import Link from "next/link";
 
 const CreateUserForm = () => {
-  const [firstName, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState(" ");
   const [lastName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
   const [eMail, setEmail] = useState("");
@@ -11,11 +19,13 @@ const CreateUserForm = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [pwStrength, setPwStrength] = useState(25);
   const [errors, setErrors] = useState<string[]>([]);
+  const [submitting, setSubmitting] = useState(false);
+  const [created, setCreated] = useState(false);
 
   useEffect(() => {
     setPwStrength(strongPasswordCheck(password));
   }, [password]);
-  
+
   //keyvalues acts as percentage
   const strengthMeter: StrengthMeterStyles = {
     25: { style: "w-[25%] bg-red-500 ", text: "Too weak" },
@@ -27,11 +37,12 @@ const CreateUserForm = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrors([]);
+    setSubmitting(true);
 
     const newUser: UserType = {
       name: {
         first: firstName,
-        last: lastName
+        last: lastName,
       },
       userName: userName,
       email: eMail,
@@ -45,11 +56,20 @@ const CreateUserForm = () => {
       },
       body: JSON.stringify(newUser),
     });
+
     const data: SubmitedUserResponse = await resp.json();
-    data.errors.length >= 0 && setErrors(data.errors);
+    
+    // Timeout only for show LEL
+    setTimeout(() => {
+      data && setSubmitting(false);
+      data.errors.length >= 0 && setErrors(data.errors);
+      resp.status === 201 && setCreated(true)
+    }, 800);
   };
 
-  return (
+  return created ? (
+    <Submitted firstName={firstName} />
+  ) : (
     <form
       className="max-w-md mx-auto self-center px-5 my-5 rounded-2xl shadow-lg flex flex-col flex-grow justify-center bg-cblue"
       onSubmit={(e) => handleSubmit(e)}
@@ -57,6 +77,7 @@ const CreateUserForm = () => {
       <h1 className="py-2 mx-auto text-4xl text-white font-bold">
         Skapa konto
       </h1>
+      {submitting && <Spinner />}
 
       <div className="w-[95%] mx-auto flex flex-col">
         <section className="flex space-x-2 mb-2">
@@ -168,9 +189,12 @@ const CreateUserForm = () => {
         )}
 
         <ul className="!p-0 mt-2 flex flex-col">
-          {errors.map((errorMessage) => {
+          {errors.map((errorMessage, index: number) => {
             return (
-              <li className="text-black rounded-md my-1 pl-2 border-2 border-red-500 bg-white text-lg">
+              <li
+                key={index}
+                className="text-black rounded-md my-1 pl-2 border-2 border-red-500 bg-white text-lg"
+              >
                 {errorMessage}
               </li>
             );
@@ -190,3 +214,42 @@ const CreateUserForm = () => {
 };
 
 export default CreateUserForm;
+
+const Spinner = () => {
+  return (
+    <div className="absolute -inset-x-1/2 -inset-y-full flex justify-center items-center z-50">
+      <Image alt="loader" src={loadingSpinner} />
+    </div>
+  );
+};
+
+const Submitted = ({ firstName }: { firstName: string }) => {
+  const { loginModalOpen, setLoginModalOpen } = useContext(loginModalContext);
+
+  return (
+    <div className="max-w-md mx-auto self-center mt-5 rounded-2xl shadow-lg flex flex-col flex-grow justify-center items-center bg-cblue">
+      <h1 className="text-3xl text-white font-semibold mt-4 mb-2">
+        Registrering lyckades!
+      </h1>
+      <p className="text-lg text-white font-semibold mb-4 mt-2">
+        Välkommen {firstName}, vad vill du göra nu?
+      </p>
+
+      <button
+        className="hover:text-clightblue text-gray-50 text-1x font-semibold my-1 p-1"
+        onClick={() => {
+          setLoginModalOpen(true);
+        }}
+      >
+        Logga in?
+      </button>
+
+      <Link
+        href="/"
+        className="hover:text-clightblue text-gray-50 text-1xl font-semibold mb-4 p-1"
+      >
+        Tillbaka till startsidan
+      </Link>
+    </div>
+  );
+};

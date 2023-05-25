@@ -8,6 +8,7 @@ export interface IUser {
   userName: string;
   email: string;
   passwordHash: string;
+  discountPoints: number;
 }
 
 const userSchema = new Schema<IUser>({
@@ -15,9 +16,10 @@ const userSchema = new Schema<IUser>({
     first: { type: String, required: true },
     last: { type: String, required: true },
   },
-  userName: { type: String, required: true},
-  email: { type: String, required: true },
+  userName: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
   passwordHash: { type: String, required: true },
+  discountPoints: { type: Number, required: true },
 });
 
 const User = models.User || model<IUser>("User", userSchema);

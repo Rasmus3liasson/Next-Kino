@@ -1,8 +1,13 @@
 import Head from "next/head";
+import MovieDetails from "@/components/MovieDetails";
+import AllSpecificMovieScreenings from "@/components/AllSpecificMovieScreenings";
+import { getMovieScreenings } from "@/pages/api/upcoming-screenings";
 import connectMongo from "@/util/connectMongo";
 import Movie from "../../../../models/movie";
 import ShowReviews from "@/components/ShowReviews";
 import { ReviewData, ReviewProps } from "../../../types/reviewTypes";
+import { getMovie } from "@/util/dbAggregations";
+import { MovieProps } from "@/util/types";
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -23,6 +28,9 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
   return {
     props: {
       reviewData,
+      movie: await getMovie(id),
+      movieScreenings: await getMovieScreenings(id),
+      revalidate: 60, // In seconds
     },
   };
 }
@@ -43,18 +51,30 @@ export async function getStaticPaths() {
   };
 }
 
-export default function MoviePage({ reviewData }: ReviewProps) {
+export default function MovieDetailsPage({
+  reviewData,
+  movie,
+  movieScreenings,
+}: {
+  reviewData: ReviewProps;
+  movie: MovieProps;
+  movieScreenings: string;
+}) {
+  const parsedProps = JSON.parse(movieScreenings)[0];
   return (
     <>
       <Head>
         <title>Lule Northern Light Cinema</title>
         <meta
-          name="description"
-          content="This page allows you to see what screenings this movie has and information about it"
+          name="This page get you see what screenings this movie has and information about it"
+          content="Kino project in next.js"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+      <MovieDetails movieData={movie} />
+      {/* Rating - component goes here! */}
       <ShowReviews reviewData={reviewData} />
+      <AllSpecificMovieScreenings screenings={parsedProps} />
     </>
   );
 }

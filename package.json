@@ -20,6 +20,7 @@
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
     "jsonwebtoken": "^9.0.0",
+    "luxon": "^3.3.0",
     "lorem-ipsum": "^2.0.8",
     "mongoose": "^7.1.1",
     "next": "13.3.1",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@types/cookie": "^0.5.1",
+    "@types/luxon": "^3.3.0",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.23",
     "tailwindcss": "^3.3.2"

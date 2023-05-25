@@ -7,6 +7,9 @@ export type ScreeningType = {
   subLang: string;
   poster: string;
   screeningId: string;
+  screenings: string[];
+  description: string;
+  rating: number;
 };
 
 export type SubmitedUserResponse = {
@@ -31,8 +34,18 @@ export type StrengthMeterStyles = {
   100: { style: string; text: string };
 };
 
-export type MovieType = {
-  id: number;
+export type MovieProps = {
   title: string;
   poster: string;
+  description?: string;
+  rating: number;
+};
+
+export type userData = {
+  name: {
+    first: string;
+    last: string;
+  };
+  email: string;
+  userName: string;
 };

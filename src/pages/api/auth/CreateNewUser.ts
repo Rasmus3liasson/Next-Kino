@@ -24,12 +24,14 @@ export default async function createNewUser(
       eMailTaken && errorMessages.push("Email already exist")
       res.status(409).json({ userCreated: false, errors: errorMessages })
     } else {
-
       const newUser = new User({
         name: name,
         userName,
         email,
-        passwordHash: await bcrypt.hash(password, 2)
+
+        passwordHash: await bcrypt.hash(password, 2),
+        discountPoints: 0,
+
       });
 
       await newUser.save()

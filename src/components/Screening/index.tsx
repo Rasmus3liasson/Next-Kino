@@ -1,31 +1,39 @@
 import style from "./style.module.scss";
 import Image from "next/image";
 import Link from "next/link";
-import { ScreeningType } from "@/util/types";
+import { ScreeningProps } from "../../types/screeningTypes";
+import { DateTime } from "luxon";
 
 /*
  * Component renders a Link component with elements with data
- * from the given prop movieData.
- * TODO: Fix image src to an URL matching the movie. 
+ * from the given prop screeningData.
+ * TODO: Fix image src to an URL matching the movie.
  */
-export default function Screening({ movieData }: { movieData: ScreeningType }) {
-  const link = `/movie/${movieData.id}/booking?screening=${movieData.screeningId}`;
-
+export default function Screening({
+  screeningData,
+}: {
+  screeningData: ScreeningProps;
+}) {
+  const screeningId = DateTime.fromISO(screeningData.screening).toMillis();
+  const link = `/movie/${screeningData.title}/booking?screening=${screeningId}`;
   return (
     <Link style={{ textDecoration: "none" }} href={link} className={style.card}>
       <Image
         className={style.img}
         height={120}
         width={90}
-        src={"/dummy.jpg"}
-        alt={`The poster for ${movieData.title}`}
+        priority
+        src={screeningData.poster}
+        alt={`The poster for ${screeningData.title}`}
       />
-      <h3 className={`${style.title} ${style.cardItem}`}>{movieData.title}</h3>
+      <h3 className={`${style.title} ${style.cardItem}`}>
+        {screeningData.title}
+      </h3>
       <small className={`${style.date} ${style.cardItem}`}>
-        {movieData.date}
+        {DateTime.fromISO(screeningData.screening, {zone: 'utc'}).toFormat("dd LLL HH:mm")}
       </small>
       <small className={`${style.location} ${style.cardItem}`}>
-        {movieData.location}
+        {screeningData.location}
       </small>
     </Link>
   );
