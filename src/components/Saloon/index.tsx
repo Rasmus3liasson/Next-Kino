@@ -11,18 +11,23 @@ import Seat from "../Seat";
             onData(data);
         }
 
+    const handleDataFromSeat = (data: Number) => {
+        console.log("Data from seat: ", data);
+    }
+
     return (
         <div className={style.saloon}>
             <div className={style.screen}>Bioduk</div>
             <section className={style.seatContainer}>
-                <div><Seat seatId={1}/> <Seat seatId={2}/><Seat seatId={3}/> <Seat seatId={4}/><Seat seatId={5}/> <Seat seatId={6}/><Seat seatId={7}/> <Seat seatId={8}/><Seat seatId={9}/> <Seat seatId={10}/></div>
-                <div><Seat seatId={11}/> <Seat seatId={12} /><Seat seatId={13}/> <Seat seatId={14}/><Seat seatId={15}/> <Seat seatId={16}/><Seat seatId={17}/> <Seat seatId={18}/><Seat seatId={19}/> <Seat seatId={20}/><Seat seatId={21}/></div>
-                <div><Seat seatId={22}/> <Seat seatId={23}/><Seat seatId={24}/> <Seat seatId={25}/><Seat seatId={26}/> <Seat seatId={27}/><Seat seatId={28}/> <Seat seatId={29}/><Seat seatId={30}/></div>
-                <div><Seat seatId={31}/> <Seat seatId={32}/><Seat seatId={33}/> <Seat seatId={34}/><Seat seatId={35}/> <Seat seatId={36}/><Seat seatId={37}/> <Seat seatId={38}/><Seat seatId={39}/> <Seat seatId={40}/><Seat seatId={41}/></div>
-                <div><Seat seatId={42}/> <Seat seatId={43}/><Seat seatId={44}/> <Seat seatId={45}/><Seat seatId={46}/> <Seat seatId={47}/><Seat seatId={48}/> <Seat seatId={49}/><Seat seatId={50}/> <Seat seatId={51}/><Seat seatId={52}/><Seat seatId={53}/><Seat seatId={54}/></div>
+                <div><Seat seatId={1} onData={handleDataFromSeat} /> <Seat seatId={2} onData={handleDataFromSeat} /><Seat seatId={3} onData={handleDataFromSeat} /> <Seat seatId={4} onData={handleDataFromSeat} /><Seat seatId={5} onData={handleDataFromSeat} /> <Seat seatId={6} onData={handleDataFromSeat} /><Seat seatId={7} onData={handleDataFromSeat} /> <Seat seatId={8} onData={handleDataFromSeat} /><Seat seatId={9} onData={handleDataFromSeat} /> <Seat seatId={10} onData={handleDataFromSeat} /></div>
+                <div><Seat seatId={11} onData={handleDataFromSeat} /> <Seat seatId={12} onData={handleDataFromSeat} /><Seat seatId={13} onData={handleDataFromSeat} /> <Seat seatId={14} onData={handleDataFromSeat} /><Seat seatId={15} onData={handleDataFromSeat} /> <Seat seatId={16} onData={handleDataFromSeat} /><Seat seatId={17} onData={handleDataFromSeat} /> <Seat seatId={18} onData={handleDataFromSeat} /><Seat seatId={19} onData={handleDataFromSeat} /><Seat seatId={20} onData={handleDataFromSeat}         /><Seat seatId={21}/></div>
+                <div><Seat seatId={22} onData={handleDataFromSeat}/> <Seat seatId={23} onData={handleDataFromSeat} /><Seat seatId={24} onData={handleDataFromSeat} /> <Seat seatId={25}/><Seat seatId={26} onData={handleDataFromSeat} /> <Seat seatId={27} onData={handleDataFromSeat} /><Seat seatId={28} onData={handleDataFromSeat} /> <Seat seatId={29} onData={handleDataFromSeat} /><Seat seatId={30} onData={handleDataFromSeat} /></div>
+                <div><Seat seatId={31} onData={handleDataFromSeat} /> <Seat seatId={32} onData={handleDataFromSeat} /><Seat seatId={33} onData={handleDataFromSeat} /> <Seat seatId={34} onData={handleDataFromSeat} /><Seat seatId={35} onData={handleDataFromSeat} /><Seat seatId={36} onData={handleDataFromSeat} /><Seat seatId={37} onData={handleDataFromSeat} /><Seat seatId={38} onData={handleDataFromSeat} /><Seat seatId={39} onData={handleDataFromSeat} /> <Seat seatId={40} onData={handleDataFromSeat} /><Seat seatId={41} onData={handleDataFromSeat} /></div>
+                <div><Seat seatId={42} onData={handleDataFromSeat} /> <Seat seatId={43} onData={handleDataFromSeat} /><Seat seatId={44} onData={handleDataFromSeat} /> <Seat seatId={45} onData={handleDataFromSeat} /><Seat seatId={46} onData={handleDataFromSeat} /> <Seat seatId={47} onData={handleDataFromSeat} /><Seat seatId={48} onData={handleDataFromSeat} /> <Seat seatId={49} onData={handleDataFromSeat} /><Seat seatId={50} onData={handleDataFromSeat} /> <Seat seatId={51} onData={handleDataFromSeat} /><Seat seatId={52} onData={handleDataFromSeat} /><Seat seatId={53} onData={handleDataFromSeat}  onData={handleDataFromSeat} /><Seat seatId={54}/></div>
+                <div><Seat seatId={42} onData={handleDataFromSeat} /> <Seat seatId={43} onData={handleDataFromSeat} /><Seat seatId={44} onData={handleDataFromSeat} /> <Seat seatId={45} onData={handleDataFromSeat} /><Seat seatId={46} onData={handleDataFromSeat} /> <Seat seatId={47} onData={handleDataFromSeat} /><Seat seatId={48} onData={handleDataFromSeat} /> <Seat seatId={49} onData={handleDataFromSeat} /><Seat seatId={50} onData={handleDataFromSeat} /> <Seat seatId={51} onData={handleDataFromSeat} /><Seat seatId={52} onData={handleDataFromSeat} /><Seat seatId={53} onData={handleDataFromSeat} /><Seat seatId={54} onData={handleDataFromSeat} /></div>
             </section>
 
-
+                                                                                                    
             <div className={style.legend}>
                 <div className={style.seat_legend_free}></div>
                 <p className={style.legendText_free}>Tillgänglig</p>

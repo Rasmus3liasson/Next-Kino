@@ -1,16 +1,22 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import style from "./style.module.scss";
 import React from "react";
-import { ScreeningType } from "@/util/types";
 
+interface SeatProps{
+    seatId: Number;
+    onData: (data: Number) => void;
+}
 
-export default function Seat({ seatId, movieData}: { seatId: Number, movieData: ScreeningType}) {
+const Seat: React.FC<SeatProps> = ({seatId, onData}) => {
+
     const [selected, setIsSelected] = useState(false);
     const [unavailable, setUnavailable] = useState(false);
     let currentState: String;
 
     const handleClick = () => {
-        setIsSelected(!selected)
+        setIsSelected(!selected);
+        const data = seatId;
+        onData(data);    
     }
 
     useEffect(() => {
@@ -62,3 +68,4 @@ return (
 
 };
   
+export default Seat;

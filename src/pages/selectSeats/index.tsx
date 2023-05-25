@@ -2,9 +2,7 @@ import Head from "next/head";
 import Saloon from "@/components/Saloon";
 import BuyTickets from "@/components/BuyTickets";
 import { ScreeningType } from "@/util/types";
-import { getData } from "../api/screenings";
-import { getMovies } from "../api/movies";
-import getBookings from "../api/bookings/GET";
+import { getTenScreenings } from "../api/screenings";
 import Link from "next/link";
   
 const handleDataFromSaloon = (data: Number[]) => {
@@ -14,9 +12,8 @@ const handleDataFromSaloon = (data: Number[]) => {
   export async function getServerSideProps() {
     return {
       props: {
-        screenings: (await getData()).at(0),
-        movies: await getMovies()                        
-      },
+        screenings: (await getTenScreenings()                   
+      )},
     };
   }
 
