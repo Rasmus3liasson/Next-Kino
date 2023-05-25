@@ -16,12 +16,9 @@ export async function getServerSideProps(context) {
   //finds correct movie based on id
   const movie = await Movie.findOne({ title: id });
 
-  const seatsData = await Booking.find({ movieTitle: id });
-  const filteredBookings = seatsData.filter(
-    ({ date }) => new Date(date).getTime() === new Date(date).getTime()
-  );
+  const seatsData = await Booking.find({ date: date });
 
-  const occupiedSeats = filteredBookings
+  const occupiedSeats = seatsData
     .flatMap((item) => {
       return item.seats;
     })
