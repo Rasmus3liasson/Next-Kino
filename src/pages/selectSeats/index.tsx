@@ -20,7 +20,8 @@ import Link from "next/link";
     };
   }
 
-export default function SelectSeats({ screenings}: { screenings: ScreeningType[]}) {
+
+export default function SelectSeats({ selectedSeatIds, screenings}: { selectedSeatIds: [Number], screenings: ScreeningType[]}) {
     return(
       <>
         <Head>
@@ -28,8 +29,8 @@ export default function SelectSeats({ screenings}: { screenings: ScreeningType[]
           <meta name="description" content="Kino project in next.js" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
-        <Saloon screenings/>
-        <BuyTickets screenings/>
+        <Saloon screenings selectedSeatIds/>
+        <BuyTickets screenings selectedSeatIds/>
       </>
     );
   }

@@ -10,6 +10,7 @@ export default function BuyTickets({ screenings }: { screenings: ScreeningType }
   
 
   function handleClick() {
+    
     Router.push(Link);
   }
   return (

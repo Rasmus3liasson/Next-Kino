@@ -7,6 +7,15 @@ justify-content: center;
 align-items: center;
 }
 
+.seatContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotateY(0deg) rotate(90deg);
+    
+}
+
 .legend{
     display: flex;  
     flex-direction: column;
