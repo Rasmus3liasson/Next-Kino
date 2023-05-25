@@ -58,5 +58,5 @@ function LangComponent({
 }
 // Helper to format time
 function formatTime(time: string) {
-  return `${DateTime.fromISO(time).toFormat("HH:mm")}`;
+  return `${DateTime.fromISO(time, {zone: 'utc'}).toFormat("HH:mm")}`;
 }

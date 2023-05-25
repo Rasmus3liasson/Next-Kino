@@ -30,7 +30,7 @@ export default function Screening({
         {screeningData.title}
       </h3>
       <small className={`${style.date} ${style.cardItem}`}>
-        {DateTime.fromISO(screeningData.screening).toFormat("dd LLL HH:mm")}
+        {DateTime.fromISO(screeningData.screening, {zone: 'utc'}).toFormat("dd LLL HH:mm")}
       </small>
       <small className={`${style.location} ${style.cardItem}`}>
         {screeningData.location}
