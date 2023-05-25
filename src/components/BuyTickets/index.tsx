@@ -14,7 +14,7 @@ export default function BuyTickets({
   const router = useRouter();
   const { id, date } = router.query;
 
-  const Link = `/movies/${id}/payment`;
+  const Link = `/movies/${id}/payment/${date}`;
 
   function handleClick() {
     Router.push(Link);
@@ -42,7 +42,6 @@ export default function BuyTickets({
         //disabled button if user isnt logged in
         disabled={!accountState}
         onClick={() => {
-          postNewSeats();
           handleClick();
         }}
         className={style.confirmButton}

@@ -1,10 +1,11 @@
 import style from "./style.module.scss";
 import PickSeat from "../PickSeat";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BookingInterface } from "@/types/booking";
 import BuyTickets from "../BuyTickets";
 import { useRouter } from "next/router";
 import { accountStateContext } from "@/pages/_app";
+import { bookingInfoContext } from "@/util/bookingInfoContext";
 
 export default function Saloon({
   seatsData,
@@ -15,6 +16,7 @@ export default function Saloon({
 }) {
   //acces accountstate
   const { accountState } = useContext(accountStateContext);
+  const { bookingInfo, setBookingInfo } = useContext(bookingInfoContext);
 
   const [unavailable, setUnavailable] = useState(false);
   const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
@@ -33,35 +35,16 @@ export default function Saloon({
       });
     }
   };
-  //post new seat booking
-  async function postNewSeats() {
-    if (!accountState) {
-      // if accountState is null
-      console.log("Cannot proceed");
-      return;
-    }
 
-    try {
-      await fetch(`/api/movies/${id}/bookings/${date}/update`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          occupiedSeats: {
-            userID: accountState.name.first,
-            email: accountState.email,
-            movieTitle: id,
-            date: date,
-            seats: selectedSeats.sort((a: number, b: number) => a - b),
-          },
-        }),
-      });
-      console.log("Seats updated");
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  }
+  useEffect(() => {
+    setBookingInfo({
+      userID: accountState?.name.first,
+      email: accountState?.email,
+      movieTitle: id,
+      date: date,
+      seats: selectedSeats.sort((a: number, b: number) => a - b),
+    });
+  }, [setBookingInfo, accountState, id, date, selectedSeats]);
 
   return (
     <div className={style.saloon}>
@@ -79,7 +62,7 @@ export default function Saloon({
         <div className={style.seat_legend_selected}></div>
         <p className={style.legendText_selected}>Vald</p>
       </div>
-      <BuyTickets postNewSeats={postNewSeats} movieData={movieData} />
+      <BuyTickets movieData={movieData} />
     </div>
   );
 }

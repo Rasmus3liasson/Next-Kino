@@ -3,7 +3,7 @@ import Head from "next/head";
 import ConfirmPurchase from "@/components/ConfirmPurchase";
 import Payment from "@/components/Payment";
 import connectMongo from "@/util/connectMongo";
-import Movie from "../../../../../models/movie";
+import Movie from "../../../../../../models/movie";
 import { MovieInterFace } from "@/types/movie";
 
 export async function getServerSideProps({

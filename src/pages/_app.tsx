@@ -8,6 +8,7 @@ import { userData } from "@/util/types";
 import { NextPageContext } from "next";
 import { parse } from "cookie";
 import { loginModalContext } from "@/util/loginModalContext";
+import { bookingInfoContext } from "@/util/bookingInfoContext";
 
 export const accountStateContext = createContext<{
   accountState: userData | null;
@@ -20,16 +21,19 @@ export const accountStateContext = createContext<{
 function App({ Component, pageProps }: AppProps) {
   const [accountState, setAccountState] = useState<userData | null>(null);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [bookingInfo, setBookingInfo] = useState({});
 
   return (
     <>
       <loginModalContext.Provider value={{ loginModalOpen, setLoginModalOpen }}>
         <accountStateContext.Provider value={{ accountState, setAccountState }}>
-          <Header />
-          <main>
-            <Component {...pageProps} />
-          </main>
-          <Footer />
+          <bookingInfoContext.Provider value={{ bookingInfo, setBookingInfo }}>
+            <Header />
+            <main>
+              <Component {...pageProps} />
+            </main>
+            <Footer />
+          </bookingInfoContext.Provider>
         </accountStateContext.Provider>
       </loginModalContext.Provider>
     </>
