@@ -4,10 +4,10 @@ import React from "react";
 import { ScreeningType } from "@/util/types";
 
 
-export default function Seat({ movieData, seatArray}: { movieData: ScreeningType, seatArray: [Number] }) {
+export default function Seat({ seatId, movieData}: { seatId: Number, movieData: ScreeningType}) {
     const [selected, setIsSelected] = useState(false);
     const [counter, setSeatCounter] = useState(0);  
-    const [unavailable, setUnavailable] = useState(false)
+    const [unavailable, setUnavailable] = useState(false);
 
     const handleClick = () => {
         setIsSelected(!selected)
@@ -15,7 +15,11 @@ export default function Seat({ movieData, seatArray}: { movieData: ScreeningType
         setSeatCounter(counter+1)
     }
 
+    useEffect(() => {
+        updateUnavailableSeats();
+    });
   
+    
 async function updateUnavailableSeats() {
     event?.preventDefault();
 
@@ -25,7 +29,7 @@ async function updateUnavailableSeats() {
     data.then((data) => {
         const occupiedSeats = data.occupiedSeats;
         for (let i=0;i<occupiedSeats.length;i++){
-            if (occupiedSeats[i] === counter){
+            if (occupiedSeats[i] === seatId){
                 setUnavailable(true);
             }
         }
