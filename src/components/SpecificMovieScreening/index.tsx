@@ -2,6 +2,8 @@ import style from "./style.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { SpecificScreening } from "../../types/screeningTypes";
+import React from "react";
+import { DateTime } from "luxon";
 
 export default function SpecificMovieScreening({
   screening,
@@ -56,5 +58,5 @@ function LangComponent({
 }
 // Helper to format time
 function formatTime(time: string) {
-  return time.slice(11, 16);
+  return `${DateTime.fromISO(time, { zone: "utc" }).toFormat("HH:mm")}`;
 }

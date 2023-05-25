@@ -18,9 +18,8 @@ export default function AllSpecificMovieScreenings({
 }) {
   const [expanded, setExpanded] = useState(false);
 
-  const today = DateTime.now().toISODate();
-  const tomorrow = DateTime.now().plus({ days: 1 }).toISODate();
-
+  const today = DateTime.utc().toISODate();
+  const tomorrow = DateTime.utc().plus({ days: 1 }).toISODate();
   const list = expanded
     ? screenings.screeningsByDay
     : screenings.screeningsByDay.slice(0, 2);
@@ -33,7 +32,7 @@ export default function AllSpecificMovieScreenings({
       <h3>Kommande visningar</h3>
       {list.map((screeningsByDay, index: number) => {
         const dayOfScreening = DateTime.fromISO(
-          screeningsByDay.date
+          screeningsByDay.date, {zone: 'utc'}
         ).toISODate();
         return (
           <div key={index} className={style.dayContainer}>
@@ -43,7 +42,7 @@ export default function AllSpecificMovieScreenings({
                 : tomorrow === dayOfScreening
                 ? "Imorgon"
                 : dayOfScreening !== null &&
-                  DateTime.fromISO(dayOfScreening).toFormat("dd LLL")}
+                  DateTime.fromISO(dayOfScreening, {zone: 'utc'}).toFormat("dd LLL")}
             </h6>
             <ScreeningDay
               movieId={screenings.title}
@@ -53,7 +52,7 @@ export default function AllSpecificMovieScreenings({
         );
       })}
       <button className={style.showMoreButton} onClick={handleClick}>
-        Se fler visningar
+        {expanded? 'Dölj visningar' : 'Se fler visningar'}
       </button>
     </section>
   );
