@@ -1,4 +1,3 @@
-
 export type ScreeningType = {
   id: string;
   date: string;
@@ -39,13 +38,14 @@ export type MovieProps = {
   title: string;
   poster: string;
   description?: string;
+  rating: number;
 };
 
 export type userData = {
-  name: { 
-    first: string; 
-    last: string 
+  name: {
+    first: string;
+    last: string;
   };
   email: string;
   userName: string;
-}
+};

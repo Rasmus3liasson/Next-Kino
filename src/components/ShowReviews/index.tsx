@@ -13,7 +13,11 @@ export default function ShowReviews({ reviewData }: ReviewProps) {
 
   return (
     <>
-      {<button onClick={toggleDropdown}>testknapp</button>}
+      {
+        <div className={style.toggleBtn}>
+          <button onClick={toggleDropdown}>Se Recensioner</button>
+        </div>
+      }
       {!isOpen && (
         <>
           <section className={style.reviewsContainer}>
