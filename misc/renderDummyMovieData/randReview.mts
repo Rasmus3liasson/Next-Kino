@@ -1,5 +1,5 @@
 import fs from "fs/promises";
-import { review } from "../models/movie";
+import { review } from "../../models/movie";
 import { randArrElem, randDate } from "./utils.mjs";
 import { LoremIpsum } from "lorem-ipsum";
 

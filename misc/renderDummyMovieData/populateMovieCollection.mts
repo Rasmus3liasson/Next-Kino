@@ -1,7 +1,7 @@
-import { screening } from "./../models/movie";
+  import { screening } from "../../models/movie";
 import fs from "fs/promises";
-import { IMovie } from "../models/movie";
-import { review } from "../models/movie";
+import { IMovie } from "../../models/movie";
+import { review } from "../../models/movie";
 import randReview from "./randReview.mjs";
 import randScreening from "./randScreening.mjs";
 
