@@ -9,7 +9,7 @@ import Booking from "../../../../../../models/booking";
 // TODO: Add database functions here.
 
 export async function getServerSideProps(context) {
-  const { id } = context.params;
+  const { id, date } = context.params;
 
   await connectMongo();
 
@@ -17,10 +17,19 @@ export async function getServerSideProps(context) {
   const movie = await Movie.findOne({ title: id });
 
   const seatsData = await Booking.find({ movieTitle: id });
+  const filteredBookings = seatsData.filter(
+    ({ date }) => new Date(date).getTime() === new Date(date).getTime()
+  );
+
+  const occupiedSeats = filteredBookings
+    .flatMap((item) => {
+      return item.seats;
+    })
+    .sort((a, b) => a - b);
 
   return {
     props: {
-      seatsData: JSON.parse(JSON.stringify(seatsData)),
+      seatsData: occupiedSeats,
       movie: JSON.parse(JSON.stringify(movie)), // Convert movie object to JSON serializable format
     },
   };
