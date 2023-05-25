@@ -6,18 +6,34 @@ import { ScreeningType } from "@/util/types";
 
 export default function Seat({ seatId, movieData}: { seatId: Number, movieData: ScreeningType}) {
     const [selected, setIsSelected] = useState(false);
-    const [counter, setSeatCounter] = useState(0);  
     const [unavailable, setUnavailable] = useState(false);
+    let currentState: String;
 
     const handleClick = () => {
         setIsSelected(!selected)
-        updateUnavailableSeats()
-        setSeatCounter(counter+1)
     }
 
     useEffect(() => {
         updateUnavailableSeats();
     });
+
+   
+        if(unavailable){
+            currentState = "unavailable"        
+        }else if(selected){
+            currentState = "selected"
+        }else{
+            currentState = "available"
+        }
+        let stylingName = '';
+        if (currentState === "unavailable"){
+            stylingName = style.unavailableSeat;
+        }else if(currentState === "selected"){
+            stylingName = style.selectedSeat;
+        }else{
+            stylingName = style.availableSeat;
+        }
+    
   
     
 async function updateUnavailableSeats() {
@@ -34,13 +50,13 @@ async function updateUnavailableSeats() {
             }
         }
     })
-
-    
 }
+    
+
 return (
 
     <div
-        className = {unavailable ? style.unavailableSeat : style.availableSeat} onClick={handleClick} ><span className={style.noRotation}></span>    
+        className = {`${stylingName}`}onClick={handleClick} ><span className={style.noRotation}></span> 
     </div>
 )
 
