@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import style from "./style.module.scss";
 import Seat from "../Seat";
-import { useRouter } from "next/router";
-import { Booking } from "@/types/booking";
-import BuyTickets from "../BuyTickets";
 
 export default function PickSeat({
   bookedSeats,

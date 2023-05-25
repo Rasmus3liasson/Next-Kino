@@ -14,8 +14,9 @@ export default function Screening({
 }: {
   screeningData: ScreeningProps;
 }) {
-  const screeningId = DateTime.fromISO(screeningData.screening).toMillis();
-  const link = `/movie/${screeningData.title}/booking?screening=${screeningId}`;
+  const screeningId = screeningData.screening;
+
+  const link = `/movies/${screeningData.title}/booking/${screeningId}`;
   return (
     <Link style={{ textDecoration: "none" }} href={link} className={style.card}>
       <Image
