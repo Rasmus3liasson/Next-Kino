@@ -9,7 +9,7 @@ import Seat from "../Seat";
    
     const Saloon: React.FC<SaloonProps> = ({ onData}) =>{
         const sendDataToParent = () => {
-            const data = [1,6,8,9]
+            const data = selectedSeats
             onData(data);
         }
 
