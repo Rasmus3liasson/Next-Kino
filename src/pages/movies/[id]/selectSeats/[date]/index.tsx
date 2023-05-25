@@ -3,26 +3,24 @@ import Saloon from "@/components/Saloon";
 import BuyTickets from "@/components/BuyTickets";
 import connectMongo from "@/util/connectMongo";
 import Movie from "../../../../../../models/movie";
-import { Booking } from "@/types/booking";
+import { BookingInterface } from "@/types/booking";
+import Booking from "../../../../../../models/booking";
 
 // TODO: Add database functions here.
 
 export async function getServerSideProps(context) {
-  const { id, date } = context.params;
-  const res = await fetch(
-    `http://localhost:3000/api/movies/${id}/bookings/${date}`
-  );
-  const seats = await res.json();
-  const seatsData = seats.occupiedSeats;
+  const { id } = context.params;
 
   await connectMongo();
 
   //finds correct movie based on id
   const movie = await Movie.findOne({ title: id });
 
+  const seatsData = await Booking.find({ movieTitle: id });
+
   return {
     props: {
-      seatsData,
+      seatsData: JSON.parse(JSON.stringify(seatsData)),
       movie: JSON.parse(JSON.stringify(movie)), // Convert movie object to JSON serializable format
     },
   };
@@ -33,7 +31,7 @@ export default function SelectSeats({
   movie,
 }: {
   seatsData: number[];
-  movie: Booking;
+  movie: BookingInterface;
 }) {
   return (
     <>

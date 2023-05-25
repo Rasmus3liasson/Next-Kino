@@ -15,10 +15,16 @@ export default function Seat({
 }) {
   const [unavailable, setUnavailable] = useState(false);
 
+  //getting only the seats
+  const seatsOnly = bookedSeats
+    .map((seat) => seat.seats)
+    .flat()
+    .sort();
+
   // to see if seat is already selected
   useEffect(() => {
-    setUnavailable(bookedSeats.includes(value));
-  }, [bookedSeats, value]);
+    setUnavailable(seatsOnly.includes(value));
+  }, [bookedSeats, seatsOnly, value]);
 
   //check that only free chair can be selected
   const handleClick = () => {
