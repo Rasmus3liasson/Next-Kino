@@ -2,13 +2,12 @@ import Head from "next/head";
 import Payment from "@/components/Payment";
 import ConfirmPurchase from "@/components/ConfirmPurchase";
 import { ScreeningType } from "@/util/types";
-import { getData } from "../api/screenings";
+import { getTenScreenings } from "../api/screenings";
 
-  
   export async function getServerSideProps() {
     return {
       props: {
-        screenings: (await getData()).at(0),
+        screenings: await getTenScreenings()
       },
     };
   }
