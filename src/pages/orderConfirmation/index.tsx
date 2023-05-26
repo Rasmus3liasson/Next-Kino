@@ -1,6 +1,5 @@
 import Head from "next/head";
-import OrderConfirmation from "@/components/ OrderConfirmation";
-import ConfirmPurchase from "@/components/ConfirmPurchase";
+import OrderConfirmation from "@/components/OrderConfirmation";
 import { ScreeningType } from "@/util/types";
 import { getTenScreenings } from "../api/screenings";
 
@@ -21,7 +20,7 @@ export default function orderConfirmed({ screenings}: { screenings: ScreeningTyp
           <meta name="description" content="Kino project in next.js" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
-        <OrderConfirmation screenings={screenings}/>
+        <OrderConfirmation />
       </>
     ); 
   }

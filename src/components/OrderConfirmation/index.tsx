@@ -1,7 +1,6 @@
 import style from "./style.module.scss";
 import React from "react";
 import Router from "next/router";
-import { User } from "@/util/mockUser";
 
 export default function OrderConfirmation() {
     const link = `/`;

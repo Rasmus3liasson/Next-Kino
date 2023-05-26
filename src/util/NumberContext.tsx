@@ -2,6 +2,7 @@ import React, { createContext, useContext } from 'react';
 
 interface NumberContextProps {
   numberArray: Number[];
+
 }
 
 const NumberContext = createContext<NumberContextProps | undefined>(undefined);
@@ -14,10 +15,9 @@ export const useNumberContext = (): NumberContextProps => {
   return context;
 };
 
-export const NumberContextProvider: React.FC<NumberContextProps> = ({ numberArray, children }) => {
+export const NumberContextProvider: React.FC<NumberContextProps> = ({ numberArray }) => {
   return (
     <NumberContext.Provider value={{ numberArray }}>
-      {children}
     </NumberContext.Provider>
   );
 };

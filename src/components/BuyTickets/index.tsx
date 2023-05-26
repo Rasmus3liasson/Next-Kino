@@ -1,4 +1,3 @@
-import Link from "next/link";
 import style from "./style.module.scss";
 import { ScreeningType } from "@/util/types";
 import React from "react";
@@ -14,8 +13,9 @@ export default function BuyTickets({ screenings, selectedSeatIds}: { screenings:
     Router.push(Link);
   }
   return (
-    <NumberContextProvider numberArray={selectedSeatIds}>
+    
     <div className={style.container}>
+      <NumberContextProvider numberArray={selectedSeatIds}></NumberContextProvider>
       <hr className={style.divider}/>
       <h2 className={style.title }>{screenings.title}</h2>
       <p className={style.date}> Tid och datum: {screenings.date}</p>
@@ -23,6 +23,6 @@ export default function BuyTickets({ screenings, selectedSeatIds}: { screenings:
       <button onClick={handleClick} className={style.confirmButton} formAction="Submit">Till kassan</button>
       <button className={style.cancelButton} formAction="Cancel">Avbryt</button>  
     </div>
-    </NumberContextProvider>
+    
   )
 }
