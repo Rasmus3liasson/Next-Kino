@@ -1,12 +1,12 @@
 import Link from "next/link";
 import style from "./style.module.scss";
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import React from "react";
 import Router from "next/router";
-import { ScreeningType } from "@/util/types";
+import { ScreeningProps } from "@/types/screeningTypes";
 import { accountStateContext } from "@/pages/_app";
 
-export default function Payment({ screenings, selectedSeatIds }: { screenings: ScreeningType, selectedSeatIds: Number[]}) {
+export default function Payment({ screenings, selectedSeatIds }: { screenings: ScreeningProps, selectedSeatIds: Number[]}) {
     const { accountState } = useContext(accountStateContext);
     const link = `/orderConfirmation`;      
     const cancelLink = `/`;
@@ -25,7 +25,7 @@ export default function Payment({ screenings, selectedSeatIds }: { screenings: S
             userID: null,
             email: "nisse@test.nu",
             movieTitle: screenings.title,
-            date: screenings.date,
+            date: screenings._id,
             seats: selectedSeatIds,
         };
  

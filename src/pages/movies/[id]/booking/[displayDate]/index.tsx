@@ -3,16 +3,10 @@ import Head from "next/head";
 import connectMongo from "@/util/connectMongo";
 import Saloon from "@/components/Saloon";
 import BuyTickets from "@/components/BuyTickets";
-import Movie from "../../../../../models/movie";
 import { getTenScreenings } from "@/pages/api/screenings";
-import { ScreeningType } from "@/util/types";
-import { useContext } from "react";
+import { ScreeningProps } from "@/types/screeningTypes";
 import { GetServerSidePropsContext } from "next";
-import { useRouter } from 'next/router';
-import { getTenMovies } from "@/pages/api/movies";
 
-
-  
     export async function getServerSideProps(context: GetServerSidePropsContext) {
         const {req, res, query, params} = context
 
@@ -27,7 +21,7 @@ import { getTenMovies } from "@/pages/api/movies";
       };
     }
 
-    export default function SelectSeats({ screenings, id, displayDate }: { screenings: ScreeningType[], id: string, displayDate: string}) {
+    export default function SelectSeats({ screenings, id, displayDate }: { screenings: ScreeningProps, id: string, displayDate: string}) {
       let seats: number[] = []
       const handleDataFromSaloon = (selectedSeatIds: number[]) => {
         let seats = selectedSeatIds;

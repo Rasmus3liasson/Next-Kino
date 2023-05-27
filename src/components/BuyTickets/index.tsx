@@ -1,10 +1,10 @@
 import style from "./style.module.scss";
-import { ScreeningType } from "@/util/types";
+import { ScreeningProps } from "@/types/screeningTypes";
 import React from "react";
 import  { useRouter } from 'next/router';
 import { NumberContextProvider } from "@/util/NumberContext";
 
-export default function BuyTickets({ screenings, selectedSeatIds, id, displayDate}: { screenings: ScreeningType, selectedSeatIds: number[], id: string, displayDate: string}) {
+export default function BuyTickets({ screenings, selectedSeatIds, id, displayDate}: { screenings: ScreeningProps, selectedSeatIds: number[], id: string, displayDate: string}) {
   const date = new Date(parseInt(displayDate))
   const ISOdate = date.toISOString();
   const offsetFormattedDate = ISOdate.replace("Z", "+00:00");

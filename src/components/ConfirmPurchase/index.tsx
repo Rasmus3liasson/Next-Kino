@@ -1,8 +1,8 @@
 import style from "./style.module.scss";
 import React from "react";
-import { ScreeningType } from "@/util/types";
+import { ScreeningProps } from "@/types/screeningTypes";
 
-export default function ConfirmPurchase({ screenings }: { screenings: ScreeningType }) {
+export default function ConfirmPurchase({ screenings }: { screenings: ScreeningProps }) {
     return (
         <section className={style.purchase}>
             <h2 className={style.headline}>Bekräfta order</h2>

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Payment from "@/components/Payment";
 import ConfirmPurchase from "@/components/ConfirmPurchase";
-import { ScreeningType } from "@/util/types";
+import { ScreeningProps } from "@/types/screeningTypes";
 import { getTenScreenings } from "@/pages/api/screenings";
 
   export async function getServerSideProps() {
@@ -12,7 +12,7 @@ import { getTenScreenings } from "@/pages/api/screenings";
     };
   }
 
-export default function SelectSeats({ screenings}: { screenings: ScreeningType[]}) {
+export default function SelectSeats({ screenings}: { screenings: ScreeningProps}) {
     return(
       <>
         <Head>
