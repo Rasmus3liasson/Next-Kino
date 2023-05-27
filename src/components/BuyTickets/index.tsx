@@ -3,12 +3,16 @@ import { ScreeningProps } from "@/types/screeningTypes";
 import React from "react";
 import  { useRouter } from 'next/router';
 import { NumberContextProvider } from "@/util/NumberContext";
+import { MovieProps } from "@/util/types";
 
-export default function BuyTickets({ screenings, selectedSeatIds, id, displayDate}: { screenings: ScreeningProps, selectedSeatIds: number[], id: string, displayDate: string}) {
-  const date = new Date(parseInt(displayDate))
-  const ISOdate = date.toISOString();
+export default function BuyTickets({ screenings, selectedSeatIds, id, displayDate, movieData}: { screenings: ScreeningProps, selectedSeatIds: number[], id: string, displayDate: string, movieData: MovieProps}) {
+  console.log("selectedSeats: " + selectedSeatIds);
+  let dateAndTime = new Date(parseInt(displayDate))
+  const ISOdate = dateAndTime.toISOString();
   const offsetFormattedDate = ISOdate.replace("Z", "+00:00");
-  const Link = `/movies/${id}/booking/${offsetFormattedDate}/payment`;const router = useRouter();
+  const dateAndTimeString = (dateAndTime.toLocaleDateString() + " " + dateAndTime.toLocaleTimeString())
+  const Link = `/movies/${id}/booking/${offsetFormattedDate}/payment?${selectedSeatIds}`;
+  const router = useRouter();
   function handleClick() {
     router.push(Link);
   }
@@ -18,7 +22,7 @@ export default function BuyTickets({ screenings, selectedSeatIds, id, displayDat
       <NumberContextProvider numberArray={selectedSeatIds}></NumberContextProvider>
       <hr className={style.divider}/>
       <h2 className={style.title }>{screenings.title}</h2>
-      <p className={style.date}> Tid och datum: {screenings.date}</p>
+      <p className={style.date}> Tid och datum: {dateAndTimeString}</p>
       <p className={style.date}> Plats: {screenings.location}</p>
       <button onClick={handleClick} className={style.confirmButton} formAction="Submit">Till kassan</button>
       <button className={style.cancelButton} formAction="Cancel">Avbryt</button>  

@@ -3,16 +3,25 @@ import Payment from "@/components/Payment";
 import ConfirmPurchase from "@/components/ConfirmPurchase";
 import { ScreeningProps } from "@/types/screeningTypes";
 import { getTenScreenings } from "@/pages/api/screenings";
+import { GetServerSidePropsContext } from "next";
+import { getMovie } from "@/util/dbAggregations";
+import { MovieProps } from "@/util/types";
 
-  export async function getServerSideProps() {
+  export async function getServerSideProps(context: GetServerSidePropsContext) {
+    const {req, res, query, params} = context;
+    const id = params?.id ?? 0;
+    const displayDate = params?.displayDate ?? null;
     return {
       props: {
-        screenings: await getTenScreenings()
+        screenings: await getTenScreenings(),
+        id: id,
+        displayDate: displayDate,   
+        movieData: await getMovie(id.toString()),
       },
     };
   }
 
-export default function SelectSeats({ screenings}: { screenings: ScreeningProps}) {
+export default function SelectSeats({ screenings, id, movieData}: { screenings: ScreeningProps, id: string, movieData: MovieProps}) {
     return(
       <>
         <Head>
@@ -20,8 +29,8 @@ export default function SelectSeats({ screenings}: { screenings: ScreeningProps}
           <meta name="description" content="Kino project in next.js" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
-        <ConfirmPurchase screenings={screenings}/>
-        <Payment screenings= {screenings}/>
+        <ConfirmPurchase movieData={movieData}/>
+        <Payment screenings= {screenings} movieId={id}/>
       </>
     ); 
   }
