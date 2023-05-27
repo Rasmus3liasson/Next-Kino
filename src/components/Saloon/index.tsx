@@ -3,8 +3,8 @@ import React from "react";
 import Seat from "../Seat";
     interface SaloonProps{
         onData: (data: Number[]) => void;
-        id: String;
-        displayDate: String;
+        id: string;
+        displayDate: string;
     
     }
 
@@ -47,7 +47,6 @@ import Seat from "../Seat";
                 <p className={style.legendText_unavailable}>Ej tillgänglig</p>
                 <div className={style.seat_legend_selected}></div>
                 <p className={style.legendText_selected}>Vald</p>
-                <button onClick={sendDataToParent}>Send Data to Parent</button>
             </div>
         </div>
     )};

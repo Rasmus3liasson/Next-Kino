@@ -27,8 +27,8 @@ const handleDataFromSaloon = (selectedSeatIds: Number[]) => {
         },
       };
     }
-    
-    export default function SelectSeats({ screenings}: { screenings: ScreeningType[]}) {
+
+    export default function SelectSeats({ screenings, id, displayDate }: { screenings: ScreeningType[], id: string, displayDate: string}) {
       const router = useRouter();
        
       return(
