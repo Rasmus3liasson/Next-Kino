@@ -5,8 +5,8 @@ import React from "react";
 interface SeatProps{
     seatId: Number;
     onData: (data: Number) => void;
-    id: String;
-    displayDate: String;
+    id: string;
+    displayDate: string;
 }
 
 const Seat: React.FC<SeatProps> = ({seatId, onData, id, displayDate}) => {
@@ -47,8 +47,8 @@ const Seat: React.FC<SeatProps> = ({seatId, onData, id, displayDate}) => {
 async function updateUnavailableSeats() {
     event?.preventDefault();
 
-    
-    const dbResponse = await fetch(`api/movies/${id}/bookings/${displayDate}`)
+    const date = new Date(displayDate)
+    const dbResponse = await fetch(`api/movies/${id}/bookings/${date}`)
                                                                                 
     const data = dbResponse.json();
     data.then((data) => {
