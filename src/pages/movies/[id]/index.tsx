@@ -72,7 +72,6 @@ export default function MovieDetailsPage({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <MovieDetails movieData={movie} />
-      {/* Rating - component goes here! */}
       <ShowReviews reviewData={reviewData} />
       <AllSpecificMovieScreenings screenings={parsedProps} />
     </>

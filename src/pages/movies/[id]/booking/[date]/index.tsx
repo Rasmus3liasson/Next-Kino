@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Saloon from "@/components/Saloon";
-import BuyTickets from "@/components/BuyTickets";
 import connectMongo from "@/util/connectMongo";
 import Movie from "../../../../../../models/movie";
 import { BookingInterface } from "@/types/booking";
@@ -8,7 +7,9 @@ import Booking from "../../../../../../models/booking";
 
 // TODO: Add database functions here.
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: {
+  params: { id: string; date: string };
+}) {
   const { id, date } = context.params;
 
   await connectMongo();
