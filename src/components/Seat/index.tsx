@@ -46,18 +46,11 @@ const Seat: React.FC<SeatProps> = ({seatId, onData, id, displayDate}) => {
     
 async function updateUnavailableSeats() {
     event?.preventDefault();
-    console.log("ID: " + id);
-    console.log("DispDate: "+ displayDate);
-    const newMillisecondValue = parseInt(displayDate) - (0); //Same time but UTC timezone
-    let date = new Date(newMillisecondValue)
+    let date = new Date(parseInt(displayDate))
     const ISOdate = date.toISOString();
     const offsetFormattedDate = ISOdate.replace("Z", "+00:00");
 
-    console.log("ConvertedDate: "+ offsetFormattedDate);
     const url = `/api/movies/${id}/bookings/${offsetFormattedDate}`;
-    const hardURL = "api/movies/Ariel/bookings/2023-06-20T16:46:39.129+00:00"
-    const haraURL = "api/movies/Million Dollar Baby/bookings/2023-06-26T21:54:30.117+00:00"
-    console.log(url);
     const dbResponse = await fetch(url);
                                                                                 
     const data = dbResponse.json();
