@@ -1,43 +1,41 @@
 import { getMovie } from "@/util/dbAggregations";
+import Head from "next/head";
 import connectMongo from "@/util/connectMongo";
+import Saloon from "@/components/Saloon";
+import BuyTickets from "@/components/BuyTickets";
 import Movie from "../../../../../models/movie";
-import { getMovieScreenings } from "@/pages/api/upcoming-screenings";
+import { getTenScreenings } from "@/pages/api/screenings";
+import { ScreeningType } from "@/util/types";
+import { useContext } from "react";
+import { GetServerSidePropsContext } from "next";
 
-export async function getStaticProps({ params }: { params: { id: string } }) {
-    const { id } = params;
+const handleDataFromSaloon = (selectedSeatIds: Number[]) => {
+    console.log('Data received from Saloon:', selectedSeatIds);
+  };
   
-    await connectMongo();
-  
-    //finds correct movie based on id
-    const movie = await Movie.findOne({ title: id });
+    export async function getServerSideProps(context: GetServerSidePropsContext) {
+        const {req, res, query, params} = context
 
-  
-    return {
-      props: {
-        movie: await getMovie(id),
-        movieScreenings: await getMovieScreenings(id),
-        revalidate: 60, // In seconds
-      },
-    };
-  }
-
-  export default function PaymentPage({
-    movie,
-    movieScreenings,
-  }: {
-    movie: MovieProps;
-    movieScreenings: string;
-  }) {
-    const parsedProps = JSON.parse(movieScreenings)[0];
-    return(
-        <>
-          <Head>
-            <title>Lule Northern Light Cinema</title>
-            <meta name="description" content="Kino project in next.js" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-          </Head>
-          <ConfirmPurchase screenings={movieScreenings}/>
-          <Payment screenings= {movieScreenings}/>
-        </>
-      ); 
+        const id = params?.id ?? null;
+        const displayDate = params?.displayDate ?? null;
+      return {
+        props: {
+          screenings: await getTenScreenings(),
+          id: id,
+          displayDate: displayDate                       
+        },
+      };
     }
+    export default function SelectSeats({ screenings}: { screenings: ScreeningType[]}) {
+        return(
+          <>
+            <Head>
+              <title>Lule Northern Light Cinema</title>
+              <meta name="description" content="Kino project in next.js" />
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+            </Head>
+            <Saloon onData={handleDataFromSaloon}/>
+            <BuyTickets screenings selectedSeatIds/>
+          </>
+        );
+      }
