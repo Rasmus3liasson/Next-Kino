@@ -26,7 +26,7 @@ export default function SelectSeats({ screenings}: { screenings: ScreeningType[]
           <meta name="description" content="Kino project in next.js" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
-        <Saloon screenings onData={handleDataFromSaloon}/>
+        <Saloon onData={handleDataFromSaloon}/>
         <BuyTickets screenings selectedSeatIds/>
       </>
     );

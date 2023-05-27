@@ -23,3 +23,5 @@ export default async function getBookings(req: any, res: any) {
     console.log("Database error: ", e);
   }
 }
+
+

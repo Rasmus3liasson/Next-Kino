@@ -8,6 +8,7 @@ import { getTenScreenings } from "@/pages/api/screenings";
 import { ScreeningType } from "@/util/types";
 import { useContext } from "react";
 import { GetServerSidePropsContext } from "next";
+import { useRouter } from 'next/router';
 
 const handleDataFromSaloon = (selectedSeatIds: Number[]) => {
     console.log('Data received from Saloon:', selectedSeatIds);
@@ -26,16 +27,20 @@ const handleDataFromSaloon = (selectedSeatIds: Number[]) => {
         },
       };
     }
+    
     export default function SelectSeats({ screenings}: { screenings: ScreeningType[]}) {
-        return(
+      const router = useRouter();
+       
+      return(
           <>
             <Head>
               <title>Lule Northern Light Cinema</title>
               <meta name="description" content="Kino project in next.js" />
               <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
-            <Saloon onData={handleDataFromSaloon}/>
+            <Saloon onData={handleDataFromSaloon} id={id} displayDate={displayDate}/>
             <BuyTickets screenings selectedSeatIds/>
           </>
         );
+        
       }

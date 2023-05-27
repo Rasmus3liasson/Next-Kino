@@ -5,9 +5,11 @@ import React from "react";
 interface SeatProps{
     seatId: Number;
     onData: (data: Number) => void;
+    id: String;
+    displayDate: String;
 }
 
-const Seat: React.FC<SeatProps> = ({seatId, onData}) => {
+const Seat: React.FC<SeatProps> = ({seatId, onData, id, displayDate}) => {
 
     const [selected, setIsSelected] = useState(false);
     const [unavailable, setUnavailable] = useState(false);
@@ -46,7 +48,8 @@ async function updateUnavailableSeats() {
     event?.preventDefault();
 
     
-    const dbResponse = await fetch("api/movies/Ariel/bookings/2023-08-16T12:16:21.856+00:00");                                                                                            
+    const dbResponse = await fetch(`api/movies/${id}/bookings/${displayDate}`)
+                                                                                
     const data = dbResponse.json();
     data.then((data) => {
         const occupiedSeats = data.occupiedSeats;
