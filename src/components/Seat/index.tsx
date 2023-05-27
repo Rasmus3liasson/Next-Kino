@@ -3,8 +3,8 @@ import style from "./style.module.scss";
 import React from "react";
 
 interface SeatProps{
-    seatId: Number;
-    onData: (data: Number) => void;
+    seatId: number;
+    onData: (data: number) => void;
     id: string;
     displayDate: string;
 }

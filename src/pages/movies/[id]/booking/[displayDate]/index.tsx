@@ -9,10 +9,9 @@ import { ScreeningType } from "@/util/types";
 import { useContext } from "react";
 import { GetServerSidePropsContext } from "next";
 import { useRouter } from 'next/router';
+import { getTenMovies } from "@/pages/api/movies";
 
-const handleDataFromSaloon = (selectedSeatIds: Number[]) => {
-    console.log('Data received from Saloon:', selectedSeatIds);
-  };
+
   
     export async function getServerSideProps(context: GetServerSidePropsContext) {
         const {req, res, query, params} = context
@@ -29,8 +28,11 @@ const handleDataFromSaloon = (selectedSeatIds: Number[]) => {
     }
 
     export default function SelectSeats({ screenings, id, displayDate }: { screenings: ScreeningType[], id: string, displayDate: string}) {
-      const router = useRouter();
-       
+      let seats: number[] = []
+      const handleDataFromSaloon = (selectedSeatIds: number[]) => {
+        let seats = selectedSeatIds;
+      };
+
       return(
           <>
             <Head>
@@ -39,8 +41,7 @@ const handleDataFromSaloon = (selectedSeatIds: Number[]) => {
               <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
             <Saloon onData={handleDataFromSaloon} id={id} displayDate={displayDate}/>
-            <BuyTickets screenings selectedSeatIds/>
+            <BuyTickets screenings={screenings} selectedSeatIds={seats} id={id} displayDate={displayDate}/>
           </>
         );
-        
       }

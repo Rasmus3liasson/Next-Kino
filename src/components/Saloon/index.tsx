@@ -2,21 +2,17 @@ import style from "./style.module.scss";
 import React from "react";
 import Seat from "../Seat";
     interface SaloonProps{
-        onData: (data: Number[]) => void;
+        onData: (data: number[]) => void;
         id: string;
         displayDate: string;
     
     }
 
-    let selectedSeats: Number[] = [];
+    let selectedSeats: number[] = [];
    
     const Saloon: React.FC<SaloonProps> = ({ onData, id, displayDate}) =>{
-        const sendDataToParent = () => {
-            const data = selectedSeats
-            onData(data);
-        }
 
-    const handleDataFromSeat = (seatNumber: Number) => {
+    const handleDataFromSeat = (seatNumber: number) => {
         if(selectedSeats.includes(seatNumber,0)){
             const index = selectedSeats.indexOf(seatNumber,0)
             if(index > -1){
@@ -25,7 +21,7 @@ import Seat from "../Seat";
         }else{
             selectedSeats.push(seatNumber);
         }
-        console.log(selectedSeats)
+        onData(selectedSeats);
     }
 
     return (

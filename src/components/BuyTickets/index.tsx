@@ -1,16 +1,16 @@
 import style from "./style.module.scss";
 import { ScreeningType } from "@/util/types";
 import React from "react";
-import Router from "next/router";
+import  { useRouter } from 'next/router';
 import { NumberContextProvider } from "@/util/NumberContext";
 
-export default function BuyTickets({ screenings, selectedSeatIds}: { screenings: ScreeningType, selectedSeatIds: Number[]}) {
-  const Link = `/payment`;
-  
-
+export default function BuyTickets({ screenings, selectedSeatIds, id, displayDate}: { screenings: ScreeningType, selectedSeatIds: number[], id: string, displayDate: string}) {
+  const date = new Date(parseInt(displayDate))
+  const ISOdate = date.toISOString();
+  const offsetFormattedDate = ISOdate.replace("Z", "+00:00");
+  const Link = `/movies/${id}/booking/${offsetFormattedDate}/payment`;const router = useRouter();
   function handleClick() {
-    
-    Router.push(Link);
+    router.push(Link);
   }
   return (
     
