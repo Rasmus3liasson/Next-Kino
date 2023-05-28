@@ -8,7 +8,7 @@ import { accountStateContext } from "@/pages/_app";
 
 export default function Payment({ screenings, selectedSeatIds, movieId }: { screenings: ScreeningProps, selectedSeatIds: string, movieId: string}) {
     const { accountState } = useContext(accountStateContext);
-    const link = `/movies/${movieId}/booking/orderConfirmation`;      
+    const link = `/movies/${movieId}/booking/orderconfirmation`;      
     const cancelLink = `/`;
     function handleClick() {
       updateBooking()

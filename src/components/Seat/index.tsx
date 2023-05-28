@@ -46,7 +46,9 @@ const Seat: React.FC<SeatProps> = ({seatId, onData, id, displayDate}) => {
     
 async function updateUnavailableSeats() {
     event?.preventDefault();
+    console.log(displayDate)
     let date = new Date(parseInt(displayDate))
+    console.log(date);
     const ISOdate = date.toISOString();
     const offsetFormattedDate = ISOdate.replace("Z", "+00:00");
 

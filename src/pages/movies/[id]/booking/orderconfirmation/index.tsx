@@ -1,7 +1,18 @@
 import Head from "next/head";
 import OrderConfirmation from "@/components/OrderConfirmation";
+import { ScreeningType } from "@/util/types";
+import { getTenScreenings } from "@/pages/api/screenings";
 
-export default function orderConfirmed() {
+
+  export async function getServerSideProps() {
+    return {
+      props: {
+        screenings: (await getTenScreenings())
+      },
+    };
+  }
+
+export default function orderConfirmed({ screenings}: { screenings: ScreeningType[]}) {
     return(
       <>
         <Head>
