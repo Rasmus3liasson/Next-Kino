@@ -6,11 +6,12 @@ import Router from "next/router";
 import { ScreeningProps } from "@/types/screeningTypes";
 import { accountStateContext } from "@/pages/_app";
 
-export default function Payment({ screenings, selectedSeatIds, movieId }: { screenings: ScreeningProps, selectedSeatIds: number[], movieId: string}) {
+export default function Payment({ screenings, selectedSeatIds, movieId }: { screenings: ScreeningProps, selectedSeatIds: string, movieId: string}) {
     const { accountState } = useContext(accountStateContext);
-    const link = `/orderConfirmation`;      
+    const link = `/movies/${movieId}/booking/orderConfirmation`;      
     const cancelLink = `/`;
     function handleClick() {
+      updateBooking()
         Router.push(link);
       }
 
@@ -28,7 +29,8 @@ export default function Payment({ screenings, selectedSeatIds, movieId }: { scre
             date: screenings._id,
             seats: selectedSeatIds,
         };
-        await fetch(`api/movies/${movieId}/payment`, {
+        const url = `api/movies/${movieId}/payment`;
+        await fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(updatedBooking),

@@ -7,12 +7,13 @@ import { MovieProps } from "@/util/types";
 
 export default function BuyTickets({ screenings, selectedSeatIds, id, displayDate, movieData}: { screenings: ScreeningProps, selectedSeatIds: number[], id: string, displayDate: string, movieData: MovieProps}) {
   const [seats, setSeats] = useState(selectedSeatIds)
-  console.log("BuyTickets: "+ seats)
+  const testSeats = [1,2];
   let dateAndTime = new Date(parseInt(displayDate))
-  const ISOdate = dateAndTime.toISOString();
-  const offsetFormattedDate = ISOdate.replace("Z", "+00:00");
+  //console.log(dateAndTime)
+  //const ISOdate = dateAndTime.toISOString();
+  //const offsetFormattedDate = ISOdate.replace("Z", "+00:00");
   const dateAndTimeString = (dateAndTime.toLocaleDateString() + " " + dateAndTime.toLocaleTimeString())
-  const Link = `/movies/${id}/booking/${offsetFormattedDate}/payment?${selectedSeatIds}`;
+  const Link = `/movies/${id}/booking/${dateAndTime}/payment?${testSeats}`;
   const router = useRouter();
   function handleClick() {
     setSeats(selectedSeatIds)
