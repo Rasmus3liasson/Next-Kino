@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext, createContext } from "react";
+import { useContext } from "react";
 import SearchInput from "./SearchInput";
 import { accountStateContext } from "@/pages/_app";
 import LoginForm from "./LoginForm";

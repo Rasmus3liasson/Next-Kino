@@ -4,7 +4,7 @@ import "@/styles/globals.scss";
 import { AppProps } from "next/app";
 import React, { createContext, useState } from "react";
 import validateAuthToken from "@/util/validateAuthToken";
-import { userData } from "@/util/types";
+import { userData } from "../types/userTypes";
 import { NextPageContext } from "next";
 import { parse } from "cookie";
 import { loginModalContext } from "@/util/loginModalContext";

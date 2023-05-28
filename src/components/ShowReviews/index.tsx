@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import style from "./style.module.scss";
 import Image from "next/image";
 import SendReview from "../SendReview";

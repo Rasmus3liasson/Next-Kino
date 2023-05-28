@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "./style.module.scss";
-import { MovieProps } from "@/util/types";
-import { ReviewProps } from "@/types/reviewTypes";
+import { MovieProps } from "@/types/movieTypes";
 
 interface RatingProps {
   movieData: MovieProps;

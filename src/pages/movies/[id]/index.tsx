@@ -5,9 +5,9 @@ import { getMovieScreenings } from "@/pages/api/upcoming-screenings";
 import connectMongo from "@/util/connectMongo";
 import Movie from "../../../../models/movie";
 import ShowReviews from "@/components/ShowReviews";
-import { ReviewData, ReviewProps } from "../../../types/reviewTypes";
+import { ReviewData } from "../../../types/reviewTypes";
 import { getMovie } from "@/util/dbAggregations";
-import { MovieProps } from "@/util/types";
+import { MovieProps } from "@/types/movieTypes";
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -56,7 +56,7 @@ export default function MovieDetailsPage({
   movie,
   movieScreenings,
 }: {
-  reviewData: ReviewProps;
+  reviewData: ReviewData[];
   movie: MovieProps;
   movieScreenings: string;
 }) {

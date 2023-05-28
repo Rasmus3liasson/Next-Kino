@@ -1,6 +1,6 @@
 import Image from "next/image";
 import style from "./style.module.scss";
-import { MovieProps } from "@/util/types";
+import { MovieProps } from "@/types/movieTypes";
 import Rating from "@/components/Rating";
 
 export default function MovieDetails({ movieData }: { movieData: MovieProps }) {
