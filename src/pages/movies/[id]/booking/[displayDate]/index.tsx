@@ -1,4 +1,4 @@
-import Head from "next/head";
+1 111weww1qqqq2e  2     2e2eeeeeeeqwwimport Head from "next/head";
 import Saloon from "@/components/Saloon";
 import BuyTickets from "@/components/BuyTickets";
 import { getMovie } from "@/util/dbAggregations";
@@ -15,6 +15,8 @@ import { getBookingsArray } from "@/pages/api/movies/[id]/bookings/[displayDate]
         let date = new Date(parseInt(displayDate?.toString()))
         const ISOdate = date.toISOString();
         const offsetFormattedDate = ISOdate.replace("Z", "+00:00");
+        const response: number[] = await (getBookingsArray(id, offsetFormattedDate))
+        response 
 
         // This is no longer needed
         // const url = `http://localhost:3000/api/movies/${id}/bookings/${offsetFormattedDate}`;
@@ -25,7 +27,7 @@ import { getBookingsArray } from "@/pages/api/movies/[id]/bookings/[displayDate]
           id: id,
           displayDate: displayDate,
           // Changed fetch to function that gets data from database
-          dbResponse: await (getBookingsArray(id, offsetFormattedDate))      
+          dbResponse: response
         },
       };
     }
