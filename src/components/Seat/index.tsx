@@ -1,8 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import style from "./style.module.scss";
 import React from "react";
-import { GetServerSideProps } from "next";
-import { GetServerSidePropsContext } from "next";
 
 interface SeatProps{
     seatId: number;
@@ -13,11 +11,13 @@ interface SeatProps{
 }
 
 const Seat: React.FC<SeatProps> = ({seatId, onData, id, displayDate, dbResponse}) => {
-
     const [selected, setIsSelected] = useState(false);
     const [unavailable, setUnavailable] = useState(false);
     let currentState: String;
 
+    // Array booked seats is logged in browser console
+   console.log(dbResponse)
+   
     const handleClick = () => {
         setIsSelected(!selected);
         const data = seatId;

@@ -1,9 +1,18 @@
 import connectMongo from "@/util/connectMongo";
 import Booking from "../../../../../../../models/booking";
 
-export default async function getBookings(req: any, res: any) {
+export default async function handler(req: any, res: any) {
   try {
     const { id, displayDate }: any = req.query;
+    
+    const data = await getBookingsArray(id, displayDate);
+    res.status(200).json({ data });
+  
+  } catch (e) {
+    console.log("Database error: ", e);
+  }
+}
+export async function getBookingsArray(id, displayDate){
 
     await connectMongo();
     const bookings = await Booking.find({ movieTitle: id });
@@ -17,11 +26,7 @@ export default async function getBookings(req: any, res: any) {
         return item.seats;
       })
       .sort((a, b) => a - b);
-
-    res.status(200).json({ occupiedSeats });
-  } catch (e) {
-    console.log("Database error: ", e);
-  }
+      return occupiedSeats;
 }
 
 

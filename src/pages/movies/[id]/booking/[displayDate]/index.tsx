@@ -5,9 +5,9 @@ import { getMovie } from "@/util/dbAggregations";
 import { ScreeningProps } from "@/types/screeningTypes";
 import { GetServerSidePropsContext } from "next";
 import { MovieProps } from "@/util/types";
-
+import { getBookingsArray } from "@/pages/api/movies/[id]/bookings/[displayDate]";
     export async function getServerSideProps(context: GetServerSidePropsContext) {
-        const {req, res, query, params} = context
+        const {req, res, query, params } = context
 
         const id = params?.id ?? 0;
         const displayDate = params?.displayDate ?? "";
@@ -15,15 +15,17 @@ import { MovieProps } from "@/util/types";
         let date = new Date(parseInt(displayDate?.toString()))
         const ISOdate = date.toISOString();
         const offsetFormattedDate = ISOdate.replace("Z", "+00:00");
-    
-        const url = `/api/movies/${id}/bookings/${offsetFormattedDate}`;
+
+        // This is no longer needed
+        // const url = `http://localhost:3000/api/movies/${id}/bookings/${offsetFormattedDate}`;
 
       return {
         props: {
           movieData: await getMovie(id.toString()),
           id: id,
           displayDate: displayDate,
-          dbResponse: await fetch(url)           
+          // Changed fetch to function that gets data from database
+          dbResponse: await (getBookingsArray(id, offsetFormattedDate))      
         },
       };
     }
@@ -33,7 +35,6 @@ import { MovieProps } from "@/util/types";
       const handleDataFromSaloon = (selectedSeatIds: number[]) => {
         seats = selectedSeatIds;
       };
-
       return(
           <>
             <Head>
