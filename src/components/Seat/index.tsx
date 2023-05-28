@@ -1,15 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import style from "./style.module.scss";
 import React from "react";
+import { GetServerSideProps } from "next";
+import { GetServerSidePropsContext } from "next";
 
 interface SeatProps{
     seatId: number;
     onData: (data: number) => void;
     id: string;
     displayDate: string;
+    dbResponse: Response;
 }
 
-const Seat: React.FC<SeatProps> = ({seatId, onData, id, displayDate}) => {
+const Seat: React.FC<SeatProps> = ({seatId, onData, id, displayDate, dbResponse}) => {
 
     const [selected, setIsSelected] = useState(false);
     const [unavailable, setUnavailable] = useState(false);
@@ -45,16 +48,8 @@ const Seat: React.FC<SeatProps> = ({seatId, onData, id, displayDate}) => {
   
     
 async function updateUnavailableSeats() {
-    event?.preventDefault();
-    console.log(displayDate)
-    let date = new Date(parseInt(displayDate))
-    console.log(date);
-    const ISOdate = date.toISOString();
-    const offsetFormattedDate = ISOdate.replace("Z", "+00:00");
-
-    const url = `/api/movies/${id}/bookings/${offsetFormattedDate}`;
-    const dbResponse = await fetch(url);
-                                                                                
+    
+    event?.preventDefault();                                                                       
     const data = dbResponse.json();
     data.then((data) => {
         const occupiedSeats = data.occupiedSeats;

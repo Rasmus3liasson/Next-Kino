@@ -10,17 +10,25 @@ import { MovieProps } from "@/util/types";
         const {req, res, query, params} = context
 
         const id = params?.id ?? 0;
-        const displayDate = params?.displayDate ?? null;
+        const displayDate = params?.displayDate ?? "";
+
+        let date = new Date(parseInt(displayDate?.toString()))
+        const ISOdate = date.toISOString();
+        const offsetFormattedDate = ISOdate.replace("Z", "+00:00");
+    
+        const url = `/api/movies/${id}/bookings/${offsetFormattedDate}`;
+
       return {
         props: {
           movieData: await getMovie(id.toString()),
           id: id,
-          displayDate: displayDate         
+          displayDate: displayDate,
+          dbResponse: await fetch(url)           
         },
       };
     }
 
-    export default function SelectSeats({ screenings, id, displayDate, movieData }: { screenings: ScreeningProps, id: string, displayDate: string, movieData: MovieProps}) {
+    export default function SelectSeats({ screenings, id, displayDate, movieData, dbResponse }: { screenings: ScreeningProps, id: string, displayDate: string, movieData: MovieProps, dbResponse: Response}) {
       let seats: number[] = []
       const handleDataFromSaloon = (selectedSeatIds: number[]) => {
         seats = selectedSeatIds;
@@ -33,7 +41,7 @@ import { MovieProps } from "@/util/types";
               <meta name="description" content="Kino project in next.js" />
               <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
-            <Saloon onData={handleDataFromSaloon} id={id} displayDate={displayDate}/>
+            <Saloon onData={handleDataFromSaloon} id={id} displayDate={displayDate} dbResponse={dbResponse}/>
             <BuyTickets screenings={screenings} selectedSeatIds={seats} id={id} displayDate={displayDate} movieData={movieData}/>
           </>
         );
