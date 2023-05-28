@@ -1,4 +1,4 @@
-1 111weww1qqqq2e  2     2e2eeeeeeeqwwimport Head from "next/head";
+import Head from "next/head";
 import Saloon from "@/components/Saloon";
 import BuyTickets from "@/components/BuyTickets";
 import { getMovie } from "@/util/dbAggregations";

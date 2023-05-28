@@ -7,12 +7,13 @@ interface SeatProps{
     onData: (data: number) => void;
     id: string;
     displayDate: string;
-    dbResponse: Response;
+    dbResponse: number[];
 }
 
 const Seat: React.FC<SeatProps> = ({seatId, onData, id, displayDate, dbResponse}) => {
     const [selected, setIsSelected] = useState(false);
     const [unavailable, setUnavailable] = useState(false);
+    const [unavailableArrayFromDb, setUnavailableArrayFromDb] = useState([])
     let currentState: String;
 
     // Array booked seats is logged in browser console
@@ -27,8 +28,6 @@ const Seat: React.FC<SeatProps> = ({seatId, onData, id, displayDate, dbResponse}
     useEffect(() => {
         updateUnavailableSeats();
     });
-
-   
         if(unavailable){
             currentState = "unavailable"        
         }else if(selected){
@@ -44,21 +43,13 @@ const Seat: React.FC<SeatProps> = ({seatId, onData, id, displayDate, dbResponse}
         }else{
             stylingName = style.availableSeat;
         }
-    
-  
-    
+
 async function updateUnavailableSeats() {
     
     event?.preventDefault();                                                                       
-    const data = dbResponse.json();
-    data.then((data) => {
-        const occupiedSeats = data.occupiedSeats;
-        for (let i=0;i<occupiedSeats.length;i++){
-            if (occupiedSeats[i] === seatId){
-                setUnavailable(true);
-            }
-        }
-    })
+  
+        setUnavailableArrayFromDb(dbResponse);
+    
 }
 
 return (

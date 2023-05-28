@@ -5,7 +5,7 @@ import Seat from "../Seat";
         onData: (data: number[]) => void;
         id: string;
         displayDate: string;
-        dbResponse: Response;
+        dbResponse: number[];
     }
 
     let selectedSeats: number[] = [];
