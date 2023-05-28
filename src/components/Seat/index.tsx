@@ -56,7 +56,6 @@ async function updateUnavailableSeats() {
     const data = dbResponse.json();
     data.then((data) => {
         const occupiedSeats = data.occupiedSeats;
-        console.log(occupiedSeats);
         for (let i=0;i<occupiedSeats.length;i++){
             if (occupiedSeats[i] === seatId){
                 setUnavailable(true);
@@ -64,7 +63,6 @@ async function updateUnavailableSeats() {
         }
     })
 }
-    
 
 return (
 

@@ -25,8 +25,6 @@ import { useRouter } from "next/router";
   function getQuery(): string{
     const router = useRouter();
     const { query } = router;
-    const queryResult = query.property1?.toString();
-    console.log("payment: " + queryResult);
     return query.toString()
   }
 
