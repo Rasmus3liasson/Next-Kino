@@ -1,4 +1,4 @@
-  import { screening } from "../../models/movie";
+import { screening } from "../../models/movie";
 import fs from "fs/promises";
 import { IMovie } from "../../models/movie";
 import { review } from "../../models/movie";
@@ -16,7 +16,7 @@ const maxRevsPerMovie = 15;
 const maxScreensPerMovie = 15;
 
 async function createReviews() {
-  const count = Math.floor(Math.random() * maxRevsPerMovie);
+  const count = Math.floor(Math.random() * maxRevsPerMovie) + 1;
   const reviews: review[] = [];
   for (let i = 0; i < count; i++) {
     const review = await randReview();
@@ -26,7 +26,7 @@ async function createReviews() {
 }
 
 async function createScreenings() {
-  const count = Math.floor(Math.random() * maxScreensPerMovie);
+  const count = Math.floor(Math.random() * maxScreensPerMovie) + 1;
   const screenings: screening[] = [];
   for (let i = 0; i < count; i++) {
     const screening = await randScreening();
@@ -40,7 +40,6 @@ async function populate() {
   try {
     const data = await fs.readFile("./movies.json");
     const movieData = JSON.parse(data.toString());
-    console.log(movieData[1]);
 
     for (let i = 0; i < movieCount; i++) {
       const randScreenings = await createScreenings();

@@ -6,17 +6,13 @@ export default async function randBooking(
   displayDate: Date,
   seatNr: number
 ) {
-  // const lastNames: string = await getNames("./last-names.json");
-  const lastNames = [
-    "Shrek",
-    "LordFarquaad",
-    "PrincessFiona",
-    "Donkey",
-    "PussInBoots",
-    "FairyGodmother",
-    "PrinceCharming",
-  ];
-  const randLastName = lastNames[randArrElem(lastNames.length)];
+  async function getNames(URL: string) {
+    const data = await fs.readFile(URL);
+    return JSON.parse(data.toString());
+  }
+
+  const lastNames: any = await getNames("./last-names.json");
+  const randLastName = await lastNames[randArrElem(lastNames.length)];
   const ID = "User" + randLastName;
   const email = ID + "@gmail.com";
   const booking: IBooking = {
@@ -29,11 +25,6 @@ export default async function randBooking(
   return booking;
 }
 
-// async function getNames(URL: string) {
-//   const data = await fs.readFile(URL);
-//   return JSON.parse(data.toString());
-// }
-  
 export function randArrElem(arrLength: number) {
   return Math.floor(Math.random() * arrLength);
 }
