@@ -1,4 +1,4 @@
-import { screening } from "../models/movie";
+import { screening } from "../../models/movie";
 import { randArrElem, randDate } from "./utils.mjs";
 
 const saloons = ["Matsalen", "Stora Salongen", "Lilla Salongen"];
