@@ -21,8 +21,8 @@ export default function Screening({
     <Link style={{ textDecoration: "none" }} href={link} className={style.card}>
       <Image
         className={style.img}
-        height={120}
-        width={90}
+        height={520}
+        width={500}
         priority
         src={screeningData.poster}
         alt={`The poster for ${screeningData.title}`}
@@ -31,7 +31,9 @@ export default function Screening({
         {screeningData.title}
       </h3>
       <small className={`${style.date} ${style.cardItem}`}>
-        {DateTime.fromISO(screeningData.screening, {zone: 'utc'}).toFormat("dd LLL HH:mm")}
+        {DateTime.fromISO(screeningData.screening, { zone: "utc" }).toFormat(
+          "dd LLL HH:mm"
+        )}
       </small>
       <small className={`${style.location} ${style.cardItem}`}>
         {screeningData.location}
