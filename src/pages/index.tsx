@@ -1,11 +1,7 @@
 import Head from "next/head";
 import AllMovies from "@/components/AllMovies";
 import ScreeningsHome from "../components/ScreeningsHome";
-import { ScreeningType } from "@/util/types";
-import { GetServerSidePropsContext } from "next";
-import validateAuthToken from "@/util/validateAuthToken";
-import { IUser } from "../../models/user";
-import { MovieProps } from "@/util/types";
+import { MovieProps } from "@/types/movieTypes";
 import { getTenScreenings } from "./api/screenings";
 import { getTenMovies } from "./api/movies";
 

@@ -1,7 +1,7 @@
 import style from "./style.module.scss";
 import { useState } from "react";
 import Movie from "../Movie";
-import { MovieProps } from "@/util/types";
+import { MovieProps } from "@/types/movieTypes";
 
 //Global variable that decided how many movies to show at start
 const howManyMoviesToShowAtStart = 6;

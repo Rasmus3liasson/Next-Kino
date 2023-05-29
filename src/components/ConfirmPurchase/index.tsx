@@ -1,6 +1,6 @@
 import style from "./style.module.scss";
 import React from "react";
-import { MovieProps } from "@/util/types";
+import { MovieProps } from "@/types/movieTypes";
 import Image from "next/image";
 
 export default function ConfirmPurchase({

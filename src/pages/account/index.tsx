@@ -1,8 +1,5 @@
-import LoginForm from "@/components/LoginForm";
 import CreateUserForm from "@/components/CreateUserForm";
 
 export default function loginTest() {
-    return (
-        <CreateUserForm/>
-    );
-  }
+  return <CreateUserForm />;
+}

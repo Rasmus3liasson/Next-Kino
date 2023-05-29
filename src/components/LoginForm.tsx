@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { accountStateContext } from "@/pages/_app";
 import Router from "next/router";
 import { loginModalContext } from "@/util/loginModalContext";
-import Link from "next/link";
 
 const LoginForm = () => {
   const [userName, setUserName] = useState("");
@@ -79,14 +78,15 @@ const LoginForm = () => {
         >
           Logga in
         </button>
-        <button 
-        className="text-white font-semibold text-1xl mb-3"
-        onClick={() => {
-          setLoginModalOpen(false)
-          Router.push("/account")
-        }}>
+        <button
+          className="text-white font-semibold text-1xl mb-3"
+          onClick={() => {
+            setLoginModalOpen(false);
+            Router.push("/account");
+          }}
+        >
           Registrera användare?
-          </button>
+        </button>
       </form>
     </div>
   );

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import style from "./style.module.scss";
 import React from "react";
@@ -7,11 +6,9 @@ import { ScreeningProps } from "@/types/screeningTypes";
 
 export default function Payment({
   screenings,
-  selectedSeatIds,
   movieId,
 }: {
   screenings: ScreeningProps;
-  selectedSeatIds: string;
   movieId: string;
 }) {
   const link = `/movies/${movieId}/booking/orderconfirmation`;
@@ -33,7 +30,7 @@ export default function Payment({
       email: "nisse@test.nu",
       movieTitle: screenings.title,
       date: screenings._id,
-      seats: selectedSeatIds,
+      seats: 1,
     };
     const url = `api/movies/${movieId}/payment`;
     await fetch(url, {

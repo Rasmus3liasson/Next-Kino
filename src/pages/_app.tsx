@@ -4,10 +4,10 @@ import "@/styles/globals.scss";
 import { AppProps } from "next/app";
 import React, { createContext, useState } from "react";
 import validateAuthToken from "@/util/validateAuthToken";
-import { userData } from "@/util/types";
-import { NextPageContext } from "next";
+import { userData } from "../types/userTypes";
 import { parse } from "cookie";
 import { loginModalContext } from "@/util/loginModalContext";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
 
 export const accountStateContext = createContext<{
   accountState: userData | null;
@@ -16,6 +16,32 @@ export const accountStateContext = createContext<{
   accountState: null,
   setAccountState: () => {},
 });
+
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const cookie = parse(context.req?.headers.cookie || "");
+  const token = await validateAuthToken(cookie.value);
+  if (token) {
+    const { name, email, userName } = token;
+    return {
+      props: {
+        user: {
+          name,
+          email,
+          userName,
+        },
+      },
+    };
+  }
+
+  // needs this so it dont complain even if the user props is empty
+  else {
+    return {
+      props: {},
+    };
+  }
+};
 
 function App({ Component, pageProps }: AppProps) {
   const [accountState, setAccountState] = useState<userData | null>(null);
@@ -35,20 +61,5 @@ function App({ Component, pageProps }: AppProps) {
     </>
   );
 }
-
-App.getInitialProps = async ({ ctx }: { ctx: NextPageContext }) => {
-  const cookie = parse(ctx.req?.headers.cookie || "");
-  const token = await validateAuthToken(cookie.value);
-  if (token) {
-    const { name, email, userName } = token;
-    return {
-      user: {
-        name,
-        email,
-        userName,
-      },
-    };
-  } else return {};
-};
 
 export default App;
