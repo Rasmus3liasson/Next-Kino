@@ -1,9 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import style from "./style.module.scss";
-import { MovieProps } from "@/util/types";
-
-//TODO: Change src on line :21 to correct property for images.
+import { MovieProps } from "@/types/movieTypes";
 
 /*
  *  Renders a link for from given props that has a background of a

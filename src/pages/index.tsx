@@ -1,7 +1,7 @@
 import Head from "next/head";
 import AllMovies from "@/components/AllMovies";
 import ScreeningsHome from "../components/ScreeningsHome";
-import { MovieProps } from "@/util/types";
+import { MovieProps } from "@/types/movieTypes";
 import { getTenScreenings } from "./api/screenings";
 import { getTenMovies } from "./api/movies";
 

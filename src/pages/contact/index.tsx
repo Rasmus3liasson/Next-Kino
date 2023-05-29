@@ -1,5 +1,4 @@
 import Head from "next/head";
-import style from "./style.module.scss";
 
 export default function Contact() {
   return (

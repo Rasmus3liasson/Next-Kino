@@ -1,10 +1,7 @@
-import type { NextApiRequest ,NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 import { serialize } from "cookie";
 
-export default function logout(
-  req: NextApiRequest, 
-  res: NextApiResponse
-) {
+export default function logout(req: NextApiRequest, res: NextApiResponse) {
   res.setHeader(
     "Set-Cookie",
     serialize("AuthToken", "", {
@@ -14,6 +11,6 @@ export default function logout(
       path: "/",
     })
   );
-  
-  res.status(200).redirect("/").end()
+
+  res.status(200).redirect("/").end();
 }

@@ -1,4 +1,4 @@
-import { MovieProps } from "@/util/types";
+import { MovieProps } from "@/types/movieTypes";
 import type { NextApiRequest, NextApiResponse } from "next";
 import connectMongo from "@/util/connectMongo";
 import Movie from "../../../models/movie";
@@ -12,7 +12,6 @@ export default async function handler(
   res.status(200).json(data);
 }
 export async function getTenMovies() {
-
   await connectMongo();
 
   const tenRandomMovies = Movie.aggregate([

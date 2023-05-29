@@ -7,7 +7,7 @@ import {
   StrengthMeterStyles,
   SubmitedUserResponse,
   UserType,
-} from "@/util/types";
+} from "../types/userTypes";
 import Link from "next/link";
 
 const CreateUserForm = () => {
@@ -58,12 +58,12 @@ const CreateUserForm = () => {
     });
 
     const data: SubmitedUserResponse = await resp.json();
-    
+
     // Timeout only for show LEL
     setTimeout(() => {
       data && setSubmitting(false);
       data.errors.length >= 0 && setErrors(data.errors);
-      resp.status === 201 && setCreated(true)
+      resp.status === 201 && setCreated(true);
     }, 800);
   };
 
