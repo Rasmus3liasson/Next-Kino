@@ -1,0 +1,33 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title{
+    color: white;
+    font-size: x-large;
+}
+
+.confirmButton{
+    border-radius: 10px;
+    background-color: red;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 70%;
+    color: white;
+}
+
+.cancelButton{
+    border-radius: 10px;
+    background-color:deepskyblue;
+    padding: 10px;
+    width: 70%;
+    margin-bottom: 20px;
+}
+
+.date{
+    color: white;
+}

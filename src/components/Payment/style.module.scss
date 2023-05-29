@@ -1,0 +1,81 @@
+@import '../../styles/variables.scss';
+
+.paymentContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+.Headline{
+    font-size: 28px;
+    color: white; 
+}   
+
+.savedCreditCardTitle{
+    color:white;
+    font-size: large;
+}
+
+.SavedCreditCard{
+    background-color: lightgray;
+    width: 70%;
+    height: 50px;
+    border-radius: 10px;
+    padding: 5px 0 0 10px;
+}
+
+.cardNumber{
+    font-size: small;
+    color: black;
+}
+
+.totalAmountToPay{
+    color: white;
+    margin-top: 20px;
+    font-size: larger;
+}
+
+.confirmButton{
+    border-radius: 10px;
+    background-color: red;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 70%;
+    color: white;
+    font-weight: 700;
+}
+
+.cardNumber{
+    color: black;
+    font-weight: 600;
+}
+
+.creditCardIssuerImage{
+    width: 35px;
+}
+
+.cancelButton{
+    border-radius: 10px;
+    background-color:deepskyblue;
+    padding: 10px;
+    width: 70%;
+    font-weight: 500;
+}
+
+.paymentMethod{
+    list-style-type: none;
+    
+    color: white;
+    margin-right: 10px;
+}
+
+.movieCover{
+    width: 150px;
+}
+
+.radioText{
+    margin-left: 15px;
+}

@@ -11,7 +11,7 @@ export default function SpecificMovieScreening({
   screening: SpecificScreening;
   hrefLink: string;
 }) {
-  const screeningLink = `/movies/${hrefLink}/booking?screening=${Date.parse(
+  const screeningLink = `/movies/${hrefLink}/booking/${Date.parse(
     screening.displayDate
   )}`;
   const spokenLang = screening.spokenLang;

@@ -1,0 +1,28 @@
+@import '@/styles/variables.scss';
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    align-items: center;
+    margin-bottom: 50px;
+}
+.Headline{
+    color:white;
+    font-size: xx-large;
+}
+
+.returnButton{
+    border-radius: 10px;
+    background-color:deepskyblue;
+    padding: 10px;
+    width: 70%;
+}
+
+.userInfo{
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}

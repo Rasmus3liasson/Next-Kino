@@ -1,0 +1,89 @@
+@import '../../styles/variables.scss';
+
+.saloon{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.seatContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotateY(0deg) rotate(90deg);
+    
+}
+
+.legend{
+    display: flex;  
+    flex-direction: column;
+    justify-content: center;
+    transform: rotateY(0deg) rotate(90deg);
+    margin-top: -90px;
+    gap: 70px;
+}
+
+.screen{
+    width: 150px;
+    height: 30px;
+    margin-left: 10px;
+    margin-top: 40px;
+    align-items: center;
+    justify-content: center;
+    background-color: gray;
+    text-align: center;
+    font-weight: $font-weight-medium;
+}
+
+.seat_legend_unavailable{
+    width: 20px;
+    height: 20px;
+    border-radius: 0 5px 5px 0px;
+    background-color: red;
+    margin: 5px 15px;
+    cursor: not-allowed; 
+    :hover{
+        background-color: royalblue;
+    }
+}
+
+.seat_legend_selected{
+    width: 20px;
+    height: 20px;
+    border-radius: 0 5px 5px 0px;
+    margin: 0px 15px;
+    cursor: not-allowed;
+    background-color: gray;   
+}
+.seat_legend_free{
+    width: 20px;
+    height: 20px;
+    border-radius: 0 5px 5px 0px;
+    margin: 5px 15px;
+    cursor: not-allowed;
+    background-color: green;   
+}
+.legendText_free{
+    position: absolute;
+    transform: rotateY(0deg) rotate(-90deg);
+    color: $text-light;
+    margin-left: 32px;
+    margin-top: 210px;
+}
+.legendText_unavailable{
+    position: absolute;
+    transform: rotateY(0deg) rotate(-90deg);
+    color: $text-light;
+    margin-left: 27px;
+    margin-top: 8px;
+    text-align: center;
+}
+.legendText_selected{
+    position: absolute;
+    transform: rotateY(0deg) rotate(-90deg);
+    color: $text-light;
+    margin-left: 56px;
+    margin-top: -180px;
+}

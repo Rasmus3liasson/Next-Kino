@@ -8,6 +8,15 @@ import Booking from "../../../../models/booking";
 
 export default async function createBooking(req: any, res: any) {
   try {
+
+    // New booking object
+    const newBooking = {
+      email: req.body.userEmail,
+      movieTitle: req.body.movieTitle,
+      date: new Date(),
+      seats: [6,7,8,9]
+    };
+
     await connectMongo();
     const booking = await Booking.create(req.body);
     res.json({ booking: booking });
@@ -17,3 +26,4 @@ export default async function createBooking(req: any, res: any) {
     res.json({ error });
   }
 }
+
