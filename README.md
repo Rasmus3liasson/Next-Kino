@@ -1,38 +1,117 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Lule Northern Lights Cinema
+
+This project is the result of working with a re-design we did of an earlier project.
+The task was to implement additional features to the project and refactor the site
+to a NEXT.js environment. 
+
+## Resources
+- [Design spec](https://www.figma.com/file/r1FdsPU5rcK8M8oKTJ9Dem/Final-Lule-Bio-Site?type=design&node-id=0%3A1&t=aGhZaZU9aCQCsIQv-1) on figma.
 
 ## Getting Started
 
-First, run the development server:
+To build and view the project locally use the following steps. 
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+npm install
+
+npm run build
+
+npm start
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Deployment on Netlify
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+The [site](https://address_to_netlify) is deployed on Netlify. 
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+# API Endpoints
+===============
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This document contains the API endpoints for our cinema that applies for:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- booking a ticket,
+- handle reviews,
+- information about movies
+- handle accounts
 
-## Deploy on Vercel
+## Screening
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`GET /api/screenings`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Returns a list of 10 movie screenings, including information about the movie, date, time, language and theater. Sorted by date.
+
+## Upcoming Screenings
+
+`GET /api/upcoming-screenings/:id`
+
+Returns a list of 10 upcoming screenings for a specific movie, specified by its id.
+Sorted by date and grouped by day.
+
+## Reviews
+
+`GET /api/reviews/:id`
+
+Returns the reviews for a specific movie, specified by its id.
+
+## Sending Reviews
+
+`POST /api/movies/:id/sendReview`
+
+Allows a user to post a review for a specific movie, specified by its id.
+
+## Booking
+
+`GET /api/movies/:id/booking/:displayDate`
+
+Returns the available seats for a specific movie screening, specified by its date.
+
+## Payment
+
+`POST /api/movies/:id/payment`
+
+Allows a user to make a payment for a specific movie screening, specified by its id.
+
+## Authentication
+
+`POST /api/login`
+
+Allows a user to log in to the application.
+
+`POST /api/createUser`
+
+Allows a user to create an account for the application.
+
+
+Routes
+===============
+
+`GET /`
+
+Homepage that shows movies available
+
+`GET /movies/:id`
+
+Information about movie that match id
+
+`GET /movies/:id/booking`
+
+Book movie that match id
+
+## Static
+
+`GET /about`
+
+Static page about our cinema
+
+`GET /contact`
+
+Static page with contact information
+
+`GET /openinghours`
+
+Static page with opening hours
+
