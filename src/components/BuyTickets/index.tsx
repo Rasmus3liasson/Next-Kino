@@ -9,14 +9,12 @@ export default function BuyTickets({ screenings, selectedSeatIds, id, displayDat
   const [seats, setSeats] = useState(selectedSeatIds)
   const testSeats = [1,2];
   let dateAndTime = new Date(parseInt(displayDate))
-  console.log(dateAndTime)
   const ISOdate = dateAndTime.toISOString();
-  const offsetFormattedDate = ISOdate.replace("T", " ").slice(0, 16);
+  const offsetFormattedDate = ISOdate.replace("Z", "+00:00");
   const Link = `/movies/${id}/booking/${offsetFormattedDate}/payment?${testSeats}`;
   const router = useRouter();
   function handleClick() {
     setSeats(selectedSeatIds)
-    console.log("BuyTickets_after: " + seats)
     router.push(Link);
   }
   return (
