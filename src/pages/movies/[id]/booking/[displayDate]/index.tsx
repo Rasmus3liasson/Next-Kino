@@ -31,7 +31,7 @@ import { getBookingsArray } from "@/pages/api/movies/[id]/bookings/[displayDate]
       };
     }
 
-    export default function SelectSeats({ screenings, id, displayDate, movieData, dbResponse }: { screenings: ScreeningProps, id: string, displayDate: string, movieData: MovieProps, dbResponse: Response}) {
+    export default function SelectSeats({ screenings, id, displayDate, movieData, dbResponse }: { screenings: ScreeningProps, id: string, displayDate: string, movieData: MovieProps, dbResponse: number[]}) {
       let seats: number[] = []
       const handleDataFromSaloon = (selectedSeatIds: number[]) => {
         seats = selectedSeatIds;
