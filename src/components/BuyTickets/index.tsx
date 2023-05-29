@@ -28,7 +28,6 @@ export default function BuyTickets({
   const router = useRouter();
   function handleClick() {
     setSeats(selectedSeatIds);
-    console.log("BuyTickets_after: " + seats);
     router.push(Link);
   }
   return (
