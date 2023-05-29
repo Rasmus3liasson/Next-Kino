@@ -61,20 +61,5 @@ function App({ Component, pageProps }: AppProps) {
     </>
   );
 }
-/* 
-App.getInitialProps = async ({ ctx }: { ctx: NextPageContext }) => {
-  const cookie = parse(ctx.req?.headers.cookie || "");
-  const token = await validateAuthToken(cookie.value);
-  if (token) {
-    const { name, email, userName } = token;
-    return {
-      user: {
-        name,
-        email,
-        userName,
-      },
-    };
-  } else return {};
-}; */
 
 export default App;
