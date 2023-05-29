@@ -16,8 +16,8 @@ export default function Movie({ movieData }: { movieData: MovieProps }) {
       <Link style={{ textDecoration: "none" }} passHref href={link}>
         <Image
           className={style.img}
-          height={120}
-          width={90}
+          height={820}
+          width={900}
           priority
           src={movieData.poster}
           alt={`The poster for ${movieData.title}`}
