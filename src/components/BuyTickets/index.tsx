@@ -9,11 +9,10 @@ export default function BuyTickets({ screenings, selectedSeatIds, id, displayDat
   const [seats, setSeats] = useState(selectedSeatIds)
   const testSeats = [1,2];
   let dateAndTime = new Date(parseInt(displayDate))
-  //console.log(dateAndTime)
-  //const ISOdate = dateAndTime.toISOString();
-  //const offsetFormattedDate = ISOdate.replace("Z", "+00:00");
-  const dateAndTimeString = (dateAndTime.toLocaleDateString() + " " + dateAndTime.toLocaleTimeString())
-  const Link = `/movies/${id}/booking/${dateAndTime}/payment?${testSeats}`;
+  console.log(dateAndTime)
+  const ISOdate = dateAndTime.toISOString();
+  const offsetFormattedDate = ISOdate.replace("T", " ").slice(0, 16);
+  const Link = `/movies/${id}/booking/${offsetFormattedDate}/payment?${testSeats}`;
   const router = useRouter();
   function handleClick() {
     setSeats(selectedSeatIds)
@@ -26,7 +25,7 @@ export default function BuyTickets({ screenings, selectedSeatIds, id, displayDat
       <NumberContextProvider numberArray={selectedSeatIds}></NumberContextProvider>
       <hr className={style.divider}/>
       <h2 className={style.title }>{movieData.title}</h2>
-      <p className={style.date}> Tid och datum: {dateAndTimeString}</p>
+      <p className={style.date}> Tid och datum: {offsetFormattedDate}</p>
       <p className={style.date}> Plats: {"Stora salongen"}</p>
       <button onClick={handleClick} className={style.confirmButton} formAction="Submit">Till kassan</button>
       <button className={style.cancelButton} formAction="Cancel">Avbryt</button>  
