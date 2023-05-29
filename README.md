@@ -24,7 +24,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Deployment on Netlify
 
-The [site](https://address_to_netlify) is deployed on Netlify. 
+The [site](https://lulenorthernlightcinema.netlify.app/) is deployed on Netlify. 
 
 
 
