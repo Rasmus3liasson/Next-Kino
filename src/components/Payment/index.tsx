@@ -26,7 +26,7 @@ export default function Payment({ screenings, selectedSeatIds, movieId }: { scre
             date: screenings._id,
             seats: selectedSeatIds,
         };
-        const url = `api/movies/${movieId}/payment`;
+        const url = `/api/movies/${movieId}/bookings/${screenings._id}/update`;
         await fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
